@@ -16,3 +16,12 @@ docker-argon-update:
 docker-destory:
 	docker-compose down -v --rmi all
 	
+.PHONY: first-install
+	cp .env.example .env
+	dokcer-compose up
+	docker-compoe exec composer install
+	docker-compose exec app composer require laravel-frontend-presets/argon
+	docker-compose exec app php artisan preset argon
+	docker-compose exec app composer dump-autoload
+	# add commit template
+	git config commit.template .commit_template
