@@ -1,0 +1,24 @@
+
+
+# ==== Emojis ====
+# 👍  :+1: 機能改善
+# ✨  :sparkles: 新規機能追加
+# 🐛  :bug: バグ修正
+# ♻️  :recycle: リファクタリング
+# 🚿  :shower: 不要な機能・使われなくなった機能の削除
+# 💚  :green_heart: テストやCIの修正・改善
+# 📝  :pencil: ドキュメントの更新
+# 🐎  :racehorse: パフォーマンス改善
+# 🚧  :construction: Work in progress
+# 🔧  :wrench:	設定ファイルの更新
+# 🆙  :up: 依存パッケージなどのアップデート
+# 👕  :shirt: Lintエラーの修正やコードスタイルの修正
+# 👮  :cop: セキュリティ関連の改善
+
+# ==== Format ====
+# :emoji: Subject
+#
+# Commit body...
+
+# ==== Setup ===
+# git config commit.template .commit_template
