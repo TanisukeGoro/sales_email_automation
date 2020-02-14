@@ -1,4 +1,7 @@
+# [ public ]
 .DS_Store
+
+# [ laravel ]
 /node_modules
 /public/hot
 /public/storage
@@ -14,3 +17,6 @@ yarn-error.log
 
 # [ argon dashboard ]
 /public/argon
+
+# [ log ]
+/logs
