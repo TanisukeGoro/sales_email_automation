@@ -17,8 +17,9 @@ docker-destory:
 	docker-compose down -v --rmi all
 	
 .PHONY: first-install
+first-install:
 	cp .env.example .env
-	dokcer-compose up
+	docker-compose up -d
 	docker-compoe exec composer install
 	docker-compose exec app composer require laravel-frontend-presets/argon
 	docker-compose exec app php artisan preset argon
