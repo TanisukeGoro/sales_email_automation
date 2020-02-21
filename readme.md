@@ -1,6 +1,6 @@
-# Argon Dashboard Start Up Kit 
+# Sales Email Automation
 
-A repository for quickly building a website using [Argon Dashboard](https://github.com/creativetimofficial/argon-dashboard-laravel) templates.
+営業メールを自動化するためのWebApp
 
 ## Clone and Install 
 
@@ -18,8 +18,29 @@ $ git clone https://github.com/TanisukeGoro/laravel-argon-starter.git
 - The First Install Step
 
 ```bash
+# helf docker dependent (半Docer)
 make first-install
+
+# completely docker dependent
+make docker-first-install
 ```
+
+## 通常の起動方法
+
+```bash
+# 半Docker
+docker-compose -f docker-compose.noapp.yml up
+
+# フルDocker
+docker-compose up
+```
+
+
+## 必要なツール (特に半docker)
+
+### mysql
+
+### composer
 
 ## 注意点
 

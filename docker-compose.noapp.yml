@@ -1,0 +1,19 @@
+version: "3"
+services:
+  db:
+    image: mysql:8.0
+    ports:
+      - "13306:3306"
+    volumes:
+      - db-store:/var/lib/mysql
+      - ./logs:/var/log/mysql
+      - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+    environment:
+      - MYSQL_DATABASE=${DB_DATABASE:-homestead}
+      - MYSQL_USER=${DB_USERNAME:-homestead}
+      - MYSQL_PASSWORD=${DB_PASSWORD:-secret}
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD:-secret}
+      - TZ=${TZ:-Asia/Tokyo}
+
+volumes:
+  db-store:
