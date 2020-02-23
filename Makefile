@@ -4,7 +4,7 @@ docker-reset-db:
 
 .PHONY: reset-db
 reset-db:
-    php artisan migrate:refresh --seed
+	php artisan migrate:refresh --seed
 
 .PHONY: docker-down
 docker-down:
@@ -41,3 +41,19 @@ first-install:
 	composer dump-autoload
 	# add commit template
 	git config commit.template .commit_template
+
+.PHONY: clear-cache
+clear-cache:
+	composer dump-autoload
+	php artisan cache:clear
+	php artisan config:clear
+	php artisan route:clear
+	php artisan view:clear
+
+.PHONY: docker-clear-cache
+docker-clear-cache:
+	docker-compose exec app php composer dump-autoload
+	docker-compose exec app php artisan cache:clear
+	docker-compose exec app php artisan config:clear
+	docker-compose exec app php artisan route:clear
+	docker-compose exec app php artisan view:clear
