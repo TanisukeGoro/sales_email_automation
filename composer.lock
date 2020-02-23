@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "adaa555ba54868bf0c305ffa6ffc7957",
+    "content-hash": "b3da6a411e5b0c7939a1f7f34cd7565a",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -282,24 +282,24 @@
         },
         {
             "name": "fideloper/proxy",
-            "version": "4.2.2",
+            "version": "4.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fideloper/TrustedProxy.git",
-                "reference": "790194d5d3da89a713478875d2e2d05855a90a81"
+                "reference": "ec38ad69ee378a1eec04fb0e417a97cfaf7ed11a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fideloper/TrustedProxy/zipball/790194d5d3da89a713478875d2e2d05855a90a81",
-                "reference": "790194d5d3da89a713478875d2e2d05855a90a81",
+                "url": "https://api.github.com/repos/fideloper/TrustedProxy/zipball/ec38ad69ee378a1eec04fb0e417a97cfaf7ed11a",
+                "reference": "ec38ad69ee378a1eec04fb0e417a97cfaf7ed11a",
                 "shasum": ""
             },
             "require": {
-                "illuminate/contracts": "^5.0|^6.0|^7.0",
+                "illuminate/contracts": "^5.0|^6.0|^7.0|^8.0",
                 "php": ">=5.4.0"
             },
             "require-dev": {
-                "illuminate/http": "^5.0|^6.0|^7.0",
+                "illuminate/http": "^5.0|^6.0|^7.0|^8.0",
                 "mockery/mockery": "^1.0",
                 "phpunit/phpunit": "^6.0"
             },
@@ -332,7 +332,7 @@
                 "proxy",
                 "trusted proxy"
             ],
-            "time": "2019-12-20T13:11:11+00:00"
+            "time": "2020-02-22T01:51:47+00:00"
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -832,6 +832,58 @@
                 "storage"
             ],
             "time": "2020-02-05T18:14:17+00:00"
+        },
+        {
+            "name": "magentron/laravel-blade-lint",
+            "version": "1.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Magentron/laravel-blade-lint.git",
+                "reference": "4bf07d05f951c4737dbf661a01ae53ff3c7b464a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Magentron/laravel-blade-lint/zipball/4bf07d05f951c4737dbf661a01ae53ff3c7b464a",
+                "reference": "4bf07d05f951c4737dbf661a01ae53ff3c7b464a",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "*"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Magentron\\BladeLint\\Providers\\ServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Magentron\\BladeLint\\": "src/Magentron/BladeLint"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Jeroen Derks",
+                    "email": "jeroen@derks.it",
+                    "homepage": "https://www.derks.it/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Laravel Blade Lint console command",
+            "homepage": "https://github.com/Magentron/laravel-blade-lint",
+            "keywords": [
+                "blade",
+                "console",
+                "laravel",
+                "lint"
+            ],
+            "time": "2018-11-28T14:07:44+00:00"
         },
         {
             "name": "monolog/monolog",
