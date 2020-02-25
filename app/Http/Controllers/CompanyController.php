@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Company;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CompanyController extends Controller
 {
@@ -13,7 +15,8 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        //
+        $companies = DB::table('companies');
+        return view('companies.index', ['companies' => $companies->paginate(15)]);
     }
 
     /**
@@ -40,12 +43,12 @@ class CompanyController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  App\Models\Company  $company
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Company $company)
     {
-        //
+      return view('companies.show', ['company' => $company]);
     }
 
     /**
