@@ -3,7 +3,7 @@
 @section('content')
   @include('users.partials.header', ['title' => "営業先企業一覧"])
 
-  <div class="container-fluid mt--7">
+  <div class="container-fluid ">
     <div class="row">
       <div class="col">
         <div class="card shadow">
