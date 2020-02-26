@@ -21,7 +21,7 @@ docker-destory:
 	docker-compose down -v --rmi all
 
 .PHONY: docker-first-install
-docker-first-install:
+docker-first-install: docker-composer-optimization
 	cp dotenv.docker.sample .env
 	docker-compose up -d
 	docker-compose exec app composer install
@@ -32,7 +32,7 @@ docker-first-install:
 	git config commit.template .commit_template
 
 .PHONY: first-install
-first-install:
+first-install: composer-optimization
 	cp dotenv.sample .env
 	docker-compose -f docker-compose.noapp.yml up
 	composer install
@@ -41,6 +41,17 @@ first-install:
 	composer dump-autoload
 	# add commit template
 	git config commit.template .commit_template
+
+.PHONY: composer-optimization
+composer-optimization:
+	composer config -g repos.packagist composer https://packagist.jp
+	composer global require hirak/prestissimo
+
+.PHONY: docker-composer-optimization
+docker-composer-optimization:
+	docker-compose exec app composer config -g repos.packagist composer https://packagist.jp
+	docker-compose exec app composer global require hirak/prestissimo
+
 
 .PHONY: clear-cache
 clear-cache:
