@@ -1,6 +1,6 @@
 <!-- Top navbar -->
 <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
-    <div class="container-fluid">
+    <div class="container-fluid mt-3">
         <!-- Brand -->
         <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="{{ route('home') }}">{{ $title }}</a>
         <!-- Form -->

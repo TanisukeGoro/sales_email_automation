@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="container-fluid">
+    <div class="container-fluid mt-3">
         <div class="row">
             <div class="col-xl-12 order-xl-1">
                 <div class="card bg-secondary shadow">
