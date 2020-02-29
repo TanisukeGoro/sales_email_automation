@@ -1,7 +1,6 @@
-@extends('layouts.app', ['title' => __('User Management')])
+@extends('layouts.app', ['title' => __('Add User')])
 
 @section('content')
-    @include('users.partials.header', ['title' => __('Add User')])
 
     <div class="container-fluid">
         <div class="row">

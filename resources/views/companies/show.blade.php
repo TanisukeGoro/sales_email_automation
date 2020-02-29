@@ -1,7 +1,6 @@
-@extends('layouts.app', ['title' => __('User Profile')])
+@extends('layouts.app', ['title' => __('お問い合わせフォーム')])
 
 @section('content')
-  @include('users.partials.header', ['title' => "お問い合わせフォーム"])
 
   <div class="container-fluid ">
     <div class="row">
