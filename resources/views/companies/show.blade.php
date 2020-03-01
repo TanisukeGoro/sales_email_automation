@@ -22,7 +22,13 @@
             </div>
           </div>
           <div class="card-body">
-            <iframe src="{{$company->form_url ?? ''}}" id="form-frame" frameborder="0" width="100%" height="500px"></iframe>
+          <iframe
+            id="iframeParentID"
+            height="600px"
+            width="100%"
+            srcdoc="{{ $form_dom ?? ''}}"
+          >
+        </iframe>
           </div>
         </div>
       </div>
@@ -31,17 +37,11 @@
       @include('layouts.footers.auth')
   </div>
   <script>
-    window.load = () => {
-      console.log('読み込み完了')
-      $('#frame').load(function(){
-        console.log('iframeロード完了');
-        console.log($('#frame'))
-        if (typeof $(this).attr('height') == 'undefined') {
-            console.log('object');
-            $(this).height(this.contentWindow.document.documentElement.scrollHeight);
-        }
-      })
+    window.addEventListener('message', function(e) {
+    if (e.origin == "https://www.example.com"){  //ドメインを記入
+    document.getElementById('iframeParentID').height = e.data; //IDを記入
     }
-</script>
+    }, false);
+  </script>
 
 @endsection
