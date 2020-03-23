@@ -10,48 +10,21 @@ reset-db:
 docker-down:
 	docker-compose down -v
 
+.PHONY: docker-destory
+docker-destory:
+	docker-compose down -v --rmi all
+
 .PHONY: docker-argon-update
 docker-argon-update:
 	docker-compose exec app composer require laravel-frontend-presets/argon
 	docker-compose exec app php artisan preset argon
 	docker-compose exec app composer dump-autoload
 
-.PHONY: docker-destory
-docker-destory:
-	docker-compose down -v --rmi all
-
-.PHONY: docker-first-install
-docker-first-install: docker-composer-optimization
-	cp dotenv.docker.sample .env
-	docker-compose up -d
-	docker-compose exec app composer install
-	docker-compose exec app composer require laravel-frontend-presets/argon
-	docker-compose exec app php artisan preset argon
-	docker-compose exec app composer dump-autoload
-	# add commit template
-	git config commit.template .commit_template
-
-.PHONY: first-install
-first-install: composer-optimization
-	cp dotenv.sample .env
-	docker-compose -f docker-compose.noapp.yml up
-	composer install
-	composer require laravel-frontend-presets/argon
-	php artisan preset argon
-	composer dump-autoload
-	# add commit template
-	git config commit.template .commit_template
-
-.PHONY: composer-optimization
-composer-optimization:
-	composer config -g repos.packagist composer https://packagist.jp
-	composer global require hirak/prestissimo
-
-.PHONY: docker-composer-optimization
-docker-composer-optimization:
-	docker-compose exec app composer config -g repos.packagist composer https://packagist.jp
-	docker-compose exec app composer global require hirak/prestissimo
-
+.PHONY: argon-update
+argon-update:
+	compose exec app composer require laravel-frontend-presets/argon
+	compose exec app php artisan preset argon
+	compose exec app composer dump-autoload
 
 .PHONY: clear-cache
 clear-cache:
@@ -68,3 +41,11 @@ docker-clear-cache:
 	docker-compose exec app php artisan config:clear
 	docker-compose exec app php artisan route:clear
 	docker-compose exec app php artisan view:clear
+
+.PHONY: lint
+lint:
+	yarn lint
+
+.PHONY: docker-lint
+docker-lint:
+	yarn lint
