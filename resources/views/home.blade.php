@@ -1,62 +1,22 @@
 @extends('layouts.app', ['class' => 'bg-default'])
 
 @section('content')
-<div class="header bg-gradient-primary py-7 py-lg-8">
+<div class="header py-7">
   <div class="container">
     <div class="row">
-      <div class="col">
+      @foreach ($cards as $card)
+      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 mb-3">
         <div class="card">
-          <img class="card-img-top"
-            src="https://user-images.githubusercontent.com/49427056/77417707-19830780-6e09-11ea-9e1b-97586388290f.jpg"
+          <img class="card-img-top" style="height: 150px; object-fit: contain;" src="{{ $card->image}}"
             alt="Card image cap">
           <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-              content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+            <h5 class="card-title">{{ $card->title }}</h5>
+            <p class="card-text">{{ $card->content }}</p>
+            <a href="#" class="btn btn-primary">詳細</a>
           </div>
         </div>
       </div>
-      <div class="col">
-        <div class="card">
-          <img class="card-img-top"
-            src="https://user-images.githubusercontent.com/49427056/77417707-19830780-6e09-11ea-9e1b-97586388290f.jpg"
-            alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-              content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card">
-          <img class="card-img-top"
-            src="https://user-images.githubusercontent.com/49427056/77417707-19830780-6e09-11ea-9e1b-97586388290f.jpg"
-            alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-              content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card">
-          <img class="card-img-top"
-            src="https://user-images.githubusercontent.com/49427056/77417707-19830780-6e09-11ea-9e1b-97586388290f.jpg"
-            alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-              card's
-              content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-      </div>
+      @endforeach
     </div>
   </div>
   <div class="separator separator-bottom separator-skew zindex-100">
@@ -67,12 +27,4 @@
 </div>
 
 <div class="container mt--10 pb-5"></div>
-<div class="container">
-  <div class="row">
-    <div class="col"><span>col</span></div>
-    <div class="col"><span>col</span></div>
-    <div class="col"><span>col</span></div>
-    <div class="col"><span>col</span></div>
-  </div>
-</div>
 @endsection
