@@ -3963,21 +3963,24 @@
         },
         {
             "name": "flynsarmy/csv-seeder",
-            "version": "v1.0.6",
+            "version": "v1.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Flynsarmy/laravel-csv-seeder.git",
-                "reference": "9b6b261082bf7ff245eeb355261e1038cbd89262"
+                "reference": "847905569e9921e5d184a630e2d348f929b69401"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Flynsarmy/laravel-csv-seeder/zipball/9b6b261082bf7ff245eeb355261e1038cbd89262",
-                "reference": "9b6b261082bf7ff245eeb355261e1038cbd89262",
+                "url": "https://api.github.com/repos/Flynsarmy/laravel-csv-seeder/zipball/847905569e9921e5d184a630e2d348f929b69401",
+                "reference": "847905569e9921e5d184a630e2d348f929b69401",
                 "shasum": ""
             },
             "require": {
                 "illuminate/support": ">=4.1.0",
                 "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^6.0@dev"
             },
             "type": "library",
             "autoload": {
@@ -4003,7 +4006,7 @@
                 "seeding",
                 "seeds"
             ],
-            "time": "2015-09-04T04:13:30+00:00"
+            "time": "2020-03-26T14:29:37+00:00"
         },
         {
             "name": "fzaninotto/faker",
