@@ -28,7 +28,7 @@ class CreateTemplatesTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
 
         });
-        DB::statement("ALTER TABLE templates COMMENT '文章テンプレート'");
+        // DB::statement("ALTER TABLE templates COMMENT '文章テンプレート'");
     }
 
     /**

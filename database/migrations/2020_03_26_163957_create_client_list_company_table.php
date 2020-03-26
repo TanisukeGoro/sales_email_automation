@@ -22,7 +22,7 @@ class CreateClientListCompanyTable extends Migration
             $table->foreign('company_id')->references('id')->on('companies');
             $table->foreign('client_list_id')->references('id')->on('client_lists');
         });
-        DB::statement("ALTER TABLE client_list_company COMMENT '営業先リスト_企業マスタ中間テーブル'");
+        // DB::statement("ALTER TABLE client_list_company COMMENT '営業先リスト_企業マスタ中間テーブル'");
     }
 
     /**

@@ -11,10 +11,10 @@
 
 ```bash 
 # via SSH
-$ git clone git@github.com:TanisukeGoro/laravel-argon-starter.git
+$ git clone git@github.com:TanisukeGoro/sales_email_automation.git
 
 # via HTTP
-$ git clone https://github.com/TanisukeGoro/laravel-argon-starter.git
+$ git clone https://github.com/TanisukeGoro/sales_email_automation.git
 
 ```
 

@@ -22,7 +22,7 @@ class CreateRedirectUrisTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
         });
 
-        DB::statement("ALTER TABLE redirect_uris COMMENT 'リダイレクト管理'");
+        // DB::statement("ALTER TABLE redirect_uris COMMENT 'リダイレクト管理'");
     }
 
     /**

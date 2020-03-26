@@ -23,7 +23,7 @@ class CreateSentsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
         });
 
-        DB::statement("ALTER TABLE sents COMMENT 'ユーザーの送信回数カウント'");
+        // DB::statement("ALTER TABLE sents COMMENT 'ユーザーの送信回数カウント'");
     }
 
     /**

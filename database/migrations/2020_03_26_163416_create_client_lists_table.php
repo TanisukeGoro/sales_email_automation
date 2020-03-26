@@ -22,7 +22,7 @@ class CreateClientListsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
         });
 
-        DB::statement("ALTER TABLE client_lists COMMENT '営業先リスト'");
+        // DB::statement("ALTER TABLE client_lists COMMENT '営業先リスト'");
     }
 
     /**
