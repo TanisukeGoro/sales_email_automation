@@ -19,6 +19,11 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('company_name')->comment('企業名');
+            $table->string('company_address')->comment('企業住所');
+            $table->integer('category')->comment('業界カテゴリ');
+            $table->integer('n_employees')->comment('従業員人数');
+            $table->string('hp_adress')->comment('ホームページアドレス');
             $table->rememberToken();
             $table->timestamps();
         });
