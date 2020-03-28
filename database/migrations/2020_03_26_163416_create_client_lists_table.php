@@ -8,12 +8,10 @@ class CreateClientListsTable extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('client_lists', function (Blueprint $table) {
+        Schema::create('client_lists', function (Blueprint $table): void {
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->unsigned();
             $table->string('name')->comment('顧客リスト名');
@@ -27,10 +25,8 @@ class CreateClientListsTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('client_lists');
     }

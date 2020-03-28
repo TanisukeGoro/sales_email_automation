@@ -8,15 +8,14 @@ class CreateSentsTable extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('sents', function (Blueprint $table) {
+        Schema::create('sents', function (Blueprint $table): void {
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->unsigned();
             $table->integer('count')->comment('送信回数');
+            $table->string('status')->comment('何かの状態');
             $table->string('status')->comment('何かの状態');
             $table->timestamps();
 
@@ -28,10 +27,8 @@ class CreateSentsTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('sents');
     }

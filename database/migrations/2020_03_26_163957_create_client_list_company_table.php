@@ -8,12 +8,10 @@ class CreateClientListCompanyTable extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('client_list_company', function (Blueprint $table) {
+        Schema::create('client_list_company', function (Blueprint $table): void {
             $table->bigIncrements('id');
             $table->bigInteger('company_id')->unsigned();
             $table->bigInteger('client_list_id')->unsigned();
@@ -27,10 +25,8 @@ class CreateClientListCompanyTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('client_list_company');
     }
