@@ -16,10 +16,11 @@ class CreateClientListsTable extends Migration
         Schema::create('client_lists', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->unsigned();
-            $table->string('name')->comment('顧客リスト名');
+            $table->bigInteger('company_id')->unsigned();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('company_id')->references('id')->on('companies');
         });
 
         // DB::statement("ALTER TABLE client_lists COMMENT '営業先リスト'");
