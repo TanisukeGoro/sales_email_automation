@@ -23,3 +23,5 @@ yarn-error.log
 
 # [ docker php ]
 /docker/php/psysh/*
+
+.php_cs.cache
