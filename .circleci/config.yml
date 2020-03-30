@@ -3,7 +3,7 @@ jobs:
   build:
     docker:
       - image: circleci/php:7.3-stretch-node-browsers
-      - image: circleci/postgres:11.2
+      # - image: circleci/postgres:11.2
     environment:
       - APP_DEBUG: true
       - APP_ENV: testing
@@ -21,9 +21,11 @@ jobs:
           environment:
             DOCKERIZE_VERSION: v0.6.1
 
-      - run:
-          name: Install PHP Extensions
-          command: sudo docker-php-ext-install pdo_pgsql
+      # postgresをCIで使っていないのでいらない？かも？
+      # でもそもそもCI回すのが本番で動くかの確認だから、こういうコマンド動いてないとおかしいのかな？
+      # - run: 
+      #     name: Install PHP Extensions
+      #     command: sudo docker-php-ext-install pdo_pgsql
 
       - restore_cache:
           keys:
