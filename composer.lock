@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "362684af2a930affcd61579a9abec9f2",
+    "content-hash": "4c9af3d219fa99f50464075760b825d9",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -4031,21 +4031,24 @@
         },
         {
             "name": "flynsarmy/csv-seeder",
-            "version": "v1.0.6",
+            "version": "v2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Flynsarmy/laravel-csv-seeder.git",
-                "reference": "9b6b261082bf7ff245eeb355261e1038cbd89262"
+                "reference": "432c6b83b155cbec685aaf70e92aec141113fcb5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Flynsarmy/laravel-csv-seeder/zipball/9b6b261082bf7ff245eeb355261e1038cbd89262",
-                "reference": "9b6b261082bf7ff245eeb355261e1038cbd89262",
+                "url": "https://api.github.com/repos/Flynsarmy/laravel-csv-seeder/zipball/432c6b83b155cbec685aaf70e92aec141113fcb5",
+                "reference": "432c6b83b155cbec685aaf70e92aec141113fcb5",
                 "shasum": ""
             },
             "require": {
                 "illuminate/support": ">=4.1.0",
-                "php": ">=5.3.0"
+                "php": ">=7"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^6.0@dev"
             },
             "type": "library",
             "autoload": {
@@ -4071,7 +4074,7 @@
                 "seeding",
                 "seeds"
             ],
-            "time": "2015-09-04T04:13:30+00:00"
+            "time": "2020-03-27T03:59:27+00:00"
         },
         {
             "name": "friendsofphp/php-cs-fixer",
