@@ -3,8 +3,7 @@ jobs:
   build:
     docker:
       - image: circleci/php:7.3-stretch-node-browsers
-      - image: circleci/mysql:8.0.17
-        command: mysqld --default-authentication-plugin=mysql_native_password
+      - image: circleci/postgres:11.2
     environment:
       - APP_DEBUG: true
       - APP_ENV: testing
@@ -24,7 +23,7 @@ jobs:
 
       - run:
           name: Install PHP Extensions
-          command: sudo docker-php-ext-install pdo_mysql
+          command: sudo docker-php-ext-install pdo_pgsql
 
       - restore_cache:
           keys:
