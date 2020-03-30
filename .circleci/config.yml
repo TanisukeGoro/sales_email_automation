@@ -59,3 +59,8 @@ jobs:
           name: Blade Lint Test
           working_directory: .
           command: php artisan blade:lint
+
+      - run:
+          name: php-cs-fixer
+          working_directory: .
+          command: ./vendor/bin/php-cs-fixer fix .
