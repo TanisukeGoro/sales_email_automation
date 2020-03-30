@@ -24,7 +24,7 @@ $ git clone https://github.com/TanisukeGoro/sales_email_automation.git
 
 ```bash
 # copy environment management file
-cp dotenv.sample .env
+cp dotenv.example .env
 # docker start-up ( option -d )
 docker-compose -f docker-compose.noapp.yml up
 # composer optimization
@@ -74,6 +74,95 @@ docker-compose up
 - [ ] php
 - [ ] composer
 - [ ] node
+
+### MySQL (必須)
+DB以降により不要  
+~~[Mac へ MySQL を Homebrew でインストールする手順](https://qiita.com/hkusu/items/cda3e8461e7a46ecf25d)~~
+
+### php (必須)
+
+ローカルでサーバーを立てるために`PHP 7.2`以上が必須(Laravel6.x系の要件)  
+`phpbrew`を使ってPHPをビルドすることをオススメする  
+
+> [phpbrew/phpbrew | Github](https://github.com/phpbrew/phpbrew)  
+> [Macにphpbrewをインストールしてphpをバージョン管理](https://qiita.com/wisteria3221/items/4aa5ed1a9d106c3f7990)
+
+```bash
+curl -L -O https://github.com/phpbrew/phpbrew/raw/master/phpbrew
+chmod +x phpbrew
+sudo mv phpbrew /usr/local/bin/phpbrew
+phpbrew init
+```
+
+bashを使っている人は以下のコマンドを実行
+```bash
+echo "[[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc" >> ~/.bashrc
+source ~/.phpbrew/bashrc
+```
+
+
+```bash
+# fishを使っている人は`phpbrew.fish`に以下を挿入
+# "~/.phpbrew/phpbrew.fish"
+[ -e ~/.phpbrew/phpbrew.fish ]; and source ~/.phpbrew/phpbrew.fish
+# 再読み込み
+source ~/.phpbrew/phpbrew.fish
+# fishとphpbrew用のプラグインをインストールする
+fisher add oh-my-fish/plugin-phpbrew
+phpbrew lookup-prefix homebrew
+```
+
+`php 7.3.x`をインストール
+
+```bash
+phpbrew install 7.3.16 +default +dbs 
+```
+
+エラーが生じる時は、大体PHPのビルドに必要なパッケージが存在無いとか、ファイルパスの参照ができていない時  
+
+```bash
+# 必要なパッケージをHomebrewでインストール
+brew install automake autoconf curl pcre bison re2c mhash libtool icu4c gettext jpeg openssl libxml2 mcrypt gmp libevent   
+# いくつかのパッケージを brew link 
+brew link curl --force
+brew link icu4c --force
+brew link libxml2 --force
+brew link openssl --force
+```
+
+#### configure: error: Cannot find zlibが出るとき
+
+MojaveだとmacOS SDK headerがないのでインストールする必要があるっぽい
+```
+sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target /
+```
+
+### psql(必須)
+DBはdockerで動かす場合もローカルにインストールしておくことが必要
+
+[macOs Sierra + homebrewな環境でPostgresqlを導入する備忘録](https://qiita.com/gooddoog/items/1f986c1a6c0f253bd4e2) この辺を参考にlocalに導入
+
+```shell
+$ brew update
+$ brew install postgresql
+```
+
+### heroku-cli(任意)
+url: https://devcenter.heroku.com/articles/heroku-cli
+
+```shell
+$ brew tap heroku/brew && brew install heroku
+$ heroku login
+```
+
+### pgAdmin4(任意)
+url: https://www.pgadmin.org/
+
+これで簡単に入る
+```
+$ brew cask install pgadmin4
+```
+
 
 ## プロジェクトの運用に関して
 
