@@ -1,18 +1,15 @@
 version: "3"
 services:
   db:
-    image: mysql:8.0
-    ports:
-      - "13306:3306"
+    image: postgres:11.2
     volumes:
-      - db-store:/var/lib/mysql
-      - ./logs:/var/log/mysql
-      - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
-    environment:
-      - MYSQL_DATABASE=${DB_DATABASE:-homestead}
-      - MYSQL_USER=${DB_USERNAME:-homestead}
-      - MYSQL_PASSWORD=${DB_PASSWORD:-secret}
-      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD:-secret}
+      - ./tmp/db:/var/lib/postgresql/data:delegated
+    ports:
+      - "15432:5432"
+    environment: 
+      - POSTGRES_DB=${DB_DATABASE:-homestead}
+      - POSTGRES_USER=${DB_USERNAME:-homestead}
+      - POSTGRES_PASSWORD=${DB_PASSWORD:-secret}
       - TZ=${TZ:-Asia/Tokyo}
 
 volumes:
