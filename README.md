@@ -163,6 +163,21 @@ url: https://www.pgadmin.org/
 $ brew cask install pgadmin4
 ```
 
+### php-cs-fixer
+url: https://github.com/FriendsOfPHP/PHP-CS-Fixer
+
+pushする前(コミット前)に実行し、コード整形を必ずすること。
+
+以下コマンドを実行
+```
+./vendor/bin/php-cs-fixer fix .
+```
+
+コード整形は同様。エラーがあった際にエラー表示される(推奨)
+```
+./vendor/bin/php-cs-fixer fix -vvv .
+```
+
 
 ## プロジェクトの運用に関して
 
