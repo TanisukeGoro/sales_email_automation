@@ -39,6 +39,8 @@
   </div>
   @endauth
 
+  @yield('content')
+
   @guest()
   @include('layouts.footers.guest')
   @endguest
