@@ -6,10 +6,8 @@ class CompaniesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
         factory(\App\Models\Company::class, 50)->create();
     }

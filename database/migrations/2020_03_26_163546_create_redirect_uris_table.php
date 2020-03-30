@@ -8,12 +8,10 @@ class CreateRedirectUrisTable extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('redirect_uris', function (Blueprint $table) {
+        Schema::create('redirect_uris', function (Blueprint $table): void {
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->unsigned();
             $table->string('uri')->comment('リダイレクト用URL');
@@ -27,10 +25,8 @@ class CreateRedirectUrisTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('redirect_uris');
     }
