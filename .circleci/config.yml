@@ -3,7 +3,7 @@ jobs:
   build:
     docker:
       - image: circleci/php:7.3-stretch-node-browsers
-      # - image: circleci/postgres:11.2
+      - image: circleci/postgres:11.2
     environment:
       - APP_DEBUG: true
       - APP_ENV: testing
@@ -23,14 +23,24 @@ jobs:
 
       # postgresをCIで使っていないのでいらない？かも？
       # でもそもそもCI回すのが本番で動くかの確認だから、こういうコマンド動いてないとおかしいのかな？
-      # - run: 
-      #     name: Install PHP Extensions
-      #     command: sudo docker-php-ext-install pdo_pgsql
+      - run: 
+          name: Install PHP Extensions
+          command: apt-get update && apt-get libpq-dev && sudo docker-php-ext-install pdo_pgsql
 
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "./composer.json" }}
             - v1-dependencies-
+
+      - run:
+          name: composer install
+          working_directory: .
+          command: composer config -g repos.packagist composer https://packagist.jp
+
+      - run:
+          name: composer install prestissimo
+          working_directory: .
+          command: composer global require hirak/prestissimo
 
       - run:
           name: composer install
@@ -44,7 +54,7 @@ jobs:
 
       - run:
           name: Wait for db
-          command: dockerize -wait tcp://localhost:3306 -timeout 1m
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
 
       - run:
           name: Migration & Seeding
