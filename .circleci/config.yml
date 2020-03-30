@@ -20,12 +20,14 @@ jobs:
           command: wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && sudo tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
           environment:
             DOCKERIZE_VERSION: v0.6.1
-
-      # postgresをCIで使っていないのでいらない？かも？
-      # でもそもそもCI回すのが本番で動くかの確認だから、こういうコマンド動いてないとおかしいのかな？
+            
+      - run: 
+          name: apt-get update
+          command: sudo apt-get update && sudo apt-get -y install libpq-dev
+      
       - run: 
           name: Install PHP Extensions
-          command: apt-get update && apt-get libpq-dev && sudo docker-php-ext-install pdo_pgsql
+          command: sudo docker-php-ext-install pdo_pgsql
 
       - restore_cache:
           keys:
