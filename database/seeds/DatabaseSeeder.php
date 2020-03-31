@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
             UsersTableSeeder::class,
             // CompaniesTableSeeder::class,
             CompaniesSeeder::class,
+            CompanyCategoriesTableSeeder::class,
         ]);
     }
 }
