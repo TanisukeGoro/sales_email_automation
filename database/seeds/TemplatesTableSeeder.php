@@ -11,7 +11,7 @@ class TemplatesTableSeeder extends Seeder
     {
         DB::table('templates')->insert([
             'user_id' => 1,
-            'template_name' => '営業メール',
+            'name' => '営業メール',
             'email' => 'admin@argon.com',
             'subject' => '新規サービスのご紹介に関する面談のお願い（任天堂株式会社）',
             'company' => '豊田株式会社',
