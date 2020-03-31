@@ -18,7 +18,7 @@
     },
     "require-dev": {
         "facade/ignition": "^1.4",
-        "flynsarmy/csv-seeder": "^1.0",
+        "flynsarmy/csv-seeder": "^2.0",
         "friendsofphp/php-cs-fixer": "^2.16",
         "fzaninotto/faker": "^1.4",
         "mockery/mockery": "^1.0",
