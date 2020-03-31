@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -36,4 +35,24 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function search_conditions()
+    {
+        return $this->hasMany('App\Models\SearchConditions');
+    }
+
+    public function redirect_uris()
+    {
+        return $this->hasMany('App\Models\RedirectUri');
+    }
+
+    public function sents()
+    {
+        return $this->hasMany('App\Models\Sent');
+    }
+
+    public function templates()
+    {
+        return $this->hasMany('App\Models\Template');
+    }
 }
