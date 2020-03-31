@@ -18,8 +18,9 @@ yarn-error.log
 # [ argon dashboard ]
 /public/argon
 
-# [ log ]
+# [ log, temporary ]
 /logs
+/tmp
 
 # [ docker php ]
 /docker/php/psysh/*

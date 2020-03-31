@@ -8,12 +8,10 @@ class CreateCompaniesTable extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('companies', function (Blueprint $table) {
+        Schema::create('companies', function (Blueprint $table): void {
             $table->bigIncrements('id');
             $table->bigInteger('company_category_id')->unsigned()->nullable()->comment('業界カテゴリ');
             $table->string('name')->comment('企業名');
@@ -29,10 +27,8 @@ class CreateCompaniesTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('companies');
     }
