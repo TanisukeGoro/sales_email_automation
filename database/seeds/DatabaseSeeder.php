@@ -6,15 +6,13 @@ class DatabaseSeeder extends Seeder
 {
     /**
      * Seed the application's database.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
         $this->call([
             UsersTableSeeder::class,
             // CompaniesTableSeeder::class,
-            CompaniesSeeder::class
+            CompaniesSeeder::class,
         ]);
     }
 }

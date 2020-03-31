@@ -26,78 +26,76 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  App\Models\Company  $company
+     * @param App\Models\Company $company
+     *
      * @return \Illuminate\Http\Response
      */
     public function show(Company $company)
     {
-      $url = $company->form_url ?? '';
-      if ($url != '') {
-        $client = new \GuzzleHttp\Client();
-        $response = $client->request('GET',$url);
-        // レスポンスボディを取得
-        $responseBody = $response->getBody()->getContents();
-        $responseBody = str_replace('src="//', 'srchttps', $responseBody);
-        $responseBody = str_replace('src="/', "src=\"$company->top_page", $responseBody);
-        $responseBody = str_replace('srchttps', 'src="https://', $responseBody);
-        $responseBody = str_replace('href="/', "src=\"$company->top_page", $responseBody);
-      }
+        $url = $company->form_url ?? '';
 
-      // return response()->json($responseBody);
-      return view('companies.show', [
-        'company' => $company,
-        'form_dom' => $responseBody
+        if ($url !== '') {
+            $client = new \GuzzleHttp\Client();
+            $response = $client->request('GET', $url);
+            // レスポンスボディを取得
+            $responseBody = $response->getBody()->getContents();
+            $responseBody = \str_replace('src="//', 'srchttps', $responseBody);
+            $responseBody = \str_replace('src="/', "src=\"{$company->top_page}", $responseBody);
+            $responseBody = \str_replace('srchttps', 'src="https://', $responseBody);
+            $responseBody = \str_replace('href="/', "src=\"{$company->top_page}", $responseBody);
+        }
+
+        // return response()->json($responseBody);
+        return view('companies.show', [
+            'company' => $company,
+            'form_dom' => $responseBody,
         ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        //
     }
 }

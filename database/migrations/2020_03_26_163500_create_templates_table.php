@@ -8,12 +8,10 @@ class CreateTemplatesTable extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('templates', function (Blueprint $table) {
+        Schema::create('templates', function (Blueprint $table): void {
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->unsigned();
             $table->string('user_name')->comment('テンプレート名');
@@ -26,17 +24,14 @@ class CreateTemplatesTable extends Migration
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
-
         });
         // DB::statement("ALTER TABLE templates COMMENT '文章テンプレート'");
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('templates');
     }
