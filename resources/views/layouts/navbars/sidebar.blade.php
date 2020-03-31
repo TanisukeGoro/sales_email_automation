@@ -1,4 +1,4 @@
-<nav class="side-bar col-2 border-right border-black d-none d-md-block" id="sidenav-main">
+<nav class="side-bar col-3 col-lg-2 border-right border-black d-none d-md-block" id="sidenav-main">
   <div class="container-fluid p-0 mt-3">
     <div class="search-box">
       <div class="col-md-12 p-0">
