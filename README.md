@@ -70,10 +70,8 @@ docker-compose up
 
 ## 🔧 Required Tools (特に半 docker)
 
-- [ ] mysql
-- [ ] php
-- [ ] composer
-- [ ] node
+- [ ] composer :あとでかく
+- [ ] node: あとでかく
 
 ### MySQL (必須)
 DB以降により不要  
@@ -177,6 +175,24 @@ pushする前(コミット前)に実行し、コード整形を必ずするこ�
 ```
 ./vendor/bin/php-cs-fixer fix -vvv --config .php_cs.dist
 ```
+
+### CircleCI
+
+CircleCIを安易に落とさないために、ローカルで実行したいときはCLIを使う  
+
+url: https://circleci.com/docs/ja/2.0/local-cli/
+
+みんなのMacにはDockerが入っているはずなので以下のコマンドで簡単に入るはず。
+
+```bash
+brew install --ignore-dependencies circleci
+```
+
+- config.ymlの記述テスト(文法自体が間違っていないか)
+  - `circleci config validate`
+- CircleCIのジョブを実行(実際にCircleCIで回るやつ)
+  - ` circleci local execute --job JOB_NAME`
+  - 僕たちのは`circleci local execute --job build`になる
 
 
 ## プロジェクトの運用に関して
