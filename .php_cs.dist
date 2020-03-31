@@ -7,6 +7,6 @@ return PhpCsFixer\Config::create()
         'declare_strict_types' => false,
     ]))
     ->setFinder(PhpCsFixer\Finder::create()
-        ->exclude('vendor')
+        ->exclude(['vendor','storage'])
         ->in(__DIR__)
     );
