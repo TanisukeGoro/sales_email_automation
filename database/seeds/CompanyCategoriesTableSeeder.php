@@ -26,7 +26,6 @@ class CompanyCategoriesTableSeeder extends Seeder
         [
             'http_errors' => false,
             'headers' => $headers,
-            //'form_params'     => $form_params,
         ]
     );
         $responseBody = $response->getBody()->getContents();
