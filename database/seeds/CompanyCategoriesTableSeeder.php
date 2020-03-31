@@ -21,13 +21,13 @@ class CompanyCategoriesTableSeeder extends Seeder
             'X-API-KEY' => 'OdHUhEf0rtB9PB1ImWijnIk1AWW713H0LZx8KUQ6',
         ];
         $response = $client->request(
-        'GET',
-        $path,
-        [
-            'http_errors' => false,
-            'headers' => $headers,
-        ]
-    );
+            'GET',
+            $path,
+            [
+                'http_errors' => false,
+                'headers' => $headers,
+            ]
+        );
         $responseBody = $response->getBody()->getContents();
         $responseBody = \json_decode($responseBody, true);
 
