@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
             ListingStocksTableSeeder::class,
             UsersTableSeeder::class,
             // CompaniesTableSeeder::class,
+            TemplatesTableSeeder::class,
             CompaniesSeeder::class,
         ]);
     }
