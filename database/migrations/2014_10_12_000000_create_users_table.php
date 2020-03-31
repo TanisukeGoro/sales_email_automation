@@ -24,8 +24,6 @@ class CreateUsersTable extends Migration
             $table->string('hp_adress')->comment('ホームページアドレス')->nullable();
             $table->rememberToken();
             $table->timestamps();
-
-            $table->foreign('company_category_id')->references('id')->on('company_categories');
         });
     }
 
