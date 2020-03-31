@@ -15,6 +15,7 @@ class CreateCompaniesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name')->comment('企業名');
             $table->string('code')->nullable()->comment('企業コード');
+            $table->integer('listing_stock_id')->comment('上場状態');
             $table->bigInteger('company_category_id')->unsigned()->nullable()->comment('業界カテゴリ');
             $table->string('company_address')->comment('企業住所')->nullable();
             $table->integer('n_employees')->comment('従業員人数')->nullable();
