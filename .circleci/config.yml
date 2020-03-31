@@ -63,4 +63,4 @@ jobs:
       - run:
           name: php-cs-fixer
           working_directory: .
-          command: ./vendor/bin/php-cs-fixer fix --dry-run -vvv .
+          command: ./vendor/bin/php-cs-fixer fix --dry-run -vvv --config .php_cs.dist
