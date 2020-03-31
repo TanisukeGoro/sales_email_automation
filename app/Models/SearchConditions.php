@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Sent extends Model
+class SearchConditions extends Model
 {
     public function user()
     {
