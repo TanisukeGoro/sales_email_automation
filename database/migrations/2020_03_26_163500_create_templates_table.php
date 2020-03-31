@@ -14,7 +14,7 @@ class CreateTemplatesTable extends Migration
         Schema::create('templates', function (Blueprint $table): void {
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->unsigned();
-            $table->string('user_name')->comment('テンプレート名');
+            $table->string('name')->comment('テンプレート名');
             $table->string('email')->comment('メールアドレス');
             $table->string('subject')->comment('件名');
             $table->string('company')->comment('会社名');

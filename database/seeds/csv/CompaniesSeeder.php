@@ -11,12 +11,7 @@ class CompaniesSeeder extends Seeder
     {
         $file = new SplFileObject('database/csv_db/companies.csv');
 
-        $file->setFlags(
-            \SplFileObject::READ_CSV |
-                \SplFileObject::READ_AHEAD |
-                \SplFileObject::SKIP_EMPTY |
-                \SplFileObject::DROP_NEW_LINE
-        );
+        $file->setFlags(\SplFileObject::READ_CSV | \SplFileObject::READ_AHEAD | \SplFileObject::SKIP_EMPTY | \SplFileObject::DROP_NEW_LINE);
 
         $list = [];
         $date = new DateTimeImmutable();
@@ -26,6 +21,7 @@ class CompaniesSeeder extends Seeder
             $list[] = [
                 'name' => $line[0],
                 'code' => $line[1],
+                'listing_stock_id' => 1,
                 'top_url' => $line[2],
                 'form_url' => $line[3],
                 'created_at' => $now,
