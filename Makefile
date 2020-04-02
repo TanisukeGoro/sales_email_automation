@@ -44,8 +44,8 @@ docker-clear-cache:
 
 .PHONY: lint
 lint:
-	yarn lint
+	./vendor/bin/php-cs-fixer fix -vvv --config .php_cs.dist
 
 .PHONY: docker-lint
 docker-lint:
-	yarn lint
+	docker-compose exec app ./vendor/bin/php-cs-fixer fix -vvv --config .php_cs.dist

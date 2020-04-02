@@ -32,7 +32,7 @@ make composer-optimization
 # composer install
 composer install
 # install argon and import preset
-php artisan preset argon
+php artisan preset argon:update
 # composer autoload dumping
 composer dump-autoload
 # add commit template
@@ -51,7 +51,7 @@ make docker-composer-optimization
 # composer install
 docker-compose exec app composer install
 # install argon and import preset
-docker-compose exec app php artisan preset argon
+docker-compose exec app php artisan preset argon:update
 # composer autoload dumping
 docker-compose exec app composer dump-autoload
 # add commit template
