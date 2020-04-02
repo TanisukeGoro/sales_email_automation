@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\CompanyCategory;
+use App\Models\ListingStock;
 use Illuminate\Database\Seeder;
 
 class CompaniesSeeder extends Seeder
@@ -9,6 +11,8 @@ class CompaniesSeeder extends Seeder
      */
     public function run(): void
     {
+        $faker = Faker\Factory::create('ja_JP');
+
         $file = new SplFileObject('database/csv_db/companies.csv');
 
         $file->setFlags(\SplFileObject::READ_CSV | \SplFileObject::READ_AHEAD | \SplFileObject::SKIP_EMPTY | \SplFileObject::DROP_NEW_LINE);
@@ -21,7 +25,10 @@ class CompaniesSeeder extends Seeder
             $list[] = [
                 'name' => $line[0],
                 'code' => $line[1],
-                'listing_stock_id' => 1,
+                'listing_stock_id' => \mt_rand(1, ListingStock::all()->count()),
+                'company_category_id' => \mt_rand(1, CompanyCategory::all()->count()),
+                'address' => $faker->address,
+                'n_employees' => \mt_rand(100, 30000),
                 'top_url' => $line[2],
                 'form_url' => $line[3],
                 'created_at' => $now,
