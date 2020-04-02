@@ -167,6 +167,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\ArgonPresetUpdateServiceProvider::class,
+        App\Providers\ComposerServiceProvider::class,
     ],
 
     /*
