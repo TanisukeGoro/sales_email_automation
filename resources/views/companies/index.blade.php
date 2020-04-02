@@ -9,7 +9,7 @@
           <div class="card-header border-0">
             <div class="row align-items-center">
               <div class="col-8">
-                <p class="mb-0">該当件数{{ $companies->count() }}件</p>
+                <p class="mb-0">該当件数{{ $search_count }}件</p>
               </div>
               <div class="dropdown col-4 text-right">
                 <button class="btn btn-outline-primary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton"
