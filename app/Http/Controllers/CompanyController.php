@@ -18,14 +18,14 @@ class CompanyController extends Controller
     public function index(Request $request)
     {
         $this->search_count = Company::all()->count();
-        $companyCategories = CompanyCategory::all();
+        $company_categories = CompanyCategory::all();
 
         $companies = $request->all() === [] ? Company::paginate(20) : $this->getSearchCompanies($request);
 
         return view('companies.index', [
             'search_count' => $this->search_count,
             'companies' => $companies,
-            'companyCategories' => $companyCategories,
+            'company_categories' => $company_categories,
         ]);
     }
 

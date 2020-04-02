@@ -16,7 +16,7 @@
         <label for="exampleFormControlSelect1">業界検索</label>
         <select name="searchCategory" class="form-control" id="exampleFormControlSelect1">
           <option value="">未選択</option>
-          @foreach ($companyCategories as $category)
+          @foreach ($company_categories as $category)
           <option value="{{ $category->id }}">{{ $category->name }}</option>
           @endforeach
         </select>

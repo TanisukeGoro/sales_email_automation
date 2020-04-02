@@ -25,8 +25,8 @@ class CompaniesSeeder extends Seeder
             $list[] = [
                 'name' => $line[0],
                 'code' => $line[1],
-                'listing_stock_id' => \mt_rand(1, ListingStock::all()->count()),
-                'company_category_id' => \mt_rand(1, CompanyCategory::all()->count()),
+                'listing_stock_id' => \mt_rand(1, ListingStock::all()->count() !== 0 ? ListingStock::all()->count() : 2),
+                'company_category_id' => \mt_rand(1, CompanyCategory::all()->count() !== 0 ? CompanyCategory::all()->count() : 2),
                 'address' => $faker->address,
                 'n_employees' => \mt_rand(100, 30000),
                 'top_url' => $line[2],

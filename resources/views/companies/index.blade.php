@@ -53,7 +53,7 @@
                 @foreach ($companies as $company)
                 <tr>
                   <td>
-                    {{ $company->listingStock->name }}
+                    {{ $company->listingStock->name ?? "" }}
                   </td>
                   <td>
                     @if ($company->form_url)
