@@ -1,5 +1,7 @@
 # [ public ]
 .DS_Store
+/public/js/*
+/public/css/*
 
 # [ laravel ]
 /node_modules

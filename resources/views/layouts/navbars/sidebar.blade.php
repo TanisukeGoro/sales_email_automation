@@ -1,5 +1,5 @@
 <nav class="side-bar col-3 col-lg-2 border-right border-black d-none d-md-block" id="sidenav-main">
-  <div class="container-fluid p-0 mt-3">
+  <div id="vue-sidebar" class="container-fluid p-0 mt-3">
     <div class="search-box">
       <div class="col-md-12 p-0">
         <div class="form-group">
@@ -33,5 +33,7 @@
         </div>
       </div>
     </div>
+    <!-- こんな感じで普通に導入できる -->
+    <suggest-input>
   </div>
 </nav>
