@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
-use App\Models\CompanyCategory;
 use Illuminate\Http\Request;
 
 class CompanyController extends Controller
@@ -18,14 +17,12 @@ class CompanyController extends Controller
     public function index(Request $request)
     {
         $this->search_count = Company::all()->count();
-        $company_categories = CompanyCategory::all();
 
         $companies = $request->all() === [] ? Company::paginate(20) : $this->getSearchCompanies($request);
 
         return view('companies.index', [
             'search_count' => $this->search_count,
             'companies' => $companies,
-            'company_categories' => $company_categories,
         ]);
     }
 
