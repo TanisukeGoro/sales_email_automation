@@ -4,19 +4,26 @@ namespace App\Http\Controllers;
 
 use App\Models\Company;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class CompanyController extends Controller
 {
+    private $search_count;
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $companies = DB::table('companies');
-        return view('companies.index', ['companies' => $companies->paginate(15)]);
+        $this->search_count = Company::all()->count();
+
+        $companies = $request->all() === [] ? Company::paginate(20) : $this->getSearchCompanies($request);
+
+        return view('companies.index', [
+            'search_count' => $this->search_count,
+            'companies' => $companies,
+        ]);
     }
 
     /**
@@ -97,5 +104,30 @@ class CompanyController extends Controller
      */
     public function destroy($id)
     {
+    }
+
+    private function getSearchCompanies($request)
+    {
+        $query = Company::query();
+
+        if (isset($request->category)) {
+            $query->where('company_category_id', (int) $request->category);
+        }
+
+        if (isset($request->sort)) {
+            $sortItem = $request->sort;
+
+            if ($sortItem === 'listing_stock') {
+                $query->orderBy('listing_stock_id', 'asc');
+            } elseif ($sortItem === 'n_employees') {
+                $query->orderBy('n_employees', 'asc');
+            } elseif ($sortItem === 'category') {
+                $query->orderBy('campany_category_id', 'desc');
+            }
+        }
+
+        $this->search_count = $query->get()->count();
+
+        return $query->paginate(20);
     }
 }

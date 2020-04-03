@@ -6,8 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Company extends Model
 {
-    public function listingStocks()
+    public function listingStock()
     {
-        return $this->hasMany('App\Models\ListingStock');
+        return $this->belongsTo('App\Models\ListingStock');
+    }
+
+    public function companyCategory()
+    {
+        return $this->belongsTo('App\Models\CompanyCategory');
     }
 }
