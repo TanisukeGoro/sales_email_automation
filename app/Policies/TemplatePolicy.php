@@ -13,7 +13,7 @@ class TemplatePolicy
     /**
      * Determine whether the user can view any templates.
      */
-    public function viewAny(User $user)
+    public function viewAny(User $user): void
     {
     }
 
@@ -22,14 +22,14 @@ class TemplatePolicy
      *
      * @param \App\Template $template
      */
-    public function view(User $user, Template $template)
+    public function view(User $user, Template $template): void
     {
     }
 
     /**
      * Determine whether the user can create templates.
      */
-    public function create(User $user)
+    public function create(User $user): void
     {
     }
 
@@ -58,7 +58,7 @@ class TemplatePolicy
      *
      * @param \App\Template $template
      */
-    public function restore(User $user, Template $template)
+    public function restore(User $user, Template $template): void
     {
     }
 
@@ -67,7 +67,7 @@ class TemplatePolicy
      *
      * @param \App\Template $template
      */
-    public function forceDelete(User $user, Template $template)
+    public function forceDelete(User $user, Template $template): void
     {
     }
 }
