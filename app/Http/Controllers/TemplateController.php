@@ -75,6 +75,9 @@ class TemplateController extends Controller
      */
     public function edit(Template $template)
     {
+        return view('template.create', [
+            'template' => $template,
+        ]);
     }
 
     /**
@@ -82,8 +85,13 @@ class TemplateController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Template $template)
+    public function update(TemplateRequest $request, Template $template)
     {
+        $this->authorize('update', $template);
+
+        $template->fill($request->all())->save();
+
+        return redirect()->route('template.index');
     }
 
     /**
