@@ -16,7 +16,7 @@ class TemplateController extends Controller
      */
     public function index()
     {
-        $templates = Auth::user()->templates()->get();
+        $templates = Auth::user()->templates()->orderBy('created_at', 'asc')->get();
 
         return view('template.index', [
             'templates' => $templates,
@@ -52,6 +52,8 @@ class TemplateController extends Controller
         $template = new Template();
         $template->user_id = Auth::id();
         $template->fill($request->all())->save();
+
+        return redirect()->route('template.index');
     }
 
     /**
