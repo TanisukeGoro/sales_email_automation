@@ -27,4 +27,6 @@ Route::group(['middleware' => 'auth'], function (): void {
     Route::resource('companies', 'CompanyController');
 
     Route::resource('template', 'TemplateController');
+
+    Route::get('/confirm', 'TemplateController@confirm')->name('template.confirm');
 });
