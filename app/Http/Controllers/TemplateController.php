@@ -29,6 +29,7 @@ class TemplateController extends Controller
      */
     public function create()
     {
+        return view('template.create');
     }
 
     /**
