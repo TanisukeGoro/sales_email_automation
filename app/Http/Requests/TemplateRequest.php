@@ -33,4 +33,17 @@ class TemplateRequest extends FormRequest
             'long_content' => ['required'],
         ];
     }
+
+    public function attributes()
+    {
+        return [
+            'name' => 'テンプレート名',
+            'email' => 'メールアドレス',
+            'company' => '会社名',
+            'department' => '部署名',
+            'subject' => '件名',
+            'short_content' => '内容(短文)',
+            'long_content' => '内容(長文)',
+        ];
+    }
 }
