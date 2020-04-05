@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Template;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TemplateController extends Controller
 {
@@ -14,7 +15,11 @@ class TemplateController extends Controller
      */
     public function index()
     {
-        return view('template.index');
+        $templates = Auth::user()->templates()->get();
+
+        return view('template.index', [
+            'templates' => $templates,
+        ]);
     }
 
     /**
