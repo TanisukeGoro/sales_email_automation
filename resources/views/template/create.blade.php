@@ -11,51 +11,96 @@
           </div>
         </div>
         <div class="col-10 m-auto">
-          <div class="px-4 pt-4">
-            <span class="">テンプレート名：</span>
-            <div class="col-12 form-group m-0 p-0">
-              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
+          <form action="{{route('template.confirm')}}" method="GET">
+            @csrf
+            <div class="px-4 pt-4">
+              <span class="">テンプレート名：</span>
+              <div class="col-12 form-group m-0 p-0">
+                @if($errors->has("name"))
+                <div class="error">
+                  <small class="small text-red">※{{$errors->first("name")}}</small>
+                </div>
+                @endif
+                <input type="text" class="form-control" id="exampleFormControlInput1" name="name"
+                  value="{{old('name', $template->name) }}" placeholder="">
+              </div>
             </div>
-          </div>
-          <div class="px-4 pt-4">
-            <span class="">メールアドレス：</span>
-            <div class="col-12 form-group m-0 p-0">
-              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="example@example.com">
+            <div class="px-4 pt-4">
+              <span class="">メールアドレス：</span>
+              <div class="col-12 form-group m-0 p-0">
+                @if($errors->has("email"))
+                <div class="error">
+                  <small class="small text-red">※{{$errors->first("email")}}</small>
+                </div>
+                @endif
+                <input type="email" class="form-control" id="exampleFormControlInput1" name="email"
+                  value="{{old('email', $template->email) }}" placeholder="example@example.com">
+              </div>
             </div>
-          </div>
-          <div class="px-4 pt-4">
-            <span class="">会社名：</span>
-            <div class="col-12 form-group m-0 p-0">
-              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="株式会社example">
+            <div class="px-4 pt-4">
+              <span class="">会社名：</span>
+              <div class="col-12 form-group m-0 p-0">
+                @if($errors->has("company"))
+                <div class="error">
+                  <small class="small text-red">※{{$errors->first("company")}}</small>
+                </div>
+                @endif
+                <input type="text" class="form-control" id="exampleFormControlInput1" name="company"
+                  value="{{old('company', $template->company) }}" placeholder="株式会社example">
+              </div>
             </div>
-          </div>
-          <div class="px-4 pt-4">
-            <span class="">部署名：</span>
-            <div class="col-12 form-group m-0 p-0">
-              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="人事部">
+            <div class="px-4 pt-4">
+              <span class="">部署名：</span>
+              <div class="col-12 form-group m-0 p-0">
+                @if($errors->has("department"))
+                <div class="error">
+                  <small class="small text-red">※{{$errors->first("department")}}</small>
+                </div>
+                @endif
+                <input type="text" class="form-control" id="exampleFormControlInput1" name="department"
+                  value="{{old('department', $template->department) }}" placeholder="人事部">
+              </div>
             </div>
-          </div>
-          <div class="px-4 pt-4">
-            <span class="">件名：</span>
-            <div class="col-12 form-group m-0 p-0">
-              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
+            <div class="px-4 pt-4">
+              <span class="">件名：</span>
+              <div class="col-12 form-group m-0 p-0">
+                @if($errors->has("subject"))
+                <div class="error">
+                  <small class="small text-red">※{{$errors->first("subject")}}</small>
+                </div>
+                @endif
+                <input type="text" class="form-control" id="exampleFormControlInput1" name="subject"
+                  value="{{old('subject', $template->subject) }}">
+              </div>
             </div>
-          </div>
-          <div class="px-4 pt-4">
-            <span class="">内容(短文)：</span>
-            <div class="col-12 form-group m-0 p-0">
-              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
+            <div class="px-4 pt-4">
+              <span class="">内容(短文)：</span>
+              <div class="col-12 form-group m-0 p-0">
+                @if($errors->has("short_content"))
+                <div class="error">
+                  <small class="small text-red">※{{$errors->first("short_content")}}</small>
+                </div>
+                @endif
+                <input type="text" class="form-control" id="exampleFormControlInput1" name="short_content"
+                  value="{{old('short_content', $template->short_content) }}" placeholder="">
+              </div>
             </div>
-          </div>
-          <div class="px-4 pt-4">
-            <span class="">内容(長文)：</span>
-            <div class="col-12 form-group m-0 p-0">
-              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
+            <div class="px-4 pt-4">
+              <span class="">内容(長文)：</span>
+              <div class="col-12 form-group m-0 p-0">
+                @if($errors->has("long_content"))
+                <div class="error">
+                  <small class="small text-red">※{{$errors->first("long_content")}}</small>
+                </div>
+                @endif
+                <input type="text" class="form-control" id="exampleFormControlInput1" name="long_content"
+                  value="{{old('long_content', $template->long_content) }}" placeholder="">
+              </div>
             </div>
-          </div>
-          <div class="px-4 mt-4 text-right">
-            <button type="button" class="btn btn-outline-primary">作成</button>
-          </div>
+            <div class="px-4 mt-4 text-right">
+              <input type="submit" class="btn btn-outline-primary" value="作成">
+            </div>
+          </form>
         </div>
       </div>
     </div>
