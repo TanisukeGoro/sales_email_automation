@@ -32,10 +32,10 @@
               <div class="h5 font-weight-300">
                 <i class="ni location_pin mr-2"></i>[ {{ auth()->user()->company_name }} ]
               </div>
-              <div class="h5 mt-4">
+              <div class="h5 mt-4 d-none d-xl-block">
                 <i class="ni business_briefcase-24 mr-2"></i>{{ __('') }}
               </div>
-              <div>
+              <div class="d-none d-xl-block">
                 <i class="ni education_hat mr-2"></i>{{ "@" . date('Y'). " " . config("app.name") }}
               </div>
             </div>
@@ -224,7 +224,7 @@
                 </div>
 
                 <div class="text-center">
-                  <button type="submit" class="btn btn-success mt-4">{{ __('Change password') }}</button>
+                  <button type="submit" class="btn btn-success mt-4">{{ __('変更') }}</button>
                 </div>
               </div>
             </form>
