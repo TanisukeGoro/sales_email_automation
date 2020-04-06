@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PasswordRequest;
 use App\Http\Requests\ProfileRequest;
-use App\Models\CompanyCategory;
 use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
@@ -16,11 +15,7 @@ class ProfileController extends Controller
      */
     public function edit()
     {
-        $company_categories = CompanyCategory::all();
-
-        return view('profile.edit', [
-            'company_categories' => $company_categories,
-        ]);
+        return view('profile.edit');
     }
 
     /**
