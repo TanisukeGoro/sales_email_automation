@@ -1,3 +1,8 @@
+{{--
+  showとconfirmで同じでbladeを使用
+  もし別別にする必要があったら別ファイルで作成
+  --}}
+
 @extends('layouts.app', ['title' => __('営業先企業一覧')])
 
 @section('content')
@@ -9,9 +14,38 @@
           <div class="row align-items-center">
             <h3 class="col-4 mb-0">{{ __('テンプレート') }}</h3>
             <div class="col-8 text-right">
+              @if(Route::currentRouteName() == "template.show")
               <a href="{{route('template.edit', $template->id)}}">
                 <button type="button" class="mr-4 btn btn-outline-primary">編集</button>
               </a>
+              @endif
+              @if(Route::currentRouteName() == "template.confirm")
+              <div>
+                <form class="d-inline" action="{{ route('template.create') }}" method="GET">
+                  @csrf
+                  <input type="hidden" name="name" value="{{ $template->name }}">
+                  <input type="hidden" name="email" value="{{ $template->email }}">
+                  <input type="hidden" name="company" value="{{ $template->company }}">
+                  <input type="hidden" name="department" value="{{ $template->department }}">
+                  <input type="hidden" name="subject" value="{{ $template->subject }}">
+                  <input type="hidden" name="short_content" value="{{ $template->short_content }}">
+                  <input type="hidden" name="long_content" value="{{ $template->long_content }}">
+                  <input type="submit" class="mr-4 btn btn-outline-primary" value="戻る">
+                </form>
+
+                <form class="d-inline" action="{{ route('template.store') }}" method="POST">
+                  @csrf
+                  <input type="hidden" name="name" value="{{ $template->name }}">
+                  <input type="hidden" name="email" value="{{ $template->email }}">
+                  <input type="hidden" name="company" value="{{ $template->company }}">
+                  <input type="hidden" name="department" value="{{ $template->department }}">
+                  <input type="hidden" name="subject" value="{{ $template->subject }}">
+                  <input type="hidden" name="short_content" value="{{ $template->short_content }}">
+                  <input type="hidden" name="long_content" value="{{ $template->long_content }}">
+                  <input type="submit" class="mr-4 btn btn-outline-primary" value="作成">
+                </form>
+              </div>
+              @endif
             </div>
           </div>
         </div>

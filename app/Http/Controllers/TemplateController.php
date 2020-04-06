@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TemplateRequest;
 use App\Models\Template;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,7 +16,7 @@ class TemplateController extends Controller
      */
     public function index()
     {
-        $templates = Auth::user()->templates()->get();
+        $templates = Auth::user()->templates()->orderBy('created_at', 'asc')->get();
 
         return view('template.index', [
             'templates' => $templates,
@@ -27,9 +28,18 @@ class TemplateController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('template.create');
+        return view('template.create', [
+            'template' => $request,
+        ]);
+    }
+
+    public function confirm(TemplateRequest $request)
+    {
+        return view('template.show', [
+            'template' => $request,
+        ]);
     }
 
     /**
@@ -37,8 +47,13 @@ class TemplateController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TemplateRequest $request)
     {
+        $template = new Template();
+        $template->user_id = Auth::id();
+        $template->fill($request->all())->save();
+
+        return redirect()->route('template.index');
     }
 
     /**
