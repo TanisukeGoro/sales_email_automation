@@ -28,6 +28,24 @@ class ProfileRequest extends FormRequest
         return [
             'name' => ['required', 'min:3'],
             'email' => ['required', 'email', Rule::unique((new User())->getTable())->ignore(auth()->id())],
+            'company_name' => ['nullable', 'string'],
+            'company_category_id' => ['integer'],
+            'company_address' => ['nullable', 'string'],
+            'n_employees' => ['nullable', 'integer'],
+            'hp_adress' => ['nullable', 'string'],
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'name' => '名前',
+            'email' => 'メールアドレス',
+            'company_name' => '会社名',
+            'company_category_id' => '業種名',
+            'company_address' => '会社所在地',
+            'n_employees' => '従業員数',
+            'hp_adress' => '会社HP',
         ];
     }
 }
