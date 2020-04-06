@@ -101,5 +101,10 @@ class TemplateController extends Controller
      */
     public function destroy(Template $template)
     {
+        $this->authorize('delete', $template);
+
+        $template->delete();
+
+        return redirect()->route('template.index');
     }
 }

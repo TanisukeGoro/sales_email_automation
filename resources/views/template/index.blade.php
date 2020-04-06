@@ -42,6 +42,7 @@
                 <tr>
                   <th scope="col">{{ __('テンプレート名') }}</th>
                   <th scope="col">{{ __('作成日') }}</th>
+                  <th scope="col"></th>
                 </tr>
               </thead>
               <tbody>
@@ -52,6 +53,11 @@
                   </td>
                   <td>
                     {{ $template->date() }}
+                  </td>
+                  <td class="text-right">
+                    <button type="button" class="delete-btn btn btn-outline-primary" data-toggle="modal"
+                      data-index="{{ $template->id }}" data-name="{{ $template->name }}"
+                      data-target="#exampleModal">削除</button>
                   </td>
                   {{-- 今後使うかもしれないから残しておく↓ --}}
                   {{-- <td class="text-right">
@@ -78,6 +84,27 @@
         @endforeach
         </tbody>
         </table>
+        {{--削除モーダル表示--}}
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-body">
+                <span class="delete-span"></span>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline-default" data-dismiss="modal">キャンセル</button>
+                {{--formのactionはjsで書いている--}}
+                <form class="delete-form" method="POST">
+                  @method('DELETE')
+                  @csrf
+                  <input class="delete-input" type="hidden">
+                  <input class="btn btn-outline-primary" type="submit" value="削除">
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="card-footer py-4">
         <nav class="d-flex justify-content-end" aria-label="...">
@@ -90,5 +117,14 @@
 </div>
 </div>
 <script>
+  //後でVueに書き換える
+  $('.delete-btn').click(function() {
+    const index = this.getAttribute('data-index');
+    const name = this.getAttribute('data-name');
+
+    $('.delete-form').attr('action', `/template/${index}`);
+    $('.delete-span').text(`${name}のテンプレートを削除しますか？`);
+    $('.deletepinput').val(index);
+  })
 </script>
 @endsection
