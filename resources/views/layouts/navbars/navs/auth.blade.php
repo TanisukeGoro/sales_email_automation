@@ -3,10 +3,11 @@
   <div class="container-fluid">
     <div class="header-left text-center">
       <!-- Brand -->
-      <a class="h4 mb-0 text-inline" href="{{ route('home') }}">営業支援サービス</a>
+      <a class="h4 mb-0 text-inline" href="{{ route('home') }}">{{ config("app.name") }}</a>
       <!-- button -->
       <div class="button-box ml-3 d-none d-md-inline-block">
         <button type="button" class="btn btn-outline-primary btn-sm">営業先リスト</button>
+        <a href="{{ route('template.index')}}" class="btn btn-outline-primary btn-sm">テンプレート</a>
         <button type="button" class="btn btn-outline-primary btn-sm">月間レポート</button>
         <button type="button" class="btn btn-outline-primary btn-sm">設定</button>
       </div>
@@ -20,9 +21,6 @@
           <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false">
             <div class="media align-items-center">
-              <span class="avatar avatar-sm rounded-circle">
-                <img alt="Image placeholder" src="{{ asset('argon') }}/img/theme/team-4-800x800.jpg">
-              </span>
               <div class="media-body ml-2 d-lg-block">
                 <span class="mb-0 text-sm font-weight-bold">{{ auth()->user()->name }}</span>
               </div>
@@ -41,6 +39,10 @@
             <a href="#" class="dropdown-item">
               <i class="ni ni-collection"></i>
               <span>{{ __('営業先リスト') }}</span>
+            </a>
+            <a href="{{ route('template.index')}}" class="dropdown-item">
+              <i class="ni ni-collection"></i>
+              <span>{{ __('テンプレート') }}</span>
             </a>
             <a href="#" class="dropdown-item">
               <i class="ni ni-calendar-grid-58"></i>

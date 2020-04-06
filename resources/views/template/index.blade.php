@@ -12,15 +12,7 @@
                 <p class="mb-0">テンプレート一覧</p>
               </div>
               <div class="dropdown col-4 text-right">
-                <button class="btn btn-outline-primary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton"
-                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  ーーー
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" href="#">上場区分</a>
-                  <a class="dropdown-item" href="#">従業員数</a>
-                  <a class="dropdown-item" href="#">業界カテゴリ</a>
-                </div>
+                <a href="{{ route('template.create')}}" class="delete-btn btn btn-outline-primary">作成</a>
               </div>
             </div>
           </div>

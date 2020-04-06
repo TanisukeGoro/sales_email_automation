@@ -22,7 +22,7 @@ class ComposerServiceProvider extends ServiceProvider
     {
         View::composers([
             CompanyCategoriesComposer::class => [
-                'layouts/*',
+                'layouts/*', 'profile/*',
             ],
         ]);
     }
