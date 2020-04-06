@@ -9,14 +9,15 @@ class TemplatesTableSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('templates')->insert([
-            'user_id' => 1,
-            'name' => '営業メール',
-            'email' => 'admin@argon.com',
-            'subject' => '新規サービスのご紹介に関する面談のお願い（任天堂株式会社）',
-            'company' => '豊田株式会社',
-            'department' => '総務部',
-            'long_content' => 'いつも大変お世話になっております。
+        for ($i = 0; $i <= 10; $i++) {
+            DB::table('templates')->insert([
+                'user_id' => 1,
+                'name' => '営業メール',
+                'email' => 'admin@argon.com',
+                'subject' => '新規サービスのご紹介に関する面談のお願い（任天堂株式会社）',
+                'company' => '豊田株式会社',
+                'department' => '総務部',
+                'long_content' => 'いつも大変お世話になっております。
       株式会社△△の▲▲です。
       先日の■■の件では、お電話のお時間をいただき、誠にありがとうございました。
 
@@ -42,7 +43,7 @@ class TemplatesTableSeeder extends Seeder
 
       ご多忙の折、大変恐縮ですが、何卒よろしくお願い申し上げます。',
 
-            'short_content' => 'いつも大変お世話になっております。
+                'short_content' => 'いつも大変お世話になっております。
       株式会社△△の▲▲です。
       先日の■■の件では、お電話のお時間をいただき、誠にありがとうございました。
 
@@ -51,6 +52,7 @@ class TemplatesTableSeeder extends Seeder
       ご連絡を差し上げました。
 
       もしよろしければ、直接お伺いしてご説明させていただきたいです。',
-        ]);
+            ]);
+        }
     }
 }
