@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
             TemplatesTableSeeder::class,
             SentsTableSeeder::class,
             RedirectUrisTableSeeder::class,
-            CompaniesTableSeeder::class,
+            // CompaniesTableSeeder::class,
             CompaniesSeeder::class,
         ]);
     }

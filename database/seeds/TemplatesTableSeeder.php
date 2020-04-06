@@ -17,6 +17,7 @@ class TemplatesTableSeeder extends Seeder
                 'subject' => '新規サービスのご紹介に関する面談のお願い（任天堂株式会社）',
                 'company' => '豊田株式会社',
                 'department' => '総務部',
+                'created_at' => '2020-12-13 15:00:00',
                 'long_content' => 'いつも大変お世話になっております。
       株式会社△△の▲▲です。
       先日の■■の件では、お電話のお時間をいただき、誠にありがとうございました。
