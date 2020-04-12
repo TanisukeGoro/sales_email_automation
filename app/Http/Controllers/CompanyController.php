@@ -12,6 +12,8 @@ class CompanyController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
@@ -37,6 +39,8 @@ class CompanyController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     *
+     * @param Request $request
      *
      * @return \Illuminate\Http\Response
      */
@@ -88,6 +92,7 @@ class CompanyController extends Controller
      * Update the specified resource in storage.
      *
      * @param int $id
+     * @param Request $request
      *
      * @return \Illuminate\Http\Response
      */

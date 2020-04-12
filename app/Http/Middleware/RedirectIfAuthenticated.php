@@ -12,6 +12,7 @@ class RedirectIfAuthenticated
      *
      * @param \Illuminate\Http\Request $request
      * @param null|string $guard
+     * @param Closure $next
      */
     public function handle($request, Closure $next, $guard = null)
     {
