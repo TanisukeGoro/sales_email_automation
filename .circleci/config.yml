@@ -54,6 +54,18 @@ jobs:
             - ./vendor
           key: v1-dependencies-{{ checksum "./composer.json" }}
 
+      - restore_cache:
+          key: npm-cache-{{ checksum "package.json" }}
+
+      - run:
+          name: install node_modules
+          command: yarn
+
+      - save_cache:
+          key: npm-cache-{{ checksum "package.json" }}
+          paths:
+              - node_modules
+
       - run:
           name: Wait for db
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
@@ -67,6 +79,11 @@ jobs:
           name: Featuretest
           working_directory: .
           command: ./vendor/bin/phpunit --testdox
+
+      - run:
+          name: js-lint
+          working_directory: .
+          command: yarn run lint:js
 
       - run:
           name: Blade Lint Test
