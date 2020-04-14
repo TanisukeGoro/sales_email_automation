@@ -14,19 +14,22 @@
 Route::get('/', function () {
     return redirect()->route('home');
 });
+
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
 Route::group(['middleware' => 'auth'], function (): void {
-    Route::resource('user', 'UserController', ['except' => ['show']]);
-    Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
-    Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
-    Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
+    Route::group(['middleware' => 'check.simultaneous.login'], function (): void {
+        Route::get('/home', 'HomeController@index')->name('home');
 
-    Route::resource('companies', 'CompanyController');
+        Route::resource('user', 'UserController', ['except' => ['show']]);
+        Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
+        Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
+        Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
 
-    Route::resource('template', 'TemplateController');
+        Route::resource('companies', 'CompanyController');
 
-    Route::get('/confirm', 'TemplateController@confirm')->name('template.confirm');
+        Route::resource('template', 'TemplateController');
+
+        Route::get('/confirm', 'TemplateController@confirm')->name('template.confirm');
+    });
 });
