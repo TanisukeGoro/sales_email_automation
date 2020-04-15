@@ -1,0 +1,6 @@
+CONNECTION=pgsql
+HOST=db
+PORT=5432
+DATABASE=homestead
+USERNAME=homestead
+PASSWORD=secret
