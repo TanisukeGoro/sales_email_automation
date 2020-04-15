@@ -60,4 +60,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Models\CompanyCategory');
     }
+
+    public function sendCounts()
+    {
+        return $this->hasMany('App\Models\SendCount');
+    }
 }
