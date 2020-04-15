@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             RedirectUrisTableSeeder::class,
             // CompaniesTableSeeder::class,
             CompaniesSeeder::class,
+            SendCountsTableSeeder::class,
         ]);
     }
 }
