@@ -11,6 +11,8 @@ class UserController extends Controller
     /**
      * Display a listing of the users
      *
+     * @param User $model
+     *
      * @return \Illuminate\View\View
      */
     public function index(User $model)
@@ -31,6 +33,9 @@ class UserController extends Controller
     /**
      * Store a newly created user in storage
      *
+     * @param UserRequest $request
+     * @param User $model
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(UserRequest $request, User $model)
@@ -43,6 +48,8 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified user
      *
+     * @param User $user
+     *
      * @return \Illuminate\View\View
      */
     public function edit(User $user)
@@ -52,6 +59,9 @@ class UserController extends Controller
 
     /**
      * Update the specified user in storage
+     *
+     * @param UserRequest $request
+     * @param User $user
      *
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -69,6 +79,8 @@ class UserController extends Controller
 
     /**
      * Remove the specified user from storage
+     *
+     * @param User $user
      *
      * @return \Illuminate\Http\RedirectResponse
      */

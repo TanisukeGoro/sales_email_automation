@@ -12,6 +12,8 @@ class TemplatePolicy
 
     /**
      * Determine whether the user can view any templates.
+     *
+     * @param User $user
      */
     public function viewAny(User $user): void
     {
@@ -21,6 +23,7 @@ class TemplatePolicy
      * Determine whether the user can view the template.
      *
      * @param \App\Template $template
+     * @param User $user
      */
     public function view(User $user, Template $template): void
     {
@@ -28,6 +31,8 @@ class TemplatePolicy
 
     /**
      * Determine whether the user can create templates.
+     *
+     * @param User $user
      */
     public function create(User $user): void
     {
@@ -37,6 +42,7 @@ class TemplatePolicy
      * Determine whether the user can update the template.
      *
      * @param \App\Template $template
+     * @param User $user
      */
     public function update(User $user, Template $template)
     {
@@ -47,6 +53,7 @@ class TemplatePolicy
      * Determine whether the user can delete the template.
      *
      * @param \App\Template $template
+     * @param User $user
      */
     public function delete(User $user, Template $template)
     {
@@ -57,6 +64,7 @@ class TemplatePolicy
      * Determine whether the user can restore the template.
      *
      * @param \App\Template $template
+     * @param User $user
      */
     public function restore(User $user, Template $template): void
     {
@@ -66,6 +74,7 @@ class TemplatePolicy
      * Determine whether the user can permanently delete the template.
      *
      * @param \App\Template $template
+     * @param User $user
      */
     public function forceDelete(User $user, Template $template): void
     {
