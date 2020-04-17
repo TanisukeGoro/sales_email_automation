@@ -7,18 +7,18 @@ window.Echo.channel("channel-message").listen("MessageEvent", function (data) {
   window.location = '/login';
 });
 
-const newVue = (option) => new Vue(option)
+const newVue = option => new Vue(option)
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
   newVue({
-    el: "#vue-app",
-    components: {},
+    el: '#vue-app',
+    components: {}
   })
 
   newVue({
-    el: "#vue-sidebar", // コンポーネントをDOMのIDで使い分ける場合
+    el: '#vue-sidebar', // コンポーネントをDOMのIDで使い分ける場合
     components: {
-      SuggestInput,
-    },
+      SuggestInput
+    }
   })
 })

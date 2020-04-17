@@ -21,6 +21,8 @@ class ProfileController extends Controller
     /**
      * Update the profile
      *
+     * @param ProfileRequest $request
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(ProfileRequest $request)
@@ -32,6 +34,8 @@ class ProfileController extends Controller
 
     /**
      * Change the password
+     *
+     * @param PasswordRequest $request
      *
      * @return \Illuminate\Http\RedirectResponse
      */

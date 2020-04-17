@@ -1,0 +1,6 @@
+CONNECTION=postgresql
+HOST=127.0.0.1
+PORT=15432
+DATABASE=homestead
+USERNAME=homestead
+PASSWORD=secret

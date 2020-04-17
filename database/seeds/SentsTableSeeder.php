@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Carbon;
 
 class SentsTableSeeder extends Seeder
 {
@@ -9,10 +10,17 @@ class SentsTableSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('sents')->insert([
-            'user_id' => 1,
-            'count' => 5,
-            'status' => '完了',
-        ]);
+        $now = Carbon::now('Asia/Tokyo');
+
+        $days = [1, 10, 15, 20, 25];
+
+        foreach ($days as $key => $day) {
+            DB::table('sents')->insert([
+                'user_id' => 1,
+                'count' => 5,
+                'status' => '完了',
+                'created_at' => "{$now->year}-{$now->month}-{$day} 18:00:00",
+            ]);
+        }
     }
 }

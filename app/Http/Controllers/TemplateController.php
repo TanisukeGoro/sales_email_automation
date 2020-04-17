@@ -26,6 +26,8 @@ class TemplateController extends Controller
     /**
      * Show the form for creating a new resource.
      *
+     * @param Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request)
@@ -45,6 +47,8 @@ class TemplateController extends Controller
     /**
      * Store a newly created resource in storage.
      *
+     * @param TemplateRequest $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(TemplateRequest $request)
@@ -59,6 +63,8 @@ class TemplateController extends Controller
     /**
      * Display the specified resource.
      *
+     * @param Template $template
+     *
      * @return \Illuminate\Http\Response
      */
     public function show(Template $template)
@@ -71,6 +77,8 @@ class TemplateController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
+     * @param Template $template
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit(Template $template)
@@ -82,6 +90,9 @@ class TemplateController extends Controller
 
     /**
      * Update the specified resource in storage.
+     *
+     * @param TemplateRequest $request
+     * @param Template $template
      *
      * @return \Illuminate\Http\Response
      */
@@ -96,6 +107,8 @@ class TemplateController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     *
+     * @param Template $template
      *
      * @return \Illuminate\Http\Response
      */
