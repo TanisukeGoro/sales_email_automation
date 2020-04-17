@@ -14,7 +14,8 @@
     </div>
 
     <div class="header-right d-flex align-items-center">
-      <p class="remainder-text m-0 d-none d-md-inline-block">残り8件</p>
+      <p class="remainder-text m-0 d-none d-md-inline-block">送信済み {{$sent_count}}件</p>
+      <p class="remainder-text m-0 ml-3 d-none d-md-inline-block">送信可能件数 {{$remaining_send_count}}件</p>
       <!-- User -->
       <ul class="navbar-nav align-items-center d-md-flex">
         <li class="nav-item dropdown">
