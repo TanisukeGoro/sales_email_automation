@@ -22,10 +22,11 @@ class CompanyController extends Controller
 
         $companies = $request->all() === [] ? Company::paginate(20) : $this->getSearchCompanies($request);
 
+        $request->flashOnly(['name', 'address', 'large-category', 'middle-category']);
+
         return view('companies.index', [
             'search_count' => $this->search_count,
             'companies' => $companies,
-            'previous_request' => $request->input(),
         ]);
     }
 

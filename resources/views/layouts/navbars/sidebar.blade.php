@@ -13,7 +13,7 @@
               <div class="input-group-prepend">
                 <span class="input-group-text"><i class="ni ni-zoom-split-in"></i></span>
               </div>
-              <input name="name" class="form-control" placeholder="フリーワード検索" type="text" value="{{ $previous_request['name'] }}">
+              <input name="name" class="form-control" placeholder="フリーワード検索" type="text" value="{{ old('name', '') }}">
             </div>
           </div>
         </div>
@@ -22,7 +22,7 @@
           <select name="large-category" class="form-control" id="large-category">
             <option value="">未選択</option>
             @foreach ($company_large_categories as $category)
-            <option value="{{ $category->id }}" {{ $category->id == $previous_request['large-category'] ? 'selected' : ''  }}>
+            <option value="{{ $category->id }}" {{ $category->id == old('large-category', '0') ? 'selected' : ''  }}>
               {{ $category->name }}
             </option>
             @endforeach
@@ -33,7 +33,7 @@
           <select name="middle-category" class="form-control" id="middle-category">
             <option value="">未選択</option>
             @foreach ($company_middle_categories as $category)
-            <option value="{{ $category->id }}" {{ $category->id == $previous_request['middle-category'] ? 'selected' : ''  }}>{{ $category->name }}</option>
+            <option value="{{ $category->id }}" {{ $category->id == old('middle-category', '0') ? 'selected' : ''  }}>{{ $category->name }}</option>
             @endforeach
           </select>
         </div>
@@ -44,7 +44,7 @@
               <div class="input-group-prepend">
                 <span class="input-group-text"><i class="ni ni-zoom-split-in"></i></span>
               </div>
-              <input name="address" class="form-control" placeholder="所在地検索" type="text" value="{{ $previous_request['address'] }}">
+              <input name="address" class="form-control" placeholder="所在地検索" type="text" value="{{ old('address', '') }}">
             </div>
           </div>
         </div>
