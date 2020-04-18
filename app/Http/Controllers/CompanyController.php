@@ -25,7 +25,7 @@ class CompanyController extends Controller
         return view('companies.index', [
             'search_count' => $this->search_count,
             'companies' => $companies,
-            'previous_request' => $request->input()
+            'previous_request' => $request->input(),
         ]);
     }
 
@@ -119,12 +119,15 @@ class CompanyController extends Controller
         if ($request->input('large-category')) {
             $query->where('company_large_category_id', (int) $request->input('large-category'));
         }
+
         if ($request->input('large-category')) {
             $query->where('company_large_category_id', (int) $request->input('large-category'));
         }
+
         if (isset($request->name)) {
             $query->where('name', 'like', "%{$request->name}%");
         }
+
         if (isset($request->address)) {
             $query->where('address', 'like', "%{$request->address}%");
         }
