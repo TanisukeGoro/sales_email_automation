@@ -28,3 +28,6 @@ yarn-error.log
 /docker/php/psysh/*
 
 .php_cs.cache
+
+# [ schemaspy ] 
+/schema
