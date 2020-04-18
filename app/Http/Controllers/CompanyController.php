@@ -22,6 +22,8 @@ class CompanyController extends Controller
 
         $companies = $request->all() === [] ? Company::paginate(20) : $this->getSearchCompanies($request);
 
+        $request->flashOnly(['name', 'address', 'large-category', 'middle-category']);
+
         return view('companies.index', [
             'search_count' => $this->search_count,
             'companies' => $companies,
@@ -115,8 +117,20 @@ class CompanyController extends Controller
     {
         $query = Company::query();
 
-        if (isset($request->category)) {
-            $query->where('company_large_category_id', (int) $request->category);
+        if ($request->input('large-category')) {
+            $query->where('company_large_category_id', (int) $request->input('large-category'));
+        }
+
+        if ($request->input('large-category')) {
+            $query->where('company_large_category_id', (int) $request->input('large-category'));
+        }
+
+        if (isset($request->name)) {
+            $query->where('name', 'like', "%{$request->name}%");
+        }
+
+        if (isset($request->address)) {
+            $query->where('address', 'like', "%{$request->address}%");
         }
 
         if (isset($request->sort)) {
