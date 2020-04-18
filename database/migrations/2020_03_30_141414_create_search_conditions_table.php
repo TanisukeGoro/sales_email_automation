@@ -15,7 +15,8 @@ class CreateSearchConditionsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->unsigned()->comment('ユーザーID');
             $table->string('name')->comment('検索条件名');
-            $table->string('category')->comment('業界カテゴリー');
+            $table->string('company_large_category_id')->comment('業種大カテゴリ');
+            $table->string('company_middle_category_id')->comment('業種中カテゴリ');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');

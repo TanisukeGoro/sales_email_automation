@@ -11,8 +11,13 @@ class Company extends Model
         return $this->belongsTo('App\Models\ListingStock');
     }
 
-    public function companyCategory()
+    public function companyLargeCategory()
     {
-        return $this->belongsTo('App\Models\CompanyCategory');
+        return $this->belongsTo('App\Models\CompanyLargeCategory');
+    }
+
+    public function companyMiddleCategory()
+    {
+        return $this->belongsTo('App\Models\CompanyMiddleCategory');
     }
 }

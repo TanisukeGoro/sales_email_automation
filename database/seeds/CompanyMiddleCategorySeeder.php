@@ -2,14 +2,11 @@
 
 use Illuminate\Database\Seeder;
 
-class CompanyCategoriesTableSeeder extends Seeder
+class CompanyMiddleCategorySeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
-
-    // 参考URL https://opendata.resas-portal.go.jp/docs/api/v1/index.html
-
     public function run(): void
     {
         $base_url = 'https://opendata.resas-portal.go.jp';
@@ -34,7 +31,7 @@ class CompanyCategoriesTableSeeder extends Seeder
         $categories = $responseBody['result'];
 
         foreach ($categories as $key => $category) {
-            DB::table('company_categories')->insert([
+            DB::table('company_middle_categories')->insert([
                 'name' => $category['simcName'],
                 'code' => $category['simcCode'],
             ]);

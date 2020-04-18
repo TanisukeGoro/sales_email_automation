@@ -2,7 +2,8 @@
 
 namespace App\Providers;
 
-use App\Http\ViewComposers\CompanyCategoriesComposer;
+use App\Http\ViewComposers\CompanyLargeCategoriesComposer;
+use App\Http\ViewComposers\CompanyMiddleCategoriesComposer;
 use App\Http\ViewComposers\RemainingSendCountsComposer;
 use App\Http\ViewComposers\SentCountsComposer;
 use Illuminate\Support\ServiceProvider;
@@ -23,14 +24,17 @@ class ComposerServiceProvider extends ServiceProvider
     public function boot(): void
     {
         View::composers([
-            CompanyCategoriesComposer::class => [
+            CompanyLargeCategoriesComposer::class => [
+                'layouts/*', 'profile/*',
+            ],
+            CompanyMiddleCategoriesComposer::class => [
                 'layouts/*', 'profile/*',
             ],
             SentCountsComposer::class => [
                 'layouts/*', 'profile/*',
             ],
             RemainingSendCountsComposer::class => [
-                'layouts/*', 'profile/*',
+                'layouts/navbars/navs/auth', 'profile/*',
             ],
         ]);
     }

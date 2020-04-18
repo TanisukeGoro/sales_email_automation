@@ -15,7 +15,15 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'company_name', 'company_category_id', 'company_address', 'n_employees', 'hp_adress',
+        'name',
+        'email',
+        'password',
+        'company_name',
+        'company_large_category_id',
+        'company_middle_category_id',
+        'company_address',
+        'n_employees',
+        'hp_adress',
     ];
 
     /**
@@ -56,9 +64,14 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Template');
     }
 
-    public function companyCategory()
+    public function companyLargeCategory()
     {
-        return $this->belongsTo('App\Models\CompanyCategory');
+        return $this->belongsTo('App\Models\CompanyLargeCategory');
+    }
+
+    public function companyMiddleCategory()
+    {
+        return $this->belongsTo('App\Models\CompanyMiddleCategory');
     }
 
     public function sendCounts()
