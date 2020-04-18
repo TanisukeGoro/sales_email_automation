@@ -13,10 +13,19 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="exampleFormControlSelect1">業界検索</label>
-        <select name="searchCategory" class="form-control" id="exampleFormControlSelect1">
+        <label for="large-categories">業種大カテゴリ</label>
+        <select name="large-categories" class="form-control" id="large-categories">
           <option value="">未選択</option>
-          @foreach ($company_categories as $category)
+          @foreach ($company_large_categories as $category)
+          <option value="{{ $category->id }}">{{ $category->name }}</option>
+          @endforeach
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="middle-categories">業界中カテゴリ</label>
+        <select name="middle-categories" class="form-control" id="middle-categories">
+          <option value="">未選択</option>
+          @foreach ($company_middle_categories as $category)
           <option value="{{ $category->id }}">{{ $category->name }}</option>
           @endforeach
         </select>

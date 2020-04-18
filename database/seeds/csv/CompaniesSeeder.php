@@ -1,6 +1,7 @@
 <?php
 
-use App\Models\CompanyCategory;
+use App\Models\CompanyLargeCategory;
+use App\Models\CompanyMiddleCategory;
 use App\Models\ListingStock;
 use Illuminate\Database\Seeder;
 
@@ -26,7 +27,8 @@ class CompaniesSeeder extends Seeder
                 'name' => $line[0],
                 'code' => $line[1],
                 'listing_stock_id' => \mt_rand(1, ListingStock::all()->count() !== 0 ? ListingStock::all()->count() : 2),
-                'company_category_id' => \mt_rand(1, CompanyCategory::all()->count() !== 0 ? CompanyCategory::all()->count() : 2),
+                'company_large_category_id' => \mt_rand(1, CompanyLargeCategory::all()->count() !== 0 ? CompanyLargeCategory::all()->count() : 2),
+                'company_middle_category_id' => \mt_rand(1, CompanyMiddleCategory::all()->count() !== 0 ? CompanyMiddleCategory::all()->count() : 2),
                 'address' => $faker->address,
                 'n_employees' => \mt_rand(100, 30000),
                 'top_url' => $line[2],

@@ -116,7 +116,7 @@ class CompanyController extends Controller
         $query = Company::query();
 
         if (isset($request->category)) {
-            $query->where('company_category_id', (int) $request->category);
+            $query->where('company_large_category_id', (int) $request->category);
         }
 
         if (isset($request->sort)) {
