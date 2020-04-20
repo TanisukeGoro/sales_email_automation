@@ -14,6 +14,7 @@ class CheckSimultaneousLogin
      * Handle an incoming request.
      *
      * @param \Illuminate\Http\Request $request
+     * @param Closure $next
      */
     public function handle($request, Closure $next)
     {

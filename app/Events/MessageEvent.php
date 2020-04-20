@@ -17,6 +17,8 @@ class MessageEvent implements ShouldBroadcast
 
     /**
      * Create a new event instance.
+     *
+     * @param mixed $messages
      */
     public function __construct($messages)
     {
