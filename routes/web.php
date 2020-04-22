@@ -28,5 +28,9 @@ Route::group(['middleware' => 'auth'], function (): void {
 
     Route::resource('template', 'TemplateController');
 
+    Route::resource('redirect-link', 'RedirectController', ['except' => ['store', 'show']]);
+    Route::post('/redirect-link', 'RedirectController@publish')->name('redirect-link.publish');
+    Route::get('/redirect-link/{uuid}', 'RedirectController@count')->name('redirect-link.count');
+
     Route::get('/confirm', 'TemplateController@confirm')->name('template.confirm');
 });

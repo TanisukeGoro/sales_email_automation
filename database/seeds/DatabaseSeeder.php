@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
             UsersTableSeeder::class,
             TemplatesTableSeeder::class,
             SentsTableSeeder::class,
-            RedirectUrisTableSeeder::class,
+            // RedirectUrisTableSeeder::class,
             // CompaniesTableSeeder::class,
             CompaniesSeeder::class,
             SendCountsTableSeeder::class,
