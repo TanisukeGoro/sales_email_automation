@@ -105,6 +105,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'CompanyList',
   data() {
@@ -173,7 +175,7 @@ export default {
   },
   created() {
     //イベント名で受け取る
-    eventHub.$on('search_company', val => {
+    global.eventHub.$on('search_company', val => {
       this.params = val.searchForm;
       this.current_page = 1;
       this.searchCompany();

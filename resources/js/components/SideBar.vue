@@ -96,6 +96,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'SideBar',
   data() {
@@ -124,7 +126,7 @@ export default {
       }
     },
     search() {
-      eventHub.$emit('search_company', {
+      global.eventHub.$emit('search_company', {
         searchForm: this.form
       });
     }

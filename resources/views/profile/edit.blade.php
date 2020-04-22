@@ -1,7 +1,7 @@
 @extends('layouts.app', ['title' => __('User Profile')])
 
 @section('content')
-<div class="main-content col-12 col-md-9 col-lg-10 mt-3">
+<div id="vue-app" class="main-content col-12 col-md-9 col-lg-10 mt-3">
   <div class="container-fluid mt-3 ">
     <div class="row">
       <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
