@@ -3,6 +3,7 @@ import Vue from 'vue'
 import SuggestInput from './components/SuggestInput.vue'
 import SideBar from "./components/SideBar.vue"
 import CompanyList from "./components/CompanyList.vue"
+import RedirectUri from "./components/RedirectUri.vue"
 
 const newVue = option => new Vue(option)
 
@@ -15,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     el: '#vue-app',
     components: {
       CompanyList,
+      RedirectUri
     }
   })
 

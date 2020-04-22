@@ -31,7 +31,7 @@
   <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
     @csrf
   </form>
-  <div class="container-fluid">
+  <div id="vue-app" class="container-fluid">
     <div class="row">
       @include('layouts.navbars.sidebar')
       @yield('content')
@@ -44,14 +44,12 @@
   @include('layouts.footers.guest')
   @endguest
 
-
-
-  @stack('js')
-
   <!-- Argon JS -->
   <script src="{{ asset('argon') }}/js/argon.js?v=1.0.0"></script>
   <!-- app.js -->
   <script src="{{ mix('js/app.js') }}"></script>
+
+  @stack('js')
 </body>
 
 </html>

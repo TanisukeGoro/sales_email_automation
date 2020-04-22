@@ -78,4 +78,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\SendCount');
     }
+
+    public function uriClickCount()
+    {
+        return $this->hasOne('App\Models\SendCount');
+    }
 }
