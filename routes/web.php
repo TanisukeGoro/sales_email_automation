@@ -36,6 +36,11 @@ Route::group(['middleware' => 'auth'], function (): void {
     Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
 });
 
+//home
+Route::group(['middleware' => 'auth'], function (): void {
+    Route::resource('search-condition', 'SearchConditionController');
+});
+
 //redirect-url
 Route::group(['middleware' => 'auth'], function (): void {
     Route::resource('redirect-link', 'RedirectController', ['except' => ['store', 'show']]);

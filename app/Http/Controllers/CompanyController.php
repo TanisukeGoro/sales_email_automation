@@ -120,8 +120,8 @@ class CompanyController extends Controller
             $query->where('company_middle_category_id', (int) $request->input('middle_category'));
         }
 
-        if (isset($request->name)) {
-            $query->where('name', 'like', "%{$request->name}%");
+        if (isset($request->freeword)) {
+            $query->where('name', 'like', "%{$request->freeword}%");
         }
 
         if (isset($request->address)) {

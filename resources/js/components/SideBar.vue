@@ -20,7 +20,7 @@
             class="form-control"
             placeholder="フリーワード検索"
             type="text"
-            v-model="form.name"
+            v-model="form.freeword"
           />
         </div>
       </div>
@@ -92,6 +92,25 @@
         </div>
       </div>
     </div>
+
+    <div class="col-md-12 p-0">
+      <div class="form-group">
+        <span class="d-block">条件名</span>
+        <div class="input-group mb-4">
+          <input
+            name="address"
+            class="form-control"
+            placeholder="条件名"
+            type="text"
+            v-model="searchConditionForm.name"
+          />
+        </div>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-block" @click="createSearchCondition">
+      <span class="btn-inner--text">条件を保存</span>
+    </button>
   </div>
 </template>
 
@@ -103,12 +122,15 @@ export default {
   data() {
     return {
       form: {
-        name: '',
+        freeword: '',
         large_category: '',
         middle_category: '',
         listing_stock: '',
         address: '',
         page: 1
+      },
+      searchConditionForm: {
+        name: ''
       },
       company_large_categories: [],
       company_middle_categories: [],
@@ -129,6 +151,26 @@ export default {
       global.eventHub.$emit('search_company', {
         searchForm: this.form
       });
+    },
+    async createSearchCondition() {
+      const params = this.form;
+      params.search_condition_name = this.searchConditionForm.name;
+
+      console.log(params);
+
+      const response = await axios.post(`/search-condition`, params);
+
+      if (response.status == 500) {
+        window.alert('予期せぬエラーが起こりました');
+      }
+
+      if (response.status == 422) {
+        window.alert('フォームに無効な値が入っています');
+      }
+
+      if (response.status == 200) {
+        window.alert('条件を保存しました');
+      }
     }
   },
   watch: {
