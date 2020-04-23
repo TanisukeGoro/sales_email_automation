@@ -142,7 +142,7 @@ export default {
   },
   methods: {
     async configure() {
-      const response = await axios.get(`api/companies`);
+      const response = await axios.get(`company/search`);
 
       if (response.status == 200) {
         let data = response.data;
@@ -161,7 +161,7 @@ export default {
       const data = {
         params
       };
-      const response = await axios.get(`api/companies`, data);
+      const response = await axios.get(`company/search`, data);
 
       if (response.status == 200) {
         let data = response.data;

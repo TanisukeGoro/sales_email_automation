@@ -7,8 +7,6 @@ use Illuminate\Http\Request;
 
 class CompanyController extends Controller
 {
-    private $search_count;
-
     /**
      * Display a listing of the resource.
      *
@@ -18,16 +16,13 @@ class CompanyController extends Controller
      */
     public function index(Request $request)
     {
-        $this->search_count = Company::all()->count();
+        return view('companies.index');
+    }
 
-        $companies = $request->all() === [] ? Company::paginate(20) : $this->getSearchCompanies($request);
-
-        $request->flashOnly(['name', 'address', 'large-category', 'middle-category']);
-
-        return view('companies.index', [
-            'search_count' => $this->search_count,
-            'companies' => $companies,
-        ]);
+    public function searchCompany(Request $request)
+    {
+        return $request->all() === [] ?
+      Company::with(['listingStock', 'companyLargeCategory', 'companyMiddleCategory'])->paginate(15) : $this->getSearchCompanies($request);
     }
 
     /**
@@ -117,12 +112,12 @@ class CompanyController extends Controller
     {
         $query = Company::query();
 
-        if ($request->input('large-category')) {
-            $query->where('company_large_category_id', (int) $request->input('large-category'));
+        if ($request->input('large_category')) {
+            $query->where('company_large_category_id', (int) $request->input('large_category'));
         }
 
-        if ($request->input('large-category')) {
-            $query->where('company_large_category_id', (int) $request->input('large-category'));
+        if ($request->input('middle_category')) {
+            $query->where('company_middle_category_id', (int) $request->input('middle_category'));
         }
 
         if (isset($request->name)) {
@@ -133,20 +128,10 @@ class CompanyController extends Controller
             $query->where('address', 'like', "%{$request->address}%");
         }
 
-        if (isset($request->sort)) {
-            $sortItem = $request->sort;
-
-            if ($sortItem === 'listing_stock') {
-                $query->orderBy('listing_stock_id', 'asc');
-            } elseif ($sortItem === 'n_employees') {
-                $query->orderBy('n_employees', 'asc');
-            } elseif ($sortItem === 'category') {
-                $query->orderBy('campany_category_id', 'desc');
-            }
+        if (isset($request->listing_stock)) {
+            $query->where('listing_stock_id', $request->listing_stock);
         }
 
-        $this->search_count = $query->get()->count();
-
-        return $query->paginate(20);
+        return $query->with(['listingStock', 'companyLargeCategory', 'companyMiddleCategory'])->paginate(15);
     }
 }

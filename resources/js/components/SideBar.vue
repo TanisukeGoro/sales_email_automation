@@ -117,7 +117,7 @@ export default {
   },
   methods: {
     async configure() {
-      const response = await axios.get(`/api/sidebar`);
+      const response = await axios.get(`/configure`);
 
       if (response.status == 200) {
         this.company_large_categories = response.data.company_large_categories;
