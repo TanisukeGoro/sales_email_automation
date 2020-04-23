@@ -14,6 +14,7 @@
 Route::get('/', function () {
     return redirect()->route('home');
 });
+
 Auth::routes();
 
 //home
