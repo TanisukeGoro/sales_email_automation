@@ -19,7 +19,8 @@
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                   <a class="dropdown-item" href="#">上場区分</a>
                   <a class="dropdown-item" href="#">従業員数</a>
-                  <a class="dropdown-item" href="#">業界カテゴリ</a>
+                  <a class="dropdown-item" href="#">業種大カテゴリ</a>
+                  <a class="dropdown-item" href="#">業種中カテゴリ</a>
                 </div>
               </div>
             </div>
@@ -42,7 +43,8 @@
                 <tr>
                   <th scope="col">{{ __('上場区分') }}</th>
                   <th scope="col">{{ __('企業名') }}</th>
-                  <th scope="col">{{ __('企業カテゴリ') }}</th>
+                  <th scope="col">{{ __('業種大カテゴリ') }}</th>
+                  <th scope="col">{{ __('業種中カテゴリ') }}</th>
                   <th scope="col">{{ __('従業員数') }}</th>
                   <th scope="col">{{ __('所在地') }}</th>
                   <th scope="col">{{ __('ホームページ') }}</th>
@@ -63,8 +65,13 @@
                     @endif
                   </td>
                   <td>
-                    @if ($company->company_category_id != null)
-                    {{ $company->companyCategory->name }}
+                    @if ($company->company_large_category_id != null)
+                    {{ $company->companyLargeCategory->name }}
+                    @endif
+                  </td>
+                  <td>
+                    @if ($company->company_middle_category_id != null)
+                    {{ $company->companyMiddleCategory->name }}
                     @endif
                   </td>
                   <td>

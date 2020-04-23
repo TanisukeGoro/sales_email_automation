@@ -1,3 +1,5 @@
+include .env
+
 .PHONY: docker-reset-db
 docker-reset-db:
 	docker-compose exec app php artisan migrate:refresh --seed
@@ -45,7 +47,22 @@ docker-clear-cache:
 .PHONY: lint
 lint:
 	./vendor/bin/php-cs-fixer fix -vvv --config .php_cs.dist
+	yarn lint:js
 
 .PHONY: docker-lint
 docker-lint:
 	docker-compose exec app ./vendor/bin/php-cs-fixer fix -vvv --config .php_cs.dist
+	yarn lint:js
+
+.PHONY: php-cs-fixer
+php-cs-fixer:
+	./vendor/bin/php-cs-fixer fix -vvv --config .php_cs.dist
+
+.PHONY: docker-php-cs-fixer
+docker-php-cs-fixer:
+	docker-compose exec app ./vendor/bin/php-cs-fixer fix -vvv --config .php_cs.dist
+
+.PHONY: generate-erd
+generate-erd:
+	docker run -v "$(PWD)/schema:/output" --net="host" schemaspy/schemaspy:snapshot \
+	-t pgsql -host $(DB_HOST):$(DB_PORT) -db $(DB_DATABASE) -u $(DB_USERNAME) -p $(DB_PASSWORD) && open ./schema/index.html

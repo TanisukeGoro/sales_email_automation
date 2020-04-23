@@ -92,6 +92,19 @@
                   @endif
                 </div>
 
+                <div class="form-group position-relative">
+                  <label class="form-control-label" for="input-redirect-uri">{{ __('リダイレクトURL（変更不可）') }}</label>
+                  @if(auth()->user()->redirect_uris->toArray() != [])
+                  @foreach (auth()->user()->redirect_uris as $uri)
+                  <input type="text" id="input-redirect-uri" class="form-control form-control-alternative"
+                    value="{{ $uri->uri }}" readonly="readonly">
+                  @endforeach
+                  @else
+                  <redirect-uri></redirect-uri>
+                  @endif
+
+                </div>
+
                 <div class="form-group{{ $errors->has('company_name') ? ' has-danger' : '' }}">
                   <label class="form-control-label" for="input-company_name">{{ __('会社名') }}</label>
 
@@ -107,25 +120,47 @@
                   @endif
                 </div>
 
-                <div class="form-group{{ $errors->has('company_category_id') ? ' has-danger' : '' }}">
-                  <label class="form-control-label" for="input-company_category_id">{{ __('業種名') }}</label>
+                <div class="form-group{{ $errors->has('company_large_category_id') ? ' has-danger' : '' }}">
+                  <label class="form-control-label" for="input-company_large_category_id">{{ __('業種大カテゴリ') }}</label>
 
-                  <select name="company_category_id"
-                    class="custom-select form-control form-control-alternative{{ $errors->has('company_category_id') ? ' is-invalid' : '' }}"
-                    id="input-company_category_id" required>
+                  <select name="company_large_category_id"
+                    class="custom-select form-control form-control-alternative{{ $errors->has('company_large_category_id') ? ' is-invalid' : '' }}"
+                    id="input-company_large_category_id" required>
                     <option value="">未選択</option>
-                    @foreach ($company_categories as $category)
-                    <option value="{{ $category->id }}" @if(old("company_category_id",auth()->
-                      user()->company_category_id) == $category->id)
+                    @foreach ($company_large_categories as $category)
+                    <option value="{{ $category->id }}" @if(old("company_large_category_id",auth()->
+                      user()->company_large_category_id) == $category->id)
                       selected @endif>
                       {{ $category->name }}
                     </option>
                     @endforeach
                   </select>
 
-                  @if ($errors->has('company_category_id'))
+                  @if ($errors->has('company_large_category_id'))
                   <span class="invalid-feedback" role="alert">
-                    <strong>{{ $errors->first('company_category_id') }}</strong>
+                    <strong>{{ $errors->first('company_large_category_id') }}</strong>
+                  </span>
+                  @endif
+                </div>
+                <div class="form-group{{ $errors->has('company_middle_category_id') ? ' has-danger' : '' }}">
+                  <label class="form-control-label" for="input-company_middle_category_id">{{ __('業種中カテゴリ') }}</label>
+
+                  <select name="company_middle_category_id"
+                    class="custom-select form-control form-control-alternative{{ $errors->has('company_middle_category_id') ? ' is-invalid' : '' }}"
+                    id="input-company_middle_category_id" required>
+                    <option value="">未選択</option>
+                    @foreach ($company_middle_categories as $category)
+                    <option value="{{ $category->id }}" @if(old("company_middle_category_id",auth()->
+                      user()->company_middle_category_id) == $category->id)
+                      selected @endif>
+                      {{ $category->name }}
+                    </option>
+                    @endforeach
+                  </select>
+
+                  @if ($errors->has('company_middle_category_id'))
+                  <span class="invalid-feedback" role="alert">
+                    <strong>{{ $errors->first('company_middle_category_id') }}</strong>
                   </span>
                   @endif
                 </div>
