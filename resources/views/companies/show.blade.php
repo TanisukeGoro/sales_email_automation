@@ -1,47 +1,110 @@
-@extends('layouts.app', ['title' => __('お問い合わせフォーム')])
+@extends('layouts.app', ['title' => __('企業詳細')])
 
 @section('content')
-
+<div class="main-content col-12 col-md-9 col-lg-10 mt-3">
   <div class="container-fluid mt-3 ">
-    <div class="row">
-      <div class="col-xl-4 mb-5 mb-xl-0">
-        <div class="card shadow">
-          <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
-
+    <div class="col-xl-12">
+      <div class="card bg-secondary shadow pb-4">
+        <div class="card-header bg-white border-0">
+          <div class="row align-items-center">
+            <h3 class="col-4 mb-0">{{ __('企業詳細') }}</h3>
           </div>
-          <div class="card-body pt-0 pt-md-4">
-
-          </div>
-      </div>
-      </div>
-      <div class="col-xl-8">
-        <div class="card bg-secondary shadow">
-          <div class="card-header bg-white border-0">
-            <div class="row align-items-center">
-              <h3 class="col-12 mb-0">{{ __('Edit Profile') }}</h3>
+        </div>
+        <div class="px-4 pt-4">
+          <span class="ml-xl-4">会社名：</span>
+          <div class="row px-4">
+            <div class="col-4">
+            </div>
+            <div class="col-8">
+              {{ $company->name ?? "登録されていません" }}
             </div>
           </div>
-          <div class="card-body">
-          <iframe
-            id="iframeParentID"
-            height="600px"
-            width="100%"
-            srcdoc="{{ $form_dom ?? ''}}"
-          >
-        </iframe>
+        </div>
+        <div class="px-4 pt-4">
+          <span class="ml-xl-4">法人番号：</span>
+          <div class="row px-4">
+            <div class="col-4">
+            </div>
+            <div class="col-8">
+              {{ $company->code ?? "登録されていません" }}
+            </div>
+          </div>
+        </div>
+        <div class="px-4 pt-4">
+          <span class="ml-xl-4">上場：</span>
+          <div class="row px-4">
+            <div class="col-4">
+            </div>
+            <div class="col-8">
+              {{ $company->listingStock->name ?? "登録されていません" }}
+            </div>
+          </div>
+        </div>
+        <div class="px-4 pt-4">
+          <span class="ml-xl-4">業種大カテゴリ：</span>
+          <div class="row px-4">
+            <div class="col-4">
+            </div>
+            <div class="col-8">
+              {{ $company->companyLargeCategory->name ?? "登録されていません" }}
+            </div>
+          </div>
+        </div>
+        <div class="px-4 pt-4">
+          <span class="ml-xl-4">業界中カテゴリ：</span>
+          <div class="row px-4">
+            <div class="col-4">
+            </div>
+            <div class="col-8">
+              {{ $company->companyMiddleCategory->name ?? "登録されていません" }}
+            </div>
+          </div>
+        </div>
+        <div class="px-4 pt-4">
+          <span class="ml-xl-4">住所：</span>
+          <div class="row px-4">
+            <div class="col-4">
+            </div>
+            <div class="col-8">
+              {{ $company->address ?? "登録されていません" }}
+            </div>
+          </div>
+        </div>
+        <div class="px-4 pt-4">
+          <span class="ml-xl-4">従業員数：</span>
+          <div class="row px-4">
+            <div class="col-4">
+            </div>
+            <div class="col-8">
+              {{ $company->n_employees ?? "登録されていません" }}
+            </div>
+          </div>
+        </div>
+        <div class="px-4 pt-4">
+          <span class="ml-xl-4">HP：</span>
+          <div class="row px-4">
+            <div class="col-4">
+            </div>
+            <div class="col-8">
+              {{ $company->top_url ?? "登録されていません" }}
+            </div>
+          </div>
+        </div>
+        <div class="px-4 pt-4">
+          <span class="ml-xl-4">お問い合わせURL：</span>
+          <div class="row px-4">
+            <div class="col-4">
+            </div>
+            <div class="col-8">
+              {{ $company->form_url ?? "登録されていません" }}
+            </div>
           </div>
         </div>
       </div>
     </div>
-
-      @include('layouts.footers.auth')
+    @include('layouts.footers.auth')
   </div>
-  <script>
-    window.addEventListener('message', function(e) {
-    if (e.origin == "https://www.example.com"){  //ドメインを記入
-    document.getElementById('iframeParentID').height = e.data; //IDを記入
-    }
-    }, false);
-  </script>
-
+</div>
+<script>
+</script>
 @endsection
