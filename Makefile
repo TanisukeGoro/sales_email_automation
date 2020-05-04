@@ -66,3 +66,8 @@ docker-php-cs-fixer:
 generate-erd:
 	docker run -v "$(PWD)/schema:/output" --net="host" schemaspy/schemaspy:snapshot \
 	-t pgsql -host $(DB_HOST):$(DB_PORT) -db $(DB_DATABASE) -u $(DB_USERNAME) -p $(DB_PASSWORD) && open ./schema/index.html
+
+.PHONY: kill-pgprocess
+kill-pgprocess:
+	docker-compose -f docker-compose.noapp.yml exec db psql -U $(DB_USERNAME) -d $(DB_DATABASE) -c \
+		"SELECT pg_terminate_backend(pid) from pg_stat_activity where pid <> pg_backend_pid();"

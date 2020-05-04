@@ -16,6 +16,8 @@ sqlalchemy = "*"
 psycopg2 = "*"
 flake8 = "*"
 autopep8 = "*"
+selenium = "*"
+requests = "*"
 
 [requires]
 python_version = "3.7"

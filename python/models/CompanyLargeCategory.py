@@ -4,16 +4,14 @@ from sqlalchemy import Column, BIGINT, VARCHAR, TIMESTAMP
 from config.database import Base
 from config.database import ENGINE
 
-class CompanyCategory(Base):
+class CompanyLargeCategory(Base):
     """
-    企業情報モデル
+    業種大カテゴリ
     """
-    __tablename__ = 'company_categories'
+    __tablename__ = 'company_large_categories'
     id = Column('id', BIGINT, primary_key=True, nullable=False)
     name = Column('name', VARCHAR(length=255), nullable=False)
     code = Column('code', VARCHAR(length=255), nullable=False)
-    created_at = Column('created_at', TIMESTAMP)
-    updated_at = Column('updated_at', TIMESTAMP)
 
 
 def main(args):
