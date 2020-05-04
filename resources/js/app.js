@@ -3,6 +3,11 @@ import Vue from 'vue'
 import SuggestInput from './components/SuggestInput.vue'
 import RedirectUri from "./components/RedirectUri.vue"
 
+window.Echo.channel("channel-message").listen("MessageEvent", function (data) {
+  alert(data["message"]);
+  window.location = '/login';
+});
+
 const newVue = option => new Vue(option)
 
 document.addEventListener('DOMContentLoaded', () => {
