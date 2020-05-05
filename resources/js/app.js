@@ -5,6 +5,11 @@ import SideBar from "./components/SideBar.vue"
 import CompanyList from "./components/CompanyList.vue"
 import RedirectUri from "./components/RedirectUri.vue"
 
+window.Echo.channel("channel-message").listen("MessageEvent", function (data) {
+  alert(data["message"]);
+  window.location = '/login';
+});
+
 const newVue = option => new Vue(option)
 
 //親子関係にないコンポーネント間でイベントの受け渡しが出来る.

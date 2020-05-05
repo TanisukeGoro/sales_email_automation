@@ -54,23 +54,8 @@ class CompanyController extends Controller
      */
     public function show(Company $company)
     {
-        $url = $company->form_url ?? '';
-
-        if ($url !== '') {
-            $client = new \GuzzleHttp\Client();
-            $response = $client->request('GET', $url);
-            // レスポンスボディを取得
-            $responseBody = $response->getBody()->getContents();
-            $responseBody = \str_replace('src="//', 'srchttps', $responseBody);
-            $responseBody = \str_replace('src="/', "src=\"{$company->top_page}", $responseBody);
-            $responseBody = \str_replace('srchttps', 'src="https://', $responseBody);
-            $responseBody = \str_replace('href="/', "src=\"{$company->top_page}", $responseBody);
-        }
-
-        // return response()->json($responseBody);
         return view('companies.show', [
-            'company' => $company,
-            'form_dom' => $responseBody,
+            'company' => $company->load(['listingStock', 'companyLargeCategory', 'companyMiddleCategory']),
         ]);
     }
 

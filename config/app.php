@@ -163,11 +163,13 @@ return [
         // Application Service Providers...
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
+        App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\ArgonPresetUpdateServiceProvider::class,
         App\Providers\ComposerServiceProvider::class,
+
+        Jenssegers\Agent\AgentServiceProvider::class,
     ],
 
     /*
@@ -185,6 +187,7 @@ return [
         'App' => Illuminate\Support\Facades\App::class,
         'Arr' => Illuminate\Support\Arr::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
+        'Agent' => Jenssegers\Agent\Facades\Agent::class,
         'Auth' => Illuminate\Support\Facades\Auth::class,
         'Blade' => Illuminate\Support\Facades\Blade::class,
         'Broadcast' => Illuminate\Support\Facades\Broadcast::class,
