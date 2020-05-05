@@ -17,24 +17,40 @@ Route::get('/', function () {
 
 Auth::routes();
 
+//home
 Route::group(['middleware' => 'auth'], function (): void {
-    Route::group(['middleware' => 'check.simultaneous.login'], function (): void {
-        Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/configure', 'HomeController@configure')->name('home.configure');
+});
 
-        Route::resource('user', 'UserController', ['except' => ['show']]);
-        Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
-        Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
-        Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
+//company
+Route::group(['middleware' => 'auth'], function (): void {
+    Route::resource('companies', 'CompanyController');
+    Route::get('/company/search', 'CompanyController@searchCompany')->name('companies.searchCompany');
+});
 
-        Route::resource('companies', 'CompanyController');
+//user profile
+Route::group(['middleware' => 'auth'], function (): void {
+    Route::resource('user', 'UserController', ['except' => ['show']]);
+    Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
+    Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
+    Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
+});
 
-        Route::resource('template', 'TemplateController');
+//home
+Route::group(['middleware' => 'auth'], function (): void {
+    Route::resource('search-condition', 'SearchConditionController');
+});
 
-        Route::get('/confirm', 'TemplateController@confirm')->name('template.confirm');
-        Route::resource('redirect-link', 'RedirectController', ['except' => ['store', 'show']]);
-        Route::post('/redirect-link', 'RedirectController@publish')->name('redirect-link.publish');
-        Route::get('/redirect-link/{uuid}', 'RedirectController@count')->name('redirect-link.count');
+//redirect-url
+Route::group(['middleware' => 'auth'], function (): void {
+    Route::resource('redirect-link', 'RedirectController', ['except' => ['store', 'show']]);
+    Route::post('/redirect-link', 'RedirectController@publish')->name('redirect-link.publish');
+    Route::get('/redirect-link/{uuid}', 'RedirectController@count')->name('redirect-link.count');
+});
 
-        Route::get('/confirm', 'TemplateController@confirm')->name('template.confirm');
-    });
+//template
+Route::group(['middleware' => 'auth'], function (): void {
+    Route::resource('template', 'TemplateController');
+    Route::get('/confirm', 'TemplateController@confirm')->name('template.confirm');
 });

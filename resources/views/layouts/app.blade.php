@@ -31,7 +31,7 @@
   <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
     @csrf
   </form>
-  <div id="vue-app" class="container-fluid">
+  <div class="container-fluid">
     <div class="row">
       @include('layouts.navbars.sidebar')
       @yield('content')
