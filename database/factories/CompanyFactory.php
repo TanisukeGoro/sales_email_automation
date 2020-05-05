@@ -11,7 +11,7 @@ use Faker\Generator as Faker;
 $factory->define(Company::class, function (Faker $faker) {
     return [
         'name' => $faker->company,
-        'code' => '',
+        'code' => null,
         'listing_stock_id' => \mt_rand(1, ListingStock::all()->count() !== 0 ? ListingStock::all()->count() : 2),
         'company_large_category_id' => \mt_rand(1, CompanyLargeCategory::all()->count() !== 0 ? CompanyLargeCategory::all()->count() : 2),
         'company_middle_category_id' => \mt_rand(1, CompanyMiddleCategory::all()->count() !== 0 ? CompanyMiddleCategory::all()->count() : 2),
