@@ -22,6 +22,8 @@ class CreateCompaniesTable extends Migration
             $table->integer('n_employees')->comment('従業員人数')->nullable();
             $table->string('top_url')->nullable()->comment('Topページ');
             $table->string('form_url')->comment('お問い合わせURL');
+            $table->string('reference_site')->comment('データ取得サイト')->nullable();
+            $table->string('reference_url')->comment('データ取得URL')->nullable();
             $table->timestamps();
 
             $table->foreign('company_large_category_id')->references('id')->on('company_large_categories');
