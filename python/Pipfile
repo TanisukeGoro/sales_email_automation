@@ -18,6 +18,8 @@ flake8 = "*"
 autopep8 = "*"
 selenium = "*"
 requests = "*"
+lxml = "*"
+html5lib = "*"
 
 [requires]
 python_version = "3.7"

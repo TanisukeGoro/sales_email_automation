@@ -1,6 +1,7 @@
 import sys
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, BIGINT, VARCHAR, TIMESTAMP
+from sqlalchemy.orm import relationship
 from config.database import Base
 from config.database import ENGINE
 
@@ -12,7 +13,10 @@ class CompanyLargeCategory(Base):
     id = Column('id', BIGINT, primary_key=True, nullable=False)
     name = Column('name', VARCHAR(length=255), nullable=False)
     code = Column('code', VARCHAR(length=255), nullable=False)
-
+    # このbackrefには固有の値を付けないと行けないっぽい
+    # 他のクラスのリレーションと重複するとエラーが起きる
+    companies = relationship("Company", backref="large_companies")
+    users = relationship("User", backref="large_users")
 
 def main(args):
     Base.metadata.create_all(bind=ENGINE)
