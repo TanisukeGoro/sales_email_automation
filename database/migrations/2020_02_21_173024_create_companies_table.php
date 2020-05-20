@@ -21,7 +21,7 @@ class CreateCompaniesTable extends Migration
             $table->string('address')->comment('企業住所')->nullable();
             $table->integer('n_employees')->comment('従業員人数')->nullable();
             $table->string('top_url')->nullable()->comment('Topページ');
-            $table->string('form_url')->comment('お問い合わせURL');
+            $table->string('form_url')->nullable()->comment('お問い合わせURL');
             $table->string('reference_site')->comment('データ取得サイト')->nullable();
             $table->string('reference_url')->comment('データ取得URL')->nullable();
             $table->timestamps();

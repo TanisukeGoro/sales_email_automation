@@ -15,6 +15,9 @@ class ListingStocksTableSeeder extends Seeder
             ['マザーズ', 'mothers'],
             ['JASDAQスタンダード', 'jasdaq-standard'],
             ['JASDAQグロース', 'jasdaq-growth'],
+            ['その他市場', 'other-stock'],
+            ['未上場', 'unlisted'],
+            ['不明', 'unknown'],
         ];
 
         foreach ($listingStocks as $key => $listingStock) {

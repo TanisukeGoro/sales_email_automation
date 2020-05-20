@@ -1,6 +1,7 @@
 import sys
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, BIGINT, INTEGER, VARCHAR, TIMESTAMP, ForeignKey
+from sqlalchemy.orm import relationship
 from config.database import Base
 from config.database import ENGINE
 
@@ -24,6 +25,9 @@ class Company(Base):
     created_at = Column('created_at', TIMESTAMP)
     updated_at = Column('updated_at', TIMESTAMP)
 
+    company_large_category = relationship("CompanyLargeCategory")
+    company_middle_category = relationship("CompanyMiddleCategory")
+    listing_stock = relationship("ListingStock")
 
 def main(args):
     Base.metadata.create_all(bind=ENGINE)

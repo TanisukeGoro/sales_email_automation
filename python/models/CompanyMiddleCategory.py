@@ -1,6 +1,7 @@
 import sys
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, BIGINT, VARCHAR, TIMESTAMP
+from sqlalchemy.orm import relationship
 from config.database import Base
 from config.database import ENGINE
 
@@ -13,6 +14,8 @@ class CompanyMiddleCategory(Base):
     name = Column('name', VARCHAR(length=255), nullable=False)
     code = Column('code', VARCHAR(length=255), nullable=False)
 
+    companies = relationship("Company", backref="middle_companeies")
+    users = relationship("User", backref="middle_users")
 
 def main(args):
     Base.metadata.create_all(bind=ENGINE)
