@@ -44,9 +44,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function search_conditions()
+    public function SaleList()
     {
-        return $this->hasMany('App\Models\SearchConditions');
+        return $this->hasMany('App\Models\SaleList');
     }
 
     public function redirect_uris()
@@ -74,13 +74,13 @@ class User extends Authenticatable
         return $this->belongsTo('App\Models\CompanyMiddleCategory');
     }
 
-    public function sendCounts()
+    public function maxSendCounts()
     {
-        return $this->hasMany('App\Models\SendCount');
+        return $this->hasMany('App\Models\MaxSendCount');
     }
 
-    public function uriClickCount()
+    public function UriClick()
     {
-        return $this->hasOne('App\Models\SendCount');
+        return $this->hasOne('App\Models\UriClick');
     }
 }
