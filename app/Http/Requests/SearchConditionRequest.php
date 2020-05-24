@@ -25,8 +25,8 @@ class SearchConditionRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id' => ['required'],
-            'name' => ['required'],
+            // 'user_id' => ['required'],
+            'search_condition_name' => ['required'],
             'freeword' => ['nullable'],
             'company_large_category_id' => ['nullable'],
             'company_middle_category_id' => ['nullable'],

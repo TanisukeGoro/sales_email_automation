@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => __('営業先企業一覧')])
+@extends('layouts.app', ['title' => __('テンプレート一覧')])
 
 @section('content')
 <div class="main-content col-12 col-md-9 col-lg-10 mt-3">
@@ -116,7 +116,7 @@
 
     $('.delete-form').attr('action', `/template/${index}`);
     $('.delete-span').text(`${name}のテンプレートを削除しますか？`);
-    $('.deletepinput').val(index);
+    $('.delete-input').val(index);
   })
 </script>
 @endsection

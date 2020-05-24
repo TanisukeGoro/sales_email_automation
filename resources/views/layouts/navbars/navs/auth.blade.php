@@ -6,7 +6,7 @@
       <a class="h4 mb-0 text-inline" href="{{ route('home') }}">{{ config("app.name") }}</a>
       <!-- button -->
       <div class="button-box ml-3 d-none d-md-inline-block">
-        <button type="button" class="btn btn-outline-primary btn-sm">営業先リスト</button>
+        <a href="{{ route('business-list.index')}}" class="btn btn-outline-primary btn-sm">営業先リスト</a>
         <a href="{{ route('template.index')}}" class="btn btn-outline-primary btn-sm">テンプレート</a>
         <button type="button" class="btn btn-outline-primary btn-sm">月間レポート</button>
         <button type="button" class="btn btn-outline-primary btn-sm">設定</button>
