@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class SearchConditions extends Model
+class MaxSendCount extends Model
 {
     public function user()
     {

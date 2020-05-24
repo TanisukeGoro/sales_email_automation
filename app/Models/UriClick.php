@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class SendCount extends Model
+class UriClick extends Model
 {
     public function user()
     {

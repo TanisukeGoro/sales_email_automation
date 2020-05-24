@@ -16,11 +16,10 @@ class DatabaseSeeder extends Seeder
             ListingStocksTableSeeder::class,
             UsersTableSeeder::class,
             TemplatesTableSeeder::class,
-            SentsTableSeeder::class,
+            // SentsTableSeeder::class,
             RedirectUrisTableSeeder::class,
             // CompaniesTableSeeder::class,
             CompaniesSeeder::class,
-            SendCountsTableSeeder::class,
         ]);
     }
 }
