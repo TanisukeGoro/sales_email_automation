@@ -53,6 +53,8 @@ class TemplatesTableSeeder extends Seeder
       ご連絡を差し上げました。
 
       もしよろしければ、直接お伺いしてご説明させていただきたいです。',
+                'uri' => 'https://gegegseg',
+                'redirect_uri' => 'https://gegegseg',
             ]);
         }
     }

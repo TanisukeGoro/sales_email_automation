@@ -25,18 +25,22 @@ class RemainingSendCountsComposer
             $sent_count += $sent->count;
         }
 
-        $max_send_counts = auth()->user()->maxSendCounts;
+        if (auth()->user()->plans_id !== null) {
+            $send_limit_counts = auth()->user()->plans->send_limit;
 
-        $send_count = 0;
+            $send_count = 0;
 
-        foreach ($max_send_counts as $key => $max_send_count) {
-            $send_count += $max_send_count->count;
+            foreach ($send_limit_counts as $key => $send_limit_count) {
+                $send_count += $send_limit_counts->count;
+            }
+
+            // 最大送信回数から送信済み回数を引いて残りの送信回数を出す。
+            $remaining_send_count = $send_count - $sent_count;
+
+            $this->remaining_send_count = $remaining_send_count;
+        } else {
+            $this->remaining_send_count = 0;
         }
-
-        // 最大送信回数から送信済み回数を引いて残りの送信回数を出す。
-        $remaining_send_count = $send_count - $sent_count;
-
-        $this->remaining_send_count = $remaining_send_count;
     }
 
     /**

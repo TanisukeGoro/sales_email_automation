@@ -14,13 +14,12 @@ class DatabaseSeeder extends Seeder
             CompanyLargeCategorySeeder::class,
             CompanyMiddleCategorySeeder::class,
             ListingStocksTableSeeder::class,
+            PlansTableSeeder::class,
             UsersTableSeeder::class,
-            // TemplatesTableSeeder::class,
-            // SentsTableSeeder::class,
-            // RedirectUrisTableSeeder::class,
-            // CompaniesTableSeeder::class,
+            TemplatesTableSeeder::class,
+            CompaniesTableSeeder::class,
             CompaniesSeeder::class,
-            MaxSendCountTableSeeder::class,
+            SentsTableSeeder::class,
         ]);
     }
 }

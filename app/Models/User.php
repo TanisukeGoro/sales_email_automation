@@ -83,4 +83,9 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Models\UriClick');
     }
+
+    public function plans()
+    {
+        return $this->hasOne('App\Models\Plan');
+    }
 }
