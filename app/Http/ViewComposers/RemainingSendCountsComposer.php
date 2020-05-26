@@ -25,12 +25,12 @@ class RemainingSendCountsComposer
             $sent_count += $sent->count;
         }
 
-        $send_counts = auth()->user()->sendCounts;
+        $max_send_counts = auth()->user()->maxSendCounts;
 
         $send_count = 0;
 
-        foreach ($send_counts as $key => $sendCount) {
-            $send_count += $sendCount->count;
+        foreach ($max_send_counts as $key => $max_send_count) {
+            $send_count += $max_send_count->count;
         }
 
         // 最大送信回数から送信済み回数を引いて残りの送信回数を出す。
