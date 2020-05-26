@@ -15,9 +15,9 @@ class DatabaseSeeder extends Seeder
             CompanyMiddleCategorySeeder::class,
             ListingStocksTableSeeder::class,
             UsersTableSeeder::class,
-            TemplatesTableSeeder::class,
+            // TemplatesTableSeeder::class,
             // SentsTableSeeder::class,
-            RedirectUrisTableSeeder::class,
+            // RedirectUrisTableSeeder::class,
             // CompaniesTableSeeder::class,
             CompaniesSeeder::class,
         ]);

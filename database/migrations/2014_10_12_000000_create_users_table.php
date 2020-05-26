@@ -15,8 +15,8 @@ class CreateUsersTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->bigInteger('plan_id')->unsigned()->nullable();
             $table->string('company_name')->comment('企業名')->nullable();
             $table->bigInteger('company_large_category_id')->unsigned()->nullable()->comment('日本標準産業分類の大分類');
             $table->bigInteger('company_middle_category_id')->unsigned()->nullable()->comment('日本標準産業分類の中分類');
@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->integer('n_employees')->comment('従業員人数')->nullable();
             $table->string('hp_adress')->comment('ホームページアドレス')->nullable();
             $table->rememberToken();
+            $table->timestamp('email_verified_at')->nullable();
             $table->timestamps();
 
             $table->foreign('company_large_category_id')->references('id')->on('company_large_categories');
