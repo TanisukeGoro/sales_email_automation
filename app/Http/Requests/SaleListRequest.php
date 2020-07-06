@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SearchConditionRequest extends FormRequest
+class SaleListRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,15 +21,14 @@ class SearchConditionRequest extends FormRequest
      *
      * @return array
      */
-    //FIXME 脳死
     public function rules()
     {
         return [
-            'user_id' => ['required'],
             'name' => ['required'],
             'freeword' => ['nullable'],
             'company_large_category_id' => ['nullable'],
             'company_middle_category_id' => ['nullable'],
+            'listing_stock_id' => ['nullable'],
             'address' => ['nullable'],
         ];
     }

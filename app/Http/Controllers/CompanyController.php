@@ -97,12 +97,12 @@ class CompanyController extends Controller
     {
         $query = Company::query();
 
-        if ($request->input('large_category')) {
-            $query->where('company_large_category_id', (int) $request->input('large_category'));
+        if ($request->input('company_large_category_id')) {
+            $query->where('company_large_category_id', (int) $request->input('company_large_category_id'));
         }
 
-        if ($request->input('middle_category')) {
-            $query->where('company_middle_category_id', (int) $request->input('middle_category'));
+        if ($request->input('company_middle_category_id')) {
+            $query->where('company_middle_category_id', (int) $request->input('company_middle_category_id'));
         }
 
         if (isset($request->freeword)) {
@@ -113,8 +113,8 @@ class CompanyController extends Controller
             $query->where('address', 'like', "%{$request->address}%");
         }
 
-        if (isset($request->listing_stock)) {
-            $query->where('listing_stock_id', $request->listing_stock);
+        if (isset($request->listing_stock_id)) {
+            $query->where('listing_stock_id', $request->listing_stock_id);
         }
 
         return $query->with(['listingStock', 'companyLargeCategory', 'companyMiddleCategory'])->paginate(15);

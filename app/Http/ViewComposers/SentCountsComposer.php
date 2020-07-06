@@ -17,15 +17,9 @@ class SentCountsComposer
     public function __construct()
     {
         $now = Carbon::now('Asia/Tokyo');
-        $sents = Sent::whereYear('created_at', $now->year)->whereMonth('created_at', $now->month)->get();
+        $sent_count = Sent::whereYear('created_at', $now->year)->whereMonth('created_at', $now->month)->count();
 
-        $count = 0;
-
-        foreach ($sents as $key => $sent) {
-            $count += $sent->count;
-        }
-
-        $this->sent_count = $count;
+        $this->sent_count = $sent_count;
     }
 
     /**

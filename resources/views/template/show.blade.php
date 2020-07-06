@@ -90,6 +90,16 @@
           </div>
         </div>
         <div class="px-4 pt-4">
+          <span class="ml-xl-4">リダイレクト先URL：</span>
+          <div class="row px-4">
+            <div class="col-4">
+            </div>
+            <div class="col-8">
+              {{ $template->redirect_uri }}
+            </div>
+          </div>
+        </div>
+        <div class="px-4 pt-4">
           <span class="ml-xl-4">件名：</span>
           <div class="row px-4">
             <div class="col-4">

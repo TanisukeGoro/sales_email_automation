@@ -15,6 +15,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'admin@argon.com',
             'email_verified_at' => now(),
             'password' => Hash::make('secret'),
+            'plan_id' => 1,
             'company_name' => '任天堂株式会社',
             'company_address' => '京都市南区上鳥羽鉾立町11-1',
             'company_large_category_id' => 1,
