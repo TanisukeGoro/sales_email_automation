@@ -17,25 +17,13 @@ class RemainingSendCountsComposer
     public function __construct()
     {
         $now = Carbon::now('Asia/Tokyo');
-        $sents = Sent::whereYear('created_at', $now->year)->whereMonth('created_at', $now->month)->get();
+        $sent_count = Sent::whereYear('created_at', $now->year)->whereMonth('created_at', $now->month)->count();
 
-        $sent_count = 0;
-
-        foreach ($sents as $key => $sent) {
-            $sent_count += $sent->count;
-        }
-
-        if (auth()->user()->plans_id !== null) {
-            $send_limit_counts = auth()->user()->plans->send_limit;
-
-            $send_count = 0;
-
-            foreach ($send_limit_counts as $key => $send_limit_count) {
-                $send_count += $send_limit_counts->count;
-            }
+        if (auth()->user()->plan_id !== null) {
+            $send_limit_count = auth()->user()->plan->send_limit;
 
             // 最大送信回数から送信済み回数を引いて残りの送信回数を出す。
-            $remaining_send_count = $send_count - $sent_count;
+            $remaining_send_count = $send_limit_count - $sent_count;
 
             $this->remaining_send_count = $remaining_send_count;
         } else {

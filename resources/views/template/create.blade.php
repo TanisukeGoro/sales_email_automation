@@ -72,6 +72,18 @@
                 </div>
               </div>
               <div class="px-4 pt-4">
+                <span class="">リダイレクト先URL：</span>
+                <div class="col-12 form-group m-0 p-0">
+                  @if($errors->has("redirect_uri"))
+                  <div class="error">
+                    <small class="small text-red">※{{$errors->first("redirect_uri")}}</small>
+                  </div>
+                  @endif
+                  <input type="text" class="form-control" id="exampleFormControlInput1" name="redirect_uri"
+                    value="{{old('redirect_uri', $template->redirect_uri) }}" placeholder="https://example.com">
+                </div>
+              </div>
+              <div class="px-4 pt-4">
                 <span class="">件名：</span>
                 <div class="col-12 form-group m-0 p-0">
                   @if($errors->has("subject"))

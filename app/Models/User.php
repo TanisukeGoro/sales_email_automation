@@ -49,11 +49,6 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\SaleList');
     }
 
-    public function redirect_uris()
-    {
-        return $this->hasMany('App\Models\RedirectUri');
-    }
-
     public function sents()
     {
         return $this->hasMany('App\Models\Sent');
@@ -84,8 +79,8 @@ class User extends Authenticatable
         return $this->hasOne('App\Models\UriClick');
     }
 
-    public function plans()
+    public function plan()
     {
-        return $this->hasOne('App\Models\Plan');
+        return $this->belongsTo('App\Models\Plan');
     }
 }

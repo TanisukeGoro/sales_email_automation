@@ -161,6 +161,11 @@ url: https://www.pgadmin.org/
 $ brew cask install pgadmin4
 ```
 
+### DB構成をER図で確認
+```
+make generate-erd
+```
+
 ### php-cs-fixer
 url: https://github.com/FriendsOfPHP/PHP-CS-Fixer
 

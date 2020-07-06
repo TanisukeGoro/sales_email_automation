@@ -92,19 +92,6 @@
                   @endif
                 </div>
 
-                <div class="form-group position-relative">
-                  <label class="form-control-label" for="input-redirect-uri">{{ __('リダイレクトURL（変更不可）') }}</label>
-                  @if(auth()->user()->redirect_uris->toArray() != [])
-                  @foreach (auth()->user()->redirect_uris as $uri)
-                  <input type="text" id="input-redirect-uri" class="form-control form-control-alternative"
-                    value="{{ $uri->uri }}" readonly="readonly">
-                  @endforeach
-                  @else
-                  <redirect-uri></redirect-uri>
-                  @endif
-
-                </div>
-
                 <div class="form-group{{ $errors->has('company_name') ? ' has-danger' : '' }}">
                   <label class="form-control-label" for="input-company_name">{{ __('会社名') }}</label>
 
