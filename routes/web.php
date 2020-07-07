@@ -40,6 +40,7 @@ Route::group(['middleware' => 'auth'], function (): void {
 //saleList
 Route::group(['middleware' => 'auth'], function (): void {
     Route::resource('salelist', 'SaleListController');
+    Route::get('/salelist/{salelist}/company', 'SaleListController@getCompanies')->name('salelist.getCompay');
 });
 
 //redirect-url
@@ -53,10 +54,4 @@ Route::group(['middleware' => 'auth'], function (): void {
 Route::group(['middleware' => 'auth'], function (): void {
     Route::resource('template', 'TemplateController');
     Route::get('/confirm', 'TemplateController@confirm')->name('template.confirm');
-});
-
-//search-conditions  businessList
-Route::group(['middleware' => 'auth'], function (): void {
-    Route::resource('business-list', 'BusinessListController');
-    Route::get('/business-list/{search_condition}/company', 'BusinessListController@getCompanies')->name('business-list.getCompay');
 });

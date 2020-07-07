@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             CompaniesTableSeeder::class,
             CompaniesSeeder::class,
             SentsTableSeeder::class,
+            SaleListTableSeeder::class,
         ]);
     }
 }

@@ -6,7 +6,7 @@
       <a class="h4 mb-0 text-inline" href="{{ route('home') }}">{{ config("app.name") }}</a>
       <!-- button -->
       <div class="button-box ml-3 d-none d-md-inline-block">
-        <a href="{{ route('business-list.index')}}" class="btn btn-outline-primary btn-sm">営業先リスト</a>
+        <a href="{{ route('salelist.index')}}" class="btn btn-outline-primary btn-sm">営業先リスト</a>
         <a href="{{ route('companies.index')}}" class="btn btn-outline-primary btn-sm">企業一覧</a>
         <a href="{{ route('template.index')}}" class="btn btn-outline-primary btn-sm">テンプレート</a>
         <button type="button" class="btn btn-outline-primary btn-sm">月間レポート</button>
@@ -38,7 +38,7 @@
               <i class="ni ni-single-02"></i>
               <span>{{ __('プロフィール') }}</span>
             </a>
-            <a href="{{ route('business-list.index')}}" class="dropdown-item">
+            <a href="{{ route('salelist.index')}}" class="dropdown-item">
               <i class="ni ni-collection"></i>
               <span>{{ __('営業先リスト') }}</span>
             </a>

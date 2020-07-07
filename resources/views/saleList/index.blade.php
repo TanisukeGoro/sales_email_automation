@@ -35,17 +35,17 @@
                 </tr>
               </thead>
               <tbody>
-                @foreach ($search_conditions as $search_condition)
+                @foreach ($sale_list as $salelist)
                 <tr>
                   <td>
-                    <a href="{{route('business-list.show', $search_condition->id)}}">{{ $search_condition->name }}</a>
+                    <a href="{{route('salelist.show', $salelist->id)}}">{{ $salelist->name }}</a>
                   </td>
                   <td>
-                    {{ $search_condition->date() }}
+                    {{ $salelist->date() }}
                   </td>
                   <td class="text-right">
                     <button type="button" class="delete-btn btn btn-outline-primary" data-toggle="modal"
-                      data-index="{{ $search_condition->id }}" data-name="{{ $search_condition->name }}"
+                      data-index="{{ $salelist->id }}" data-name="{{ $salelist->name }}"
                       data-target="#exampleModal">削除</button>
                   </td>
                 </tr>
@@ -91,7 +91,7 @@
 
     console.log(index)
 
-    $('.delete-form').attr('action', `/business-list/${index}`);
+    $('.delete-form').attr('action', `/salelist/${index}`);
     $('.delete-span').text(`${name}のテンプレートを削除しますか？`);
     $('.delete-input').val(index);
   })
