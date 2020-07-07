@@ -21,6 +21,8 @@ class CreateTemplatesTable extends Migration
             $table->string('department')->comment('部署名');
             $table->longText('long_content')->comment('1000文字以下のお問い合わせ内容');
             $table->longText('short_content')->comment('200字以下のお問い合わせ内容');
+            $table->string('uri')->comment('CMS側で集計するためにまず開くURL');
+            $table->string('redirect_uri')->comment('その後リダイレクトするためのURL');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');

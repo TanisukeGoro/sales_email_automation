@@ -17,7 +17,7 @@ class SentsTableSeeder extends Seeder
         foreach ($days as $key => $day) {
             DB::table('sents')->insert([
                 'user_id' => 1,
-                'count' => 5,
+                'company_id' => 2,
                 'status' => '完了',
                 'created_at' => "{$now->year}-{$now->month}-{$day} 18:00:00",
             ]);

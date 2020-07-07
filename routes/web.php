@@ -37,9 +37,9 @@ Route::group(['middleware' => 'auth'], function (): void {
     Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
 });
 
-//home
+//saleList
 Route::group(['middleware' => 'auth'], function (): void {
-    Route::resource('search-condition', 'SearchConditionController');
+    Route::resource('salelist', 'SaleListController');
 });
 
 //redirect-url
