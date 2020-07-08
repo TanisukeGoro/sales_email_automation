@@ -12,4 +12,9 @@ class SaleList extends Model
     {
         return $this->belongsTo('App\Models\User');
     }
+
+    public function date()
+    {
+        return \date('Y年m月d日', \strtotime($this->created_at));
+    }
 }

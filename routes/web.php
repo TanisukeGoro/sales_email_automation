@@ -40,6 +40,7 @@ Route::group(['middleware' => 'auth'], function (): void {
 //saleList
 Route::group(['middleware' => 'auth'], function (): void {
     Route::resource('salelist', 'SaleListController');
+    Route::get('/salelist/{salelist}/company', 'SaleListController@getCompanies')->name('salelist.getCompay');
 });
 
 //redirect-url

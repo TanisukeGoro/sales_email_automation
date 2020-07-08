@@ -74,7 +74,7 @@
                 aria-label="Previous"
                 @click="
                   current_page -= 1
-                  searchCompany()
+                  paginateCompany()
                 "
               >
                 <span aria-hidden="true">&laquo;</span>
@@ -92,7 +92,7 @@
                 href="#"
                 @click="
                   current_page = page
-                  searchCompany()
+                  paginateCompany()
                 "
               >{{ page }}</a>
             </li>
@@ -103,7 +103,7 @@
                 aria-label="Next"
                 @click="
                   current_page += 1
-                  searchCompany()
+                  paginateCompany()
                 "
               >
                 <span aria-hidden="true">&raquo;</span>
@@ -121,7 +121,7 @@
 import axios from 'axios';
 
 export default {
-  name: 'CompanyList',
+  name: 'saleListCompany',
   data() {
     return {
       params: {},
@@ -153,53 +153,47 @@ export default {
       return list;
     }
   },
+  methods: {
+    async configure() {
+      var index = location.pathname.split('/')[2];
+      const response = await axios.get(`/salelist/${index}/company`);
+
+      if (response.status == 200) {
+        let data = response.data;
+        this.companies = data.data;
+        this.search_count = data.total;
+        this.current_page = data.current_page;
+        this.last_page = data.last_page;
+        this.display = true;
+      }
+
+      console.log(response);
+    },
+    async paginateCompany() {
+      this.params.page = this.current_page;
+      var params = this.params;
+      const data = {
+        params
+      };
+      var index = location.pathname.split('/')[2];
+      const response = await axios.get(`/salelist/${index}/company`, data);
+
+      if (response.status == 200) {
+        let data = response.data;
+        this.companies = data.data;
+        this.search_count = data.total;
+        this.current_page = data.current_page;
+        this.last_page = data.last_page;
+        this.display = true;
+      }
+    }
+  },
   watch: {
     $route: {
       async handler() {
         await this.configure();
       },
       immediate: true
-    }
-  },
-  created() {
-    //イベント名で受け取る
-    global.eventHub.$on('search_company', val => {
-      this.params = val.searchForm;
-      this.current_page = 1;
-      this.searchCompany();
-    });
-  },
-  methods: {
-    async configure() {
-      const response = await axios.get(`company/search`);
-
-      if (response.status == 200) {
-        let data = response.data;
-        this.companies = data.data;
-        this.search_count = data.total;
-        this.current_page = data.current_page;
-        this.last_page = data.last_page;
-        this.display = true;
-      }
-
-      console.log(response.data);
-    },
-    async searchCompany() {
-      this.params.page = this.current_page;
-      var params = this.params;
-      const data = {
-        params
-      };
-      const response = await axios.get(`company/search`, data);
-
-      if (response.status == 200) {
-        let data = response.data;
-        this.companies = data.data;
-        this.search_count = data.total;
-        this.current_page = data.current_page;
-        this.last_page = data.last_page;
-        this.display = true;
-      }
     }
   }
 };

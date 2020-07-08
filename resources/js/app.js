@@ -4,8 +4,9 @@ import SuggestInput from './components/SuggestInput.vue'
 import SideBar from './components/SideBar.vue'
 import CompanyList from './components/CompanyList.vue'
 import RedirectUri from './components/RedirectUri.vue'
+import SaleListCompany from './components/SaleListCompany.vue'
 
-window.Echo.channel('channel-message').listen('MessageEvent', function(data) {
+window.Echo.channel('channel-message').listen('MessageEvent', function (data) {
   alert(data['message'])
   window.location = '/login'
 })
@@ -21,7 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
     el: '#vue-app',
     components: {
       CompanyList,
-      RedirectUri
+      RedirectUri,
+      SaleListCompany
     }
   })
 

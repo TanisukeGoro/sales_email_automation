@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SaleListRequest;
+use App\Models\Company;
 use App\Models\SaleList;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,6 +17,11 @@ class SaleListController extends Controller
      */
     public function index()
     {
+        $sale_list = Auth::user()->saleLists()->orderBy('created_at', 'asc')->get();
+
+        return view('saleList.index', [
+            'sale_list' => $sale_list,
+        ]);
     }
 
     /**
@@ -45,21 +51,30 @@ class SaleListController extends Controller
      * Display the specified resource.
      *
      * @param \App\SaleList $saleList
+     * @param SaleList $salelist
      *
      * @return \Illuminate\Http\Response
      */
-    public function show(SaleList $saleList)
+    public function show(SaleList $salelist)
     {
+        return view('salelist.show');
+    }
+
+    public function getCompanies(SaleList $salelist)
+    {
+        return $this->getSaleListCompanies($salelist);
+        // return Company::with(['listingStock', 'companyLargeCategory', 'companyMiddleCategory'])->paginate(15);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param \App\SaleList $saleList
+     * @param SaleList $salelist
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit(SaleList $saleList)
+    public function edit(SaleList $salelist)
     {
     }
 
@@ -68,10 +83,11 @@ class SaleListController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param \App\SaleList $saleList
+     * @param SaleList $salelist
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, SaleList $saleList)
+    public function update(Request $request, SaleList $salelist)
     {
     }
 
@@ -79,10 +95,42 @@ class SaleListController extends Controller
      * Remove the specified resource from storage.
      *
      * @param \App\SaleList $saleList
+     * @param SaleList $salelist
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy(SaleList $saleList)
+    public function destroy(SaleList $salelist)
     {
+        $this->authorize('delete', $salelist);
+        $salelist->delete();
+
+        return redirect()->route('salelist.index');
+    }
+
+    private function getSaleListCompanies($salelist)
+    {
+        $query = Company::query();
+
+        if (isset($salelist->company_large_category_id)) {
+            $query->where('company_large_category_id', (int) $salelist->company_large_category_id);
+        }
+
+        if (isset($salelist->company_middle_category_id)) {
+            $query->where('company_middle_category_id', (int) $salelist->company_middle_category_id);
+        }
+
+        if (isset($salelist->freeword)) {
+            $query->where('name', 'like', "%{$salelist->freeword}%");
+        }
+
+        if (isset($salelist->address)) {
+            $query->where('address', 'like', "%{$salelist->address}%");
+        }
+
+        if (isset($salelist->listing_stock_id)) {
+            $query->where('listing_stock_id', $salelist->listing_stock_id);
+        }
+
+        return $query->with(['listingStock', 'companyLargeCategory', 'companyMiddleCategory'])->paginate(15);
     }
 }
