@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class SaleList extends Model
 {
@@ -16,5 +17,11 @@ class SaleList extends Model
     public function date()
     {
         return \date('Y年m月d日', \strtotime($this->created_at));
+    }
+
+    public function createSaleList($request): void
+    {
+        $this->user_id = Auth::id();
+        $this->fill($request->all())->save();
     }
 }
