@@ -28,12 +28,12 @@ class Company extends Model
 
     public function scopeGetSearchCompanies($query, $request)
     {
-        if ($request->input('company_large_category_id')) {
-            $query->where('company_large_category_id', (int) $request->input('company_large_category_id'));
+        if ($request->company_large_category_id) {
+            $query->where('company_large_category_id', (int) $request->company_large_category_id);
         }
 
-        if ($request->input('company_middle_category_id')) {
-            $query->where('company_middle_category_id', (int) $request->input('company_middle_category_id'));
+        if ($request->company_middle_category_id) {
+            $query->where('company_middle_category_id', (int) $request->company_middle_category_id);
         }
 
         if (isset($request->freeword)) {
@@ -49,6 +49,5 @@ class Company extends Model
         }
 
         return $query->with(['listingStock', 'companyLargeCategory', 'companyMiddleCategory'])->paginate(15);
-        // return $query;
     }
 }
