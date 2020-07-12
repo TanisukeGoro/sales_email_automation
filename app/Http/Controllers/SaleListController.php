@@ -17,7 +17,7 @@ class SaleListController extends Controller
      */
     public function index()
     {
-        $sale_list = Auth::user()->saleLists()->orderBy('created_at', 'asc')->get();
+        $sale_list = Auth::user()->saleLists()->orderBy('id', 'desc')->get();
 
         return view('saleList.index', [
             'sale_list' => $sale_list,
@@ -42,9 +42,8 @@ class SaleListController extends Controller
      */
     public function store(SaleListRequest $request)
     {
-        $saleList = new SaleList();
-        $saleList->user_id = Auth::id();
-        $saleList->fill($request->all())->save();
+        $sale_list = new SaleList();
+        $sale_list->createSaleList($request);
     }
 
     /**
@@ -62,8 +61,7 @@ class SaleListController extends Controller
 
     public function getCompanies(SaleList $salelist)
     {
-        return $this->getSaleListCompanies($salelist);
-        // return Company::with(['listingStock', 'companyLargeCategory', 'companyMiddleCategory'])->paginate(15);
+        return Company::getSearchCompanies($salelist);
     }
 
     /**
@@ -105,32 +103,5 @@ class SaleListController extends Controller
         $salelist->delete();
 
         return redirect()->route('salelist.index');
-    }
-
-    private function getSaleListCompanies($salelist)
-    {
-        $query = Company::query();
-
-        if (isset($salelist->company_large_category_id)) {
-            $query->where('company_large_category_id', (int) $salelist->company_large_category_id);
-        }
-
-        if (isset($salelist->company_middle_category_id)) {
-            $query->where('company_middle_category_id', (int) $salelist->company_middle_category_id);
-        }
-
-        if (isset($salelist->freeword)) {
-            $query->where('name', 'like', "%{$salelist->freeword}%");
-        }
-
-        if (isset($salelist->address)) {
-            $query->where('address', 'like', "%{$salelist->address}%");
-        }
-
-        if (isset($salelist->listing_stock_id)) {
-            $query->where('listing_stock_id', $salelist->listing_stock_id);
-        }
-
-        return $query->with(['listingStock', 'companyLargeCategory', 'companyMiddleCategory'])->paginate(15);
     }
 }

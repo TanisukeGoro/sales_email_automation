@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Template extends Model
 {
@@ -21,5 +22,11 @@ class Template extends Model
     public function date()
     {
         return \date('Y年m月d日', \strtotime($this->created_at));
+    }
+
+    public function createTemplate($request): void
+    {
+        $this->user_id = Auth::id();
+        $this->fill($request->all())->save();
     }
 }
