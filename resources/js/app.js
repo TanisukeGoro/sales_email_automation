@@ -8,6 +8,7 @@ import SaleListCompany from './components/SaleListCompany.vue'
 
 import SideBar from './components/sideBar/SideBar.vue'
 import SaleListSideBar from "./components/sideBar/SaleListSideBar.vue"
+import SaleListDetailSideBar from "./components/sideBar/SaleListDetailSideBar.vue"
 
 window.Echo.channel('channel-message').listen('MessageEvent', function (data) {
   alert(data['message'])
@@ -36,7 +37,8 @@ document.addEventListener('DOMContentLoaded', () => {
     components: {
       SuggestInput,
       SideBar,
-      SaleListSideBar
+      SaleListSideBar,
+      SaleListDetailSideBar
     }
   })
 })

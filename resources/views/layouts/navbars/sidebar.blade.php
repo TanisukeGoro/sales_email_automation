@@ -4,6 +4,8 @@
     <side-bar>
       @elseif (request()->path() == "salelist")
       <sale-list-side-bar>
-        @endif
+        @elseif(count(explode("/",request()->path())) == 2 && explode("/",request()->path())[0] == "salelist")
+        <sale-list-detail-side-bar>
+          @endif
   </div>
 </nav>
