@@ -30,29 +30,23 @@
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
-                <th scope="col">上場区分</th>
+                <th scope="col">ホームページ</th>
+                <th scope="col">お問い合わせページ</th>
                 <th scope="col">企業名</th>
                 <th scope="col">業種大カテゴリ</th>
                 <th scope="col">業種中カテゴリ</th>
+                <th scope="col">上場区分</th>
                 <th scope="col">従業員数</th>
                 <th scope="col">所在地</th>
-                <th scope="col">ホームページ</th>
-                <th scope="col">お問い合わせページ</th>
               </tr>
             </thead>
             <tbody>
               <tr v-for="company in companies" :key="company.id">
-                <td>{{ company.listing_stock.name }}</td>
-                <td>
-                  <a v-if="company.form_url" :href="company.form_url">{{ company.name }}</a>
-                  <span v-else>{{ company.name }}</span>
-                </td>
-                <td>{{ company.company_large_category_id != null ? company.company_large_category.name : '' }}</td>
-                <td>{{ company.company_middle_category_id != null ? company.company_middle_category.name : '' }}</td>
-                <td>{{ company.n_employees != null ? company.n_employees : '' }}</td>
-                <td>{{ company.address != null ? company.address : '' }}</td>
-                <td>
-                  <a href target="_blank">{{ company.top_url != null ? company.top_url : '' }}</a>
+                <td class="text-center">
+                  <a v-if="company.top_url" :href="company.top_url" target="_blank">
+                    <i class="fas fa-external-link-alt" />
+                  </a>
+                  <i v-else class="fas fa-external-link-alt" />
                 </td>
                 <td class="text-center">
                   <a v-if="company.form_url" :href="company.form_url" target="_blank">
@@ -60,6 +54,15 @@
                   </a>
                   <i v-else class="fas fa-external-link-alt" />
                 </td>
+                <td>
+                  <a v-if="company.form_url" :href="company.form_url">{{ company.name }}</a>
+                  <span v-else>{{ company.name }}</span>
+                </td>
+                <td>{{ company.company_large_category_id != null ? company.company_large_category.name : '' }}</td>
+                <td>{{ company.company_middle_category_id != null ? company.company_middle_category.name : '' }}</td>
+                <td>{{ company.listing_stock.name }}</td>
+                <td>{{ company.n_employees != null ? company.n_employees : '' }}</td>
+                <td>{{ company.address != null ? company.address : '' }}</td>
               </tr>
             </tbody>
           </table>
