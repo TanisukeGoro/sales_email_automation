@@ -7,16 +7,4 @@
   </div>
   @include('layouts.footers.auth')
 </div>
-<script>
-  $('.delete-btn').click(function() {
-    const index = this.getAttribute('data-index');
-    const name = this.getAttribute('data-name');
-
-    console.log(index)
-
-    $('.delete-form').attr('action', `/salelist/${index}`);
-    $('.delete-span').text(`${name}のテンプレートを削除しますか？`);
-    $('.delete-input').val(index);
-  })
-</script>
 @endsection

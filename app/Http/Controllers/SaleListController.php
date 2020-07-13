@@ -105,6 +105,7 @@ class SaleListController extends Controller
      *
      * @param \App\SaleList $saleList
      * @param SaleList $salelist
+     * @param Request $request
      *
      * @return \Illuminate\Http\Response
      */
@@ -112,7 +113,5 @@ class SaleListController extends Controller
     {
         $this->authorize('delete', $salelist);
         $salelist->delete();
-
-        return redirect()->route('salelist.index');
     }
 }

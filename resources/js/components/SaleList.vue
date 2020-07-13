@@ -1,5 +1,5 @@
 <template>
-  <div class="row">
+  <div class="row" v-if="display">
     <div class="col">
       <div class="card shadow">
         <div class="card-header border-0">
@@ -30,16 +30,20 @@
                     type="button"
                     class="delete-btn btn btn-outline-primary"
                     data-toggle="modal"
-                    :data-index="sale.id"
-                    :data-name="sale.name"
                     data-target="#exampleModal"
+                    @click="deleteForm.sale = sale"
                   >削除</button>
+                </td>
+              </tr>
+              <tr v-if="salelist.length == 0">
+                <td>
+                  <span>営業先リストがありません</span>
                 </td>
               </tr>
             </tbody>
           </table>
 
-          <!-- <div
+          <div
             class="modal fade"
             id="exampleModal"
             tabindex="-1"
@@ -50,18 +54,19 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
               <div class="modal-content">
                 <div class="modal-body">
-                  <span class="delete-span"></span>
+                  <span class="delete-span">{{`${deleteForm.sale.name}のテンプレートを削除しますか？`}}</span>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-outline-default" data-dismiss="modal">キャンセル</button>
-                  <form class="delete-form" method="POST">
-                    <input class="delete-input" type="hidden" />
-                    <input class="btn btn-outline-primary" type="submit" value="削除" />
-                  </form>
+                  <button
+                    class="btn btn-outline-primary"
+                    @click="deleteSaleList()"
+                    data-dismiss="modal"
+                  >削除</button>
                 </div>
               </div>
             </div>
-          </div>-->
+          </div>
         </div>
         <div class="card-footer py-4">
           <nav class="d-flex justify-content-end" aria-label="..."></nav>
@@ -80,7 +85,10 @@ export default {
     return {
       params: {},
       salelist: [],
-      display: false
+      display: false,
+      deleteForm: {
+        sale: {}
+      }
     };
   },
   watch: {
@@ -132,6 +140,21 @@ export default {
         let data = response.data;
         this.salelist = data;
         this.display = true;
+      }
+    },
+    async deleteSaleList() {
+      var params = this.params;
+      const data = {
+        params
+      };
+      const response = await axios.delete(`salelist/${this.deleteForm.sale.id}`, data);
+
+      if (response.status == 200) {
+        const salelist = this.salelist.filter(salelist => salelist.id != this.deleteForm.sale.id);
+        this.salelist = salelist;
+        this.deleteForm.sale = {};
+      } else {
+        window.alert('エラーが発生しました。');
       }
     }
   }
