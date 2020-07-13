@@ -40,7 +40,7 @@ Route::group(['middleware' => 'auth'], function (): void {
 //saleList
 Route::group(['middleware' => 'auth'], function (): void {
     Route::resource('salelist', 'SaleListController');
-    Route::get('/saleslist/search', 'SaleListController@searchSaleList')->name('salelist.searchSaleList');
+    Route::get('/api/saleslist/search', 'SaleListController@searchSaleList')->name('salelist.searchSaleList');
     Route::get('/api/salelist/{salelist}', 'SaleListController@getSaleList')->name('salelist.getSaleList');
 });
 

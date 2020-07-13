@@ -110,7 +110,7 @@ export default {
   },
   methods: {
     async configure() {
-      const response = await axios.get(`saleslist/search`);
+      const response = await axios.get(`/api/saleslist/search`);
 
       if (response.status == 200) {
         let data = response.data;
