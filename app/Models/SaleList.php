@@ -19,6 +19,21 @@ class SaleList extends Model
         return \date('Y年m月d日', \strtotime($this->created_at));
     }
 
+    public function listingStock()
+    {
+        return $this->belongsTo('App\Models\ListingStock');
+    }
+
+    public function companyLargeCategory()
+    {
+        return $this->belongsTo('App\Models\CompanyLargeCategory');
+    }
+
+    public function companyMiddleCategory()
+    {
+        return $this->belongsTo('App\Models\CompanyMiddleCategory');
+    }
+
     public function createSaleList($request): void
     {
         $this->user_id = Auth::id();

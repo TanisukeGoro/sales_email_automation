@@ -1,10 +1,12 @@
 import './bootstrap'
 import Vue from 'vue'
 import SuggestInput from './components/SuggestInput.vue'
-import SideBar from './components/SideBar.vue'
 import CompanyList from './components/CompanyList.vue'
 import RedirectUri from './components/RedirectUri.vue'
 import SaleListCompany from './components/SaleListCompany.vue'
+
+import SideBar from './components/sideBar/SideBar.vue'
+import SaleListSideBar from "./components/sideBar/SaleListSideBar.vue"
 
 window.Echo.channel('channel-message').listen('MessageEvent', function (data) {
   alert(data['message'])
@@ -31,7 +33,8 @@ document.addEventListener('DOMContentLoaded', () => {
     el: '#vue-sidebar', // コンポーネントをDOMのIDで使い分ける場合
     components: {
       SuggestInput,
-      SideBar
+      SideBar,
+      SaleListSideBar
     }
   })
 })

@@ -56,7 +56,11 @@ class SaleListController extends Controller
      */
     public function show(SaleList $salelist)
     {
-        return view('salelist.show');
+        $sale_list = $salelist->load(['listingStock', 'companyLargeCategory', 'companyMiddleCategory']);
+
+        return view('salelist.show', [
+            'sale_list' => $sale_list,
+        ]);
     }
 
     public function getCompanies(SaleList $salelist)
