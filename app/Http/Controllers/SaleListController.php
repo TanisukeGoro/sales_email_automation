@@ -24,6 +24,13 @@ class SaleListController extends Controller
         ]);
     }
 
+    public function searchSaleList(Request $request)
+    {
+        return $request->all() === [] ?
+      SaleList::getSaleList() :
+      SaleList::getSearchSaleList($request);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

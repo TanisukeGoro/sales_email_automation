@@ -37,7 +37,7 @@
       <label for="middle-category">作成日</label>
       <select
         id="middle-category"
-        v-model="form.createdAt"
+        v-model="form.created_at"
         name="middle-category"
         class="form-control"
       >
@@ -59,7 +59,7 @@ export default {
       form: {
         freeword: '',
         name: '',
-        createdAt: ''
+        created_at: ''
       }
     };
   },
