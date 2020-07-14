@@ -23,6 +23,14 @@ class TemplateController extends Controller
         ]);
     }
 
+    //一覧画面で並び替えをした時に発動されるAPI
+    public function sortTemplate(Request $request)
+    {
+        return $request->all() === [] ?
+      Template::getTemplate() :
+      Template::getSortTemplate($request);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -114,9 +122,6 @@ class TemplateController extends Controller
     public function destroy(Template $template)
     {
         $this->authorize('delete', $template);
-
         $template->delete();
-
-        return redirect()->route('template.index');
     }
 }

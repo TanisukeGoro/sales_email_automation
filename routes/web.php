@@ -54,4 +54,5 @@ Route::group(['middleware' => 'auth'], function (): void {
 Route::group(['middleware' => 'auth'], function (): void {
     Route::resource('template', 'TemplateController');
     Route::get('/confirm', 'TemplateController@confirm')->name('template.confirm');
+    Route::get('/api/template/sort', 'TemplateController@sortTemplate')->name('template.sortTemplate');
 });

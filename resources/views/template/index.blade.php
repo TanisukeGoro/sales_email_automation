@@ -1,112 +1,11 @@
 @extends('layouts.app', ['title' => __('テンプレート一覧')])
 
 @section('content')
-<div class="main-content col-12 col-md-9 col-lg-10 mt-3">
+<div id="vue-app" class="main-content col-12 col-md-9 col-lg-10 mt-3">
   <div class="container-fluid mt-3 ">
-    <div class="row">
-      <div class="col">
-        <div class="card shadow">
-          <div class="card-header border-0">
-            <div class="row align-items-center">
-              <div class="col-8">
-                <p class="mb-0">テンプレート一覧</p>
-              </div>
-              <div class="dropdown col-4 text-right">
-                <a href="{{ route('template.create')}}" class="delete-btn btn btn-outline-primary">作成</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12">
-            @if (session('status'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-              {{ session('status') }}
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            @endif
-          </div>
-
-          <div class="table-responsive">
-            <table class="table align-items-center table-flush">
-              <thead class="thead-light">
-                <tr>
-                  <th scope="col">{{ __('テンプレート名') }}</th>
-                  <th scope="col">{{ __('作成日') }}</th>
-                  <th scope="col"></th>
-                </tr>
-              </thead>
-              <tbody>
-                @foreach ($templates as $template)
-                <tr>
-                  <td>
-                    <a href="{{route('template.show', $template->id)}}">{{ $template->name }}</a>
-                  </td>
-                  <td>
-                    {{ $template->date() }}
-                  </td>
-                  <td class="text-right">
-                    <button type="button" class="delete-btn btn btn-outline-primary" data-toggle="modal"
-                      data-index="{{ $template->id }}" data-name="{{ $template->name }}"
-                      data-target="#exampleModal">削除</button>
-                  </td>
-                  {{-- 今後使うかもしれないから残しておく↓ --}}
-                  {{-- <td class="text-right">
-                    <div class="dropdown">
-                      <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-ellipsis-v"></i>
-                      </a>
-                      <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                        <form action="#" method="post">
-                          @csrf
-                          @method('delete')
-
-                          <a class="dropdown-item" href="#">{{ __('Edit') }}</a>
-                  <button type="button" class="dropdown-item"
-                    onclick="confirm('{{ __("Are you sure you want to delete this user?") }}') ? this.parentElement.submit() : ''">
-                    {{ __('Delete') }}
-                  </button>
-                  </form>
-          </div>
-        </div>
-        </td> --}}
-        </tr>
-        @endforeach
-        </tbody>
-        </table>
-        {{--削除モーダル表示--}}
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-          aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-              <div class="modal-body">
-                <span class="delete-span"></span>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-outline-default" data-dismiss="modal">キャンセル</button>
-                {{--formのactionはjsで書いている--}}
-                <form class="delete-form" method="POST">
-                  @method('DELETE')
-                  @csrf
-                  <input class="delete-input" type="hidden">
-                  <input class="btn btn-outline-primary" type="submit" value="削除">
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="card-footer py-4">
-        <nav class="d-flex justify-content-end" aria-label="...">
-        </nav>
-      </div>
-    </div>
+    <templates>
   </div>
-</div>
-@include('layouts.footers.auth')
-</div>
+  @include('layouts.footers.auth')
 </div>
 <script>
   //後でVueに書き換える
