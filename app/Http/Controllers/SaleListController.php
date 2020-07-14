@@ -25,11 +25,11 @@ class SaleListController extends Controller
     }
 
     //一覧画面で並び替えをした時に発動されるAPI
-    public function searchSaleList(Request $request)
+    public function sortSaleList(Request $request)
     {
         return $request->all() === [] ?
       SaleList::getSaleList() :
-      SaleList::getSearchSaleList($request);
+      SaleList::getSortSaleList($request);
     }
 
     /**

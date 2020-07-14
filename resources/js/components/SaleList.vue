@@ -94,30 +94,19 @@ export default {
   watch: {
     $route: {
       async handler() {
-        await this.configure();
+        await this.sortSaleList();
       },
       immediate: true
     }
   },
   created() {
     //イベント名で受け取る
-    global.eventHub.$on('reordering_salelist', val => {
-      console.log(val);
-
+    global.eventHub.$on('sort_salelist', val => {
       this.params = val.form;
-      this.searchSaleList();
+      this.sortSaleList();
     });
   },
   methods: {
-    async configure() {
-      const response = await axios.get(`/api/saleslist/search`);
-
-      if (response.status == 200) {
-        let data = response.data;
-        this.salelist = data;
-        this.display = true;
-      }
-    },
     displayDate(createdAt) {
       if (createdAt == null) {
         return;
@@ -127,14 +116,12 @@ export default {
 
       return `${date[0]}年${date[1]}月${date[2]}日`;
     },
-    async searchSaleList() {
+    async sortSaleList() {
       var params = this.params;
       const data = {
         params
       };
-      const response = await axios.get(`saleslist/search`, data);
-
-      console.log(response);
+      const response = await axios.get(`/api/saleslist/sort`, data);
 
       if (response.status == 200) {
         let data = response.data;

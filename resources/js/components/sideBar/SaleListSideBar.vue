@@ -65,7 +65,7 @@ export default {
   },
   methods: {
     search() {
-      global.eventHub.$emit('reordering_salelist', {
+      global.eventHub.$emit('sort_salelist', {
         form: this.form
       });
     }
