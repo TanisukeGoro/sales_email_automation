@@ -54,6 +54,7 @@ class SaleListPolicy
      */
     public function update(User $user, SaleList $saleList)
     {
+        return $user->id === $saleList->user_id;
     }
 
     /**

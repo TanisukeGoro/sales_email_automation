@@ -28,11 +28,11 @@ class Company extends Model
 
     public function scopeGetSearchCompanies($query, $request)
     {
-        if ($request->company_large_category_id) {
+        if (isset($request->company_large_category_id)) {
             $query->where('company_large_category_id', (int) $request->company_large_category_id);
         }
 
-        if ($request->company_middle_category_id) {
+        if (isset($request->company_middle_category_id)) {
             $query->where('company_middle_category_id', (int) $request->company_middle_category_id);
         }
 

@@ -2,6 +2,7 @@ import './bootstrap'
 import Vue from 'vue'
 import SuggestInput from './components/SuggestInput.vue'
 import CompanyList from './components/CompanyList.vue'
+import SaleList from "./components/SaleList.vue"
 import RedirectUri from './components/RedirectUri.vue'
 import SaleListCompany from './components/SaleListCompany.vue'
 //予約後のtemplateと被らないようにsを付けている
@@ -9,6 +10,8 @@ import Templates from "./components/Template.vue"
 
 import SideBar from './components/sideBar/SideBar.vue'
 import TemplateSideBar from "./components/sideBar/TemplateSideBar.vue"
+import SaleListSideBar from "./components/sideBar/SaleListSideBar.vue"
+import SaleListDetailSideBar from "./components/sideBar/SaleListDetailSideBar.vue"
 window.Echo.channel('channel-message').listen('MessageEvent', function (data) {
   alert(data['message'])
   window.location = '/login'
@@ -25,6 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
     el: '#vue-app',
     components: {
       CompanyList,
+      SaleList,
       RedirectUri,
       SaleListCompany,
       Templates
@@ -36,7 +40,9 @@ document.addEventListener('DOMContentLoaded', () => {
     components: {
       SuggestInput,
       SideBar,
-      TemplateSideBar
+      TemplateSideBar,
+      SaleListSideBar,
+      SaleListDetailSideBar
     }
   })
 })
