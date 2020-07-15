@@ -55,8 +55,7 @@
                   <i v-else class="fas fa-external-link-alt" />
                 </td>
                 <td>
-                  <a v-if="company.form_url" :href="company.form_url">{{ company.name }}</a>
-                  <span v-else>{{ company.name }}</span>
+                  <a :href="'/companies/' + company.id">{{ company.name }}</a>
                 </td>
                 <td>{{ company.company_large_category_id != null ? company.company_large_category.name : '' }}</td>
                 <td>{{ company.company_middle_category_id != null ? company.company_middle_category.name : '' }}</td>
