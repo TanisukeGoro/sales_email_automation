@@ -19,7 +19,8 @@ class CreateCompaniesTable extends Migration
             $table->bigInteger('company_large_category_id')->unsigned()->nullable()->comment('日本標準産業分類の大分類');
             $table->bigInteger('company_middle_category_id')->unsigned()->nullable()->comment('日本標準産業分類の中分類');
             $table->string('address')->comment('企業住所')->nullable();
-            $table->integer('n_employees')->comment('従業員人数')->nullable();
+            $table->integer('minimum_employees')->comment('最小従業員人数')->nullable();
+            $table->integer('maximum_employees')->comment('最大従業員人数')->nullable();
             $table->string('top_url')->nullable()->comment('Topページ');
             $table->string('form_url')->nullable()->comment('お問い合わせURL');
             $table->string('reference_site')->comment('データ取得サイト')->nullable();
