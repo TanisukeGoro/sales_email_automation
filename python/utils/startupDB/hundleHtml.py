@@ -31,6 +31,8 @@ class handleStartupDBL:
         if len(employees) == 1:
             return [None, employees[0]]
         if len(employees) == 2:
+            if employees[1].strip() == '' and employees[0].strip() != '':
+                return [None, employees[0]]
             return [employees[0], employees[1]]
 
 

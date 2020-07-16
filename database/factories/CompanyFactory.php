@@ -12,7 +12,7 @@ $factory->define(Company::class, function (Faker $faker) {
     $minimum = null;
     $maximum = null;
 
-    if (\mt_rand ( 0 , 100) > 70 ) { // 3割の確率
+    if (\mt_rand(0, 100) > 70) { // 3割の確率
         $minimum = \mt_rand(100, 30000);
     }
 
@@ -25,7 +25,7 @@ $factory->define(Company::class, function (Faker $faker) {
         'address' => $faker->address,
         'minimum_employees' => $minimum,
         'maximum_employees' => \mt_rand($minimum + 1, 30000),
-        'top_url' => 'http://',
+        'top_url' => $faker->unique()->url,
         'form_url' => 'http://',
     ];
 });
