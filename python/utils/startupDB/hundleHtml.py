@@ -18,14 +18,21 @@ class handleStartupDBL:
         return _dom.parent.select_one("dd").text if _dom else ""
 
     def category(self):
-        _domc = self.document.select_one(".p-corporate__heading>category__item")
+        _dom = self.document.select_one(".p-corporate__heading>category__item")
         return _dom.text if _dom else ''
 
     def ceo(self):
         pass
 
     def employees(self):
-        pass
+        _dom = self.document.find("dt", text="従業員数")
+        if _dom == None: return [None, None]
+        employees = _dom.parent.select_one("dd").text.split('〜')
+        if len(employees) == 1:
+            return [None, employees[0]]
+        if len(employees) == 2:
+            return [employees[0], employees[1]]
+
 
     def listing_stock(self):
         for table in self.document.find_all('table'):
