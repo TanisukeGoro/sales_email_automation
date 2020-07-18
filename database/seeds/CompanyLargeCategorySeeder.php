@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\CompanyLargeCategory;
 use Illuminate\Database\Seeder;
 
 class CompanyLargeCategorySeeder extends Seeder
@@ -29,12 +30,14 @@ class CompanyLargeCategorySeeder extends Seeder
         $responseBody = \json_decode($responseBody, true);
 
         $categories = $responseBody['result'];
+        $query = [];
 
         foreach ($categories as $key => $category) {
-            DB::table('company_large_categories')->insert([
+            $query[] = [
                 'name' => $category['sicName'],
                 'code' => $category['sicCode'],
-            ]);
+            ];
         }
+        CompanyLargeCategory::insert($query);
     }
 }

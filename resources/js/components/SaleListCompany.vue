@@ -169,10 +169,10 @@ export default {
   created() {
     //イベント名で受け取る
     global.eventHub.$on('search_salelist_company', val => {
-      this.params = val.searchForm;
-      this.current_page = 1;
-      this.searchCompany();
-    });
+      this.params = val.searchForm
+      this.current_page = 1
+      this.searchCompany()
+    })
   },
   methods: {
     async configure() {
@@ -190,13 +190,14 @@ export default {
 
       console.log(response)
     },
-    async searchCompany() {
-      this.params.page = this.current_page;
-      var params = this.params;
+    async paginateCompany() {
+      this.params.page = this.current_page
+      var params = this.params
       const data = {
         params
-      };
-      const response = await axios.get(`/company/search`, data);
+      }
+      var index = location.pathname.split('/')[2]
+      const response = await axios.get(`/salelist/${index}/company`, data)
 
       if (response.status == 200) {
         let data = response.data
