@@ -9,6 +9,6 @@ class CompaniesTableSeeder extends Seeder
      */
     public function run(): void
     {
-        factory(\App\Models\Company::class, 1500)->create();
+        factory(\App\Models\Company::class, 100)->create();
     }
 }

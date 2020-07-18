@@ -76,7 +76,7 @@
             <div class="col-4">
             </div>
             <div class="col-8">
-              {{ $company->n_employees ?? "登録されていません" }}
+              {{ $company->maximum_employees ?? "登録されていません" }}
             </div>
           </div>
         </div>

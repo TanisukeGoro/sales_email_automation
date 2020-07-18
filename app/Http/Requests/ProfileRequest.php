@@ -32,7 +32,7 @@ class ProfileRequest extends FormRequest
             'company_large_category_id' => ['integer'],
             'company_middle_category_id' => ['integer'],
             'company_address' => ['nullable', 'string'],
-            'n_employees' => ['nullable', 'integer'],
+            'maximum_employees' => ['nullable', 'integer'],
             'hp_adress' => ['nullable', 'string'],
         ];
     }
@@ -46,7 +46,7 @@ class ProfileRequest extends FormRequest
             'company_large_category_id' => '業種大カテゴリ',
             'company_middle_category_id' => '業種中カテゴリ',
             'company_address' => '会社所在地',
-            'n_employees' => '従業員数',
+            'maximum_employees' => '従業員数',
             'hp_adress' => '会社HP',
         ];
     }
