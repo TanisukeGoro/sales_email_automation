@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SaleListRequest;
-use App\Models\Company;
 use App\Models\SaleList;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,13 +14,22 @@ class SaleListController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //一覧を返す
     public function index()
     {
-        $sale_list = Auth::user()->saleLists()->orderBy('created_at', 'asc')->get();
+        $sale_list = Auth::user()->saleLists()->orderBy('id', 'desc')->get();
 
         return view('saleList.index', [
             'sale_list' => $sale_list,
         ]);
+    }
+
+    //一覧画面で並び替えをした時に発動されるAPI
+    public function sortSaleList(Request $request)
+    {
+        return $request->all() === [] ?
+      SaleList::getSaleList() :
+      SaleList::getSortSaleList($request);
     }
 
     /**
@@ -40,11 +48,12 @@ class SaleListController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(SaleListRequest $request)
+
+    //新規登録
+    public function store(SaleListRequest $request): void
     {
-        $saleList = new SaleList();
-        $saleList->user_id = Auth::id();
-        $saleList->fill($request->all())->save();
+        $sale_list = new SaleList();
+        $sale_list->createSaleList($request);
     }
 
     /**
@@ -60,10 +69,9 @@ class SaleListController extends Controller
         return view('salelist.show');
     }
 
-    public function getCompanies(SaleList $salelist)
+    public function getSaleList(SaleList $salelist)
     {
-        return $this->getSaleListCompanies($salelist);
-        // return Company::with(['listingStock', 'companyLargeCategory', 'companyMiddleCategory'])->paginate(15);
+        return $salelist->load(['listingStock', 'companyLargeCategory', 'companyMiddleCategory']);
     }
 
     /**
@@ -87,8 +95,10 @@ class SaleListController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, SaleList $salelist)
+    public function update(SaleListRequest $request, SaleList $salelist)
     {
+        $this->authorize('update', $salelist);
+        $salelist->fill($request->all())->save();
     }
 
     /**
@@ -96,6 +106,7 @@ class SaleListController extends Controller
      *
      * @param \App\SaleList $saleList
      * @param SaleList $salelist
+     * @param Request $request
      *
      * @return \Illuminate\Http\Response
      */
@@ -103,34 +114,5 @@ class SaleListController extends Controller
     {
         $this->authorize('delete', $salelist);
         $salelist->delete();
-
-        return redirect()->route('salelist.index');
-    }
-
-    private function getSaleListCompanies($salelist)
-    {
-        $query = Company::query();
-
-        if (isset($salelist->company_large_category_id)) {
-            $query->where('company_large_category_id', (int) $salelist->company_large_category_id);
-        }
-
-        if (isset($salelist->company_middle_category_id)) {
-            $query->where('company_middle_category_id', (int) $salelist->company_middle_category_id);
-        }
-
-        if (isset($salelist->freeword)) {
-            $query->where('name', 'like', "%{$salelist->freeword}%");
-        }
-
-        if (isset($salelist->address)) {
-            $query->where('address', 'like', "%{$salelist->address}%");
-        }
-
-        if (isset($salelist->listing_stock_id)) {
-            $query->where('listing_stock_id', $salelist->listing_stock_id);
-        }
-
-        return $query->with(['listingStock', 'companyLargeCategory', 'companyMiddleCategory'])->paginate(15);
     }
 }

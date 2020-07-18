@@ -76,7 +76,7 @@
                 aria-label="Previous"
                 @click="
                   current_page -= 1
-                  paginateCompany()
+                  searchCompany()
                 "
               >
                 <span aria-hidden="true">&laquo;</span>
@@ -89,7 +89,7 @@
                 href="#"
                 @click="
                   current_page = page
-                  paginateCompany()
+                  searchCompany()
                 "
                 >{{ page }}</a
               >
@@ -101,7 +101,7 @@
                 aria-label="Next"
                 @click="
                   current_page += 1
-                  paginateCompany()
+                  searchCompany()
                 "
               >
                 <span aria-hidden="true">&raquo;</span>
@@ -166,6 +166,14 @@ export default {
       immediate: true
     }
   },
+  created() {
+    //イベント名で受け取る
+    global.eventHub.$on('search_salelist_company', val => {
+      this.params = val.searchForm;
+      this.current_page = 1;
+      this.searchCompany();
+    });
+  },
   methods: {
     async configure() {
       var index = location.pathname.split('/')[2]
@@ -182,14 +190,13 @@ export default {
 
       console.log(response)
     },
-    async paginateCompany() {
-      this.params.page = this.current_page
-      var params = this.params
+    async searchCompany() {
+      this.params.page = this.current_page;
+      var params = this.params;
       const data = {
         params
-      }
-      var index = location.pathname.split('/')[2]
-      const response = await axios.get(`/salelist/${index}/company`, data)
+      };
+      const response = await axios.get(`/company/search`, data);
 
       if (response.status == 200) {
         let data = response.data
