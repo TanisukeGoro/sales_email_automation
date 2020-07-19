@@ -21,8 +21,8 @@
             @elseif(Route::currentRouteName() == "template.edit")
             <form action="{{route('template.update',$template->id)}}" method="POST">
               @method('PUT')
-              @endif
               @csrf
+              @endif
               <div class="px-4 pt-4">
                 <span class="">テンプレート名：</span>
                 <div class="col-12 form-group m-0 p-0">
@@ -103,8 +103,8 @@
                     <small class="small text-red">※{{$errors->first("short_content")}}</small>
                   </div>
                   @endif
-                  <input type="text" class="form-control" id="exampleFormControlInput1" name="short_content"
-                    value="{{old('short_content', $template->short_content) }}" placeholder="">
+                  <textarea name="short_content" class="form-control" id="exampleFormControlInput1"
+                    rows="6">{{old('short_content', $template->short_content) }}</textarea>
                 </div>
               </div>
               <div class="px-4 pt-4">
@@ -115,8 +115,8 @@
                     <small class="small text-red">※{{$errors->first("long_content")}}</small>
                   </div>
                   @endif
-                  <input type="text" class="form-control" id="exampleFormControlInput1" name="long_content"
-                    value="{{old('long_content', $template->long_content) }}" placeholder="">
+                  <textarea name="long_content" class="form-control" rows="12"
+                    id="exampleFormControlInput1">{{old('long_content', $template->long_content) }}</textarea>
                 </div>
               </div>
               <div class="px-4 mt-4 text-right">

@@ -22,7 +22,8 @@ class User extends Authenticatable
         'company_large_category_id',
         'company_middle_category_id',
         'company_address',
-        'n_employees',
+        'minimum_employees',
+        'maximum_employees',
         'hp_adress',
     ];
 

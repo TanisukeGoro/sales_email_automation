@@ -22,12 +22,12 @@
               @if(Route::currentRouteName() == "template.confirm")
               <div>
                 <form class="d-inline" action="{{ route('template.create') }}" method="GET">
-                  @csrf
                   <input type="hidden" name="name" value="{{ $template->name }}">
                   <input type="hidden" name="email" value="{{ $template->email }}">
                   <input type="hidden" name="company" value="{{ $template->company }}">
                   <input type="hidden" name="department" value="{{ $template->department }}">
                   <input type="hidden" name="subject" value="{{ $template->subject }}">
+                  <input type="hidden" name="redirect_uri" value="{{ $template->redirect_uri }}">
                   <input type="hidden" name="short_content" value="{{ $template->short_content }}">
                   <input type="hidden" name="long_content" value="{{ $template->long_content }}">
                   <input type="submit" class="mr-4 btn btn-outline-primary" value="戻る">
@@ -40,6 +40,7 @@
                   <input type="hidden" name="company" value="{{ $template->company }}">
                   <input type="hidden" name="department" value="{{ $template->department }}">
                   <input type="hidden" name="subject" value="{{ $template->subject }}">
+                  <input type="hidden" name="redirect_uri" value="{{ $template->redirect_uri }}">
                   <input type="hidden" name="short_content" value="{{ $template->short_content }}">
                   <input type="hidden" name="long_content" value="{{ $template->long_content }}">
                   <input type="submit" class="mr-4 btn btn-outline-primary" value="作成">
