@@ -2,15 +2,15 @@ import './bootstrap'
 import Vue from 'vue'
 import SuggestInput from './components/SuggestInput.vue'
 import CompanyList from './components/CompanyList.vue'
-import SaleList from "./components/SaleList.vue"
+import SaleList from './components/SaleList.vue'
 import RedirectUri from './components/RedirectUri.vue'
 import SaleListCompany from './components/SaleListCompany.vue'
 
 import SideBar from './components/sideBar/SideBar.vue'
-import SaleListSideBar from "./components/sideBar/SaleListSideBar.vue"
-import SaleListDetailSideBar from "./components/sideBar/SaleListDetailSideBar.vue"
+import SaleListSideBar from './components/sideBar/SaleListSideBar.vue'
+import SaleListDetailSideBar from './components/sideBar/SaleListDetailSideBar.vue'
 
-window.Echo.channel('channel-message').listen('MessageEvent', function (data) {
+window.Echo.channel('channel-message').listen('MessageEvent', function(data) {
   alert(data['message'])
   window.location = '/login'
 })

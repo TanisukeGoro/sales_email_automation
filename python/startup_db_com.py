@@ -1,10 +1,7 @@
 import requests
 import bs4
-import re
-import sys
-import os
-import math
-import time
+import re, sys, os, math, time
+# import socks, socket
 from config.database import session
 from models.User import *
 from models.Company import *
@@ -51,13 +48,17 @@ while current_page :
         code = startup_db_companey.listing_stock()
         listing_stock_id = listing_stock_ids.get(code)
         print('市場区分 id, code => ', listing_stock_id, code)
+        employees = startup_db_companey.employees()
         session.add(Company(
-            name=startup_db_companey.name(), \
-            code="", \
-            # まだ市場区分を取得するメソッド書いてないので
-            listing_stock_id=listing_stock_id, \
-            address=startup_db_companey.address(), \
-            top_url=startup_db_companey.homepage() \
+            name = startup_db_companey.name(), \
+            code = "", \
+            listing_stock_id = listing_stock_id, \
+            address = startup_db_companey.address(), \
+            top_url = startup_db_companey.homepage(), \
+            minimum_employees = employees[0], \
+            maximum_employees = employees[1], \
+            reference_site = 'https://startup-db.com', \
+            reference_url = BASE_URL + company['href'],
         ))
 
     session.commit()

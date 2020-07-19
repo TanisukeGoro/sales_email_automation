@@ -161,6 +161,15 @@ url: https://www.pgadmin.org/
 $ brew cask install pgadmin4
 ```
 
+#### データベースを参照したいとき
+
+インストールされたpgAdminを起動。するとブラウザが起動し、ブラウザ上でデータベースを確認・操作できるようになる  
+パスワードが要求された場合は`secret`と打つと通るかも
+
+データベースを参照するためにはまずDBの情報を登録する必要がある。  
+右サイドバーにあるサービスを右クリックし `Create > Server....`と選択する。ダイアログ(モーダル？)が出てくるので `General > Name`を適当に入力し、`Connection`タブにある`Host, Port, Maintenance database, Username, Passoword`などの情報を適切に入力して `Save`ボタンを押して登録する。
+
+
 ### DB構成をER図で確認
 ```
 make generate-erd
