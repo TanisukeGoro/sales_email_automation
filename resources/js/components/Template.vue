@@ -1,11 +1,11 @@
 <template>
-  <div v-if="display" class="row">
+  <div class="row" v-if="display">
     <div class="col">
       <div class="card shadow">
         <div class="card-header border-0">
           <div class="row align-items-center">
             <div class="col-8">
-              <p class="mb-0">営業先リスト一覧</p>
+              <p class="mb-0">テンプレート一覧</p>
             </div>
           </div>
         </div>
@@ -14,30 +14,28 @@
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
-                <th scope="col">営業先リスト名</th>
+                <th scope="col">テンプレート名</th>
                 <th scope="col">作成日</th>
-                <th scope="col" />
+                <th scope="col"></th>
               </tr>
             </thead>
             <tbody>
-              <tr v-for="sale in salelist" :key="sale.id">
+              <tr v-for="template in templates" :key="template.id">
                 <td>
-                  <a :href="`salelist/${sale.id}`">{{ sale.name }}</a>
+                  <a :href="`template/${template.id}`">{{ template.name }}</a>
                 </td>
-                <td>{{ displayDate(sale.created_at) }}</td>
+                <td>{{ displayDate(template.created_at) }}</td>
                 <td class="text-right">
                   <button
                     type="button"
                     class="delete-btn btn btn-outline-primary"
                     data-toggle="modal"
                     data-target="#exampleModal"
-                    @click="deleteForm.sale = sale"
-                  >
-                    削除
-                  </button>
+                    @click="deleteForm.template = template"
+                  >削除</button>
                 </td>
               </tr>
-              <tr v-if="salelist.length == 0">
+              <tr v-if="templates.length == 0">
                 <td>
                   <span>営業先リストがありません</span>
                 </td>
@@ -46,8 +44,8 @@
           </table>
 
           <div
-            id="exampleModal"
             class="modal fade"
+            id="exampleModal"
             tabindex="-1"
             role="dialog"
             aria-labelledby="exampleModalLabel"
@@ -56,18 +54,22 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
               <div class="modal-content">
                 <div class="modal-body">
-                  <span class="delete-span">{{ `${deleteForm.sale.name}のテンプレートを削除しますか？` }}</span>
+                  <span class="delete-span">{{`${deleteForm.template.name}のテンプレートを削除しますか？`}}</span>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-outline-default" data-dismiss="modal">キャンセル</button>
-                  <button class="btn btn-outline-primary" data-dismiss="modal" @click="deleteSaleList()">削除</button>
+                  <button
+                    class="btn btn-outline-primary"
+                    @click="deleteSaleList()"
+                    data-dismiss="modal"
+                  >削除</button>
                 </div>
               </div>
             </div>
           </div>
         </div>
         <div class="card-footer py-4">
-          <nav class="d-flex justify-content-end" aria-label="..." />
+          <nav class="d-flex justify-content-end" aria-label="..."></nav>
         </div>
       </div>
     </div>
@@ -75,71 +77,73 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from 'axios';
 
 export default {
-  name: 'SaleList',
+  name: 'Template',
   data() {
     return {
       params: {},
-      salelist: [],
+      templates: [],
       display: false,
       deleteForm: {
-        sale: {}
+        template: {}
       }
-    }
+    };
   },
   watch: {
     $route: {
       async handler() {
-        await this.sortSaleList()
+        await this.sortTemplate();
       },
       immediate: true
     }
   },
   created() {
     //イベント名で受け取る
-    global.eventHub.$on('sort_salelist', val => {
-      this.params = val.form
-      this.sortSaleList()
-    })
+    global.eventHub.$on('sort_template', val => {
+      this.params = val.form;
+      this.sortTemplate();
+    });
   },
   methods: {
     displayDate(createdAt) {
       if (createdAt == null) {
-        return
+        return;
       }
+
       const date = createdAt.split(' ')[0].split('-');
+
       return `${date[0]}年${date[1]}月${date[2]}日`;
     },
-    async sortSaleList() {
-      var params = this.params
+    async sortTemplate() {
+      var params = this.params;
       const data = {
         params
-      }
-      const response = await axios.get(`/api/saleslist/sort`, data)
+      };
+      const response = await axios.get(`/api/template/sort`, data);
 
       if (response.status == 200) {
-        let data = response.data
-        this.salelist = data
-        this.display = true
+        let data = response.data;
+        this.templates = data;
+        this.display = true;
       }
     },
     async deleteSaleList() {
-      var params = this.params
+      var params = this.params;
       const data = {
         params
-      }
-      const response = await axios.delete(`salelist/${this.deleteForm.sale.id}`, data)
+      };
+      const response = await axios.delete(`template/${this.deleteForm.template.id}`, data);
 
       if (response.status == 200) {
-        const salelist = this.salelist.filter(salelist => salelist.id != this.deleteForm.sale.id)
-        this.salelist = salelist
-        this.deleteForm.sale = {}
+        const templates = this.templates.filter(template => template.id != this.deleteForm.template.id);
+        this.templates = templates;
+        this.deleteForm.template = {};
       } else {
-        window.alert('エラーが発生しました。')
+        window.alert('エラーが発生しました。');
       }
     }
   }
-}
+};
 </script>
