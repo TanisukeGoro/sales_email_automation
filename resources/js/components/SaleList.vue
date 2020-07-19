@@ -109,8 +109,8 @@ export default {
       if (createdAt == null) {
         return
       }
-      const date = createdAt.split(' ')[0].split('-');
-      return `${date[0]}年${date[1]}月${date[2]}日`;
+      const date = createdAt.split(' ')[0].split('-')
+      return `${date[0]}年${date[1]}月${date[2]}日`
     },
     async sortSaleList() {
       var params = this.params

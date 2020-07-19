@@ -15,13 +15,7 @@
               <i class="ni ni-zoom-split-in" />
             </span>
           </div>
-          <input
-            v-model="form.freeword"
-            name="name"
-            class="form-control"
-            placeholder="フリーワード検索"
-            type="text"
-          />
+          <input v-model="form.freeword" name="name" class="form-control" placeholder="フリーワード検索" type="text" />
         </div>
       </div>
     </div>
@@ -35,12 +29,7 @@
     </div>
     <div class="form-group">
       <label for="middle-category">作成日</label>
-      <select
-        id="middle-category"
-        v-model="form.created_at"
-        name="middle-category"
-        class="form-control"
-      >
+      <select id="middle-category" v-model="form.created_at" name="middle-category" class="form-control">
         <option value>未選択</option>
         <option value="0">昇順</option>
         <option value="1">降順</option>
@@ -50,8 +39,6 @@
 </template>
 
 <script>
-import axios from 'axios';
-
 export default {
   name: 'SaleListSideBar',
   data() {
@@ -61,14 +48,14 @@ export default {
         name: '',
         created_at: ''
       }
-    };
+    }
   },
   methods: {
     search() {
       global.eventHub.$emit('sort_salelist', {
         form: this.form
-      });
+      })
     }
   }
-};
+}
 </script>
