@@ -166,15 +166,15 @@
                   @endif
                 </div>
 
-                <div class="form-group{{ $errors->has('n_employees') ? ' has-danger' : '' }}">
-                  <label class="form-control-label" for="input-n_employees">{{ __('従業員数') }}</label>
-                  <input type="number" name="n_employees" id="input-n_employees"
-                    class="form-control form-control-alternative{{ $errors->has('n_employees') ? ' is-invalid' : '' }}"
-                    placeholder="{{ __('') }}" value="{{ old('n_employees', auth()->user()->n_employees) }}" required>
+                <div class="form-group{{ $errors->has('maximum_employees') ? ' has-danger' : '' }}">
+                  <label class="form-control-label" for="input-maximum_employees">{{ __('従業員数') }}</label>
+                  <input type="number" name="maximum_employees" id="input-maximum_employees"
+                    class="form-control form-control-alternative{{ $errors->has('maximum_employees') ? ' is-invalid' : '' }}"
+                    placeholder="{{ __('') }}" value="{{ old('maximum_employees', auth()->user()->maximum_employees) }}" required>
 
-                  @if ($errors->has('n_employees'))
+                  @if ($errors->has('maximum_employees'))
                   <span class="invalid-feedback" role="alert">
-                    <strong>{{ $errors->first('n_employees') }}</strong>
+                    <strong>{{ $errors->first('maximum_employees') }}</strong>
                   </span>
                   @endif
                 </div>

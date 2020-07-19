@@ -15,7 +15,9 @@
                 data-toggle="dropdown"
                 aria-haspopup="true"
                 aria-expanded="false"
-              >ーーー</button>
+              >
+                ーーー
+              </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item" href="#">上場区分</a>
                 <a class="dropdown-item" href="#">従業員数</a>
@@ -60,7 +62,7 @@
                 <td>{{ company.company_large_category_id != null ? company.company_large_category.name : '' }}</td>
                 <td>{{ company.company_middle_category_id != null ? company.company_middle_category.name : '' }}</td>
                 <td>{{ company.listing_stock.name }}</td>
-                <td>{{ company.n_employees != null ? company.n_employees : '' }}</td>
+                <td>{{ company.maximum_employees | employees(company.minimum_employees) }}</td>
                 <td>{{ company.address != null ? company.address : '' }}</td>
               </tr>
             </tbody>
@@ -83,12 +85,7 @@
                 <span class="sr-only">Previous</span>
               </a>
             </li>
-            <li
-              v-for="page in displayList"
-              :key="page"
-              class="page-item"
-              :class="{ active: current_page == page }"
-            >
+            <li v-for="page in displayList" :key="page" class="page-item" :class="{ active: current_page == page }">
               <a
                 class="page-link"
                 href="#"
@@ -96,7 +93,8 @@
                   current_page = page
                   searchCompany()
                 "
-              >{{ page }}</a>
+                >{{ page }}</a
+              >
             </li>
             <li v-if="!isLastPage" class="page-item">
               <a
@@ -120,10 +118,19 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from 'axios'
 
 export default {
   name: 'CompanyList',
+  filters: {
+    employees(maximum, minimum) {
+      console.log('maximum :>>', maximum)
+      console.log('minimum :>>', minimum)
+      if (minimum && maximum) return `${minimum} ~ ${maximum}`
+      if (maximum) return maximum
+      return ''
+    }
+  },
   data() {
     return {
       params: {},
@@ -132,33 +139,33 @@ export default {
       current_page: null,
       last_page: null,
       display: false
-    };
+    }
   },
   computed: {
     isFirstPage() {
-      return this.current_page === 1;
+      return this.current_page === 1
     },
     isLastPage() {
-      return this.currentPage === this.last_page;
+      return this.currentPage === this.last_page
     },
     displayList() {
-      let first = this.current_page - 4;
-      if (first < 1) first = 1;
+      let first = this.current_page - 4
+      if (first < 1) first = 1
 
-      let last = this.current_page + 4;
-      if (last > this.last_page) last = this.last_page;
+      let last = this.current_page + 4
+      if (last > this.last_page) last = this.last_page
 
-      const list = [];
+      const list = []
       for (let i = first; i <= last; i++) {
-        list.push(i);
+        list.push(i)
       }
-      return list;
+      return list
     }
   },
   watch: {
     $route: {
       async handler() {
-        await this.configure();
+        await this.configure()
       },
       immediate: true
     }
@@ -166,43 +173,43 @@ export default {
   created() {
     //イベント名で受け取る
     global.eventHub.$on('search_company', val => {
-      this.params = val.searchForm;
-      this.current_page = 1;
-      this.searchCompany();
-    });
+      this.params = val.searchForm
+      this.current_page = 1
+      this.searchCompany()
+    })
   },
   methods: {
     async configure() {
-      const response = await axios.get(`company/search`);
+      const response = await axios.get(`company/search`)
 
       if (response.status == 200) {
-        let data = response.data;
-        this.companies = data.data;
-        this.search_count = data.total;
-        this.current_page = data.current_page;
-        this.last_page = data.last_page;
-        this.display = true;
+        let data = response.data
+        this.companies = data.data
+        this.search_count = data.total
+        this.current_page = data.current_page
+        this.last_page = data.last_page
+        this.display = true
       }
 
-      console.log(response.data);
+      console.log(response.data)
     },
     async searchCompany() {
-      this.params.page = this.current_page;
-      var params = this.params;
+      this.params.page = this.current_page
+      var params = this.params
       const data = {
         params
-      };
-      const response = await axios.get(`company/search`, data);
+      }
+      const response = await axios.get(`company/search`, data)
 
       if (response.status == 200) {
-        let data = response.data;
-        this.companies = data.data;
-        this.search_count = data.total;
-        this.current_page = data.current_page;
-        this.last_page = data.last_page;
-        this.display = true;
+        let data = response.data
+        this.companies = data.data
+        this.search_count = data.total
+        this.current_page = data.current_page
+        this.last_page = data.last_page
+        this.display = true
       }
     }
   }
-};
+}
 </script>

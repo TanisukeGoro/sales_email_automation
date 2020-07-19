@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Carbon;
 
 class TemplatesTableSeeder extends Seeder
 {
@@ -9,15 +10,21 @@ class TemplatesTableSeeder extends Seeder
      */
     public function run(): void
     {
+        $now = Carbon::now('Asia/Tokyo');
+
+        $name = ['重要顧客用', '初めまして用', '他業種要', '様子見用', 'english用', 'ここだけの用', '女性用', '業務連絡用', '男性用', 'パートナー用', 'PC用'];
+
         for ($i = 0; $i <= 10; $i++) {
+            $day = $i + 1;
+
             DB::table('templates')->insert([
                 'user_id' => 1,
-                'name' => '営業メール',
+                'name' => $name[$i],
                 'email' => 'admin@argon.com',
                 'subject' => '新規サービスのご紹介に関する面談のお願い（任天堂株式会社）',
                 'company' => '豊田株式会社',
                 'department' => '総務部',
-                'created_at' => '2020-12-13 15:00:00',
+                'created_at' => "{$now->year}-{$now->month}-{$day} 18:00:00",
                 'long_content' => 'いつも大変お世話になっております。
       株式会社△△の▲▲です。
       先日の■■の件では、お電話のお時間をいただき、誠にありがとうございました。
@@ -53,7 +60,6 @@ class TemplatesTableSeeder extends Seeder
       ご連絡を差し上げました。
 
       もしよろしければ、直接お伺いしてご説明させていただきたいです。',
-                'uri' => 'https://gegegseg',
                 'redirect_uri' => 'https://gegegseg',
             ]);
         }

@@ -40,7 +40,8 @@ Route::group(['middleware' => 'auth'], function (): void {
 //saleList
 Route::group(['middleware' => 'auth'], function (): void {
     Route::resource('salelist', 'SaleListController');
-    Route::get('/salelist/{salelist}/company', 'SaleListController@getCompanies')->name('salelist.getCompay');
+    Route::get('/api/saleslist/sort', 'SaleListController@sortSaleList')->name('salelist.sortSaleList');
+    Route::get('/api/salelist/{salelist}', 'SaleListController@getSaleList')->name('salelist.getSaleList');
 });
 
 //redirect-url
@@ -54,4 +55,5 @@ Route::group(['middleware' => 'auth'], function (): void {
 Route::group(['middleware' => 'auth'], function (): void {
     Route::resource('template', 'TemplateController');
     Route::get('/confirm', 'TemplateController@confirm')->name('template.confirm');
+    Route::get('/api/template/sort', 'TemplateController@sortTemplate')->name('template.sortTemplate');
 });

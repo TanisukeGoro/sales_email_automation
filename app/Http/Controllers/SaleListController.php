@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SaleListRequest;
-use App\Models\Company;
 use App\Models\SaleList;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,6 +14,7 @@ class SaleListController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //一覧を返す
     public function index()
     {
         $sale_list = Auth::user()->saleLists()->orderBy('id', 'desc')->get();
@@ -22,6 +22,14 @@ class SaleListController extends Controller
         return view('saleList.index', [
             'sale_list' => $sale_list,
         ]);
+    }
+
+    //一覧画面で並び替えをした時に発動されるAPI
+    public function sortSaleList(Request $request)
+    {
+        return $request->all() === [] ?
+      SaleList::getSaleList() :
+      SaleList::getSortSaleList($request);
     }
 
     /**
@@ -40,7 +48,9 @@ class SaleListController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(SaleListRequest $request)
+
+    //新規登録
+    public function store(SaleListRequest $request): void
     {
         $sale_list = new SaleList();
         $sale_list->createSaleList($request);
@@ -59,9 +69,9 @@ class SaleListController extends Controller
         return view('salelist.show');
     }
 
-    public function getCompanies(SaleList $salelist)
+    public function getSaleList(SaleList $salelist)
     {
-        return Company::getSearchCompanies($salelist);
+        return $salelist->load(['listingStock', 'companyLargeCategory', 'companyMiddleCategory']);
     }
 
     /**
@@ -85,8 +95,10 @@ class SaleListController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, SaleList $salelist)
+    public function update(SaleListRequest $request, SaleList $salelist)
     {
+        $this->authorize('update', $salelist);
+        $salelist->fill($request->all())->save();
     }
 
     /**
@@ -94,6 +106,7 @@ class SaleListController extends Controller
      *
      * @param \App\SaleList $saleList
      * @param SaleList $salelist
+     * @param Request $request
      *
      * @return \Illuminate\Http\Response
      */
@@ -101,7 +114,5 @@ class SaleListController extends Controller
     {
         $this->authorize('delete', $salelist);
         $salelist->delete();
-
-        return redirect()->route('salelist.index');
     }
 }
