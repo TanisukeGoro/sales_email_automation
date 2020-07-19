@@ -10,4 +10,9 @@ class CompanyMiddleCategory extends Model
     {
         return $this->hasMany('App\Models\Company');
     }
+
+    public function LargeCategory()
+    {
+        return $this->belongsTo('App\Models\CompanyLargeCategory');
+    }
 }

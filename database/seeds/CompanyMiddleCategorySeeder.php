@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\CompanyLargeCategory;
+use App\Models\CompanyMiddleCategory;
 use Illuminate\Database\Seeder;
 
 class CompanyMiddleCategorySeeder extends Seeder
@@ -29,12 +31,16 @@ class CompanyMiddleCategorySeeder extends Seeder
         $responseBody = \json_decode($responseBody, true);
 
         $categories = $responseBody['result'];
+        $query = [];
+        $large_categories = CompanyLargeCategory::all()->keyBy('code');
 
         foreach ($categories as $key => $category) {
-            DB::table('company_middle_categories')->insert([
+            $query[] = [
                 'name' => $category['simcName'],
                 'code' => $category['simcCode'],
-            ]);
+                'company_large_category_id' => $large_categories[$category['sicCode']]->id,
+            ];
         }
+        CompanyMiddleCategory::insert($query);
     }
 }
