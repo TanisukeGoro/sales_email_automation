@@ -177,7 +177,7 @@ export default {
   methods: {
     async configure() {
       var index = location.pathname.split('/')[2]
-      const response = await axios.get(`/salelist/${index}/company`)
+      const response = await axios.get(`/api/salelist/${index}`)
 
       if (response.status == 200) {
         let data = response.data
@@ -187,17 +187,14 @@ export default {
         this.last_page = data.last_page
         this.display = true
       }
-
-      console.log(response)
     },
-    async paginateCompany() {
+    async searchCompany() {
       this.params.page = this.current_page
       var params = this.params
       const data = {
         params
       }
-      var index = location.pathname.split('/')[2]
-      const response = await axios.get(`/salelist/${index}/company`, data)
+      const response = await axios.get(`/company/search`, data)
 
       if (response.status == 200) {
         let data = response.data
