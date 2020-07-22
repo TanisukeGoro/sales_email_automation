@@ -1,13 +1,12 @@
-@extends('layouts.app', ['class' => 'bg-default'])
+@extends('layouts.app', ['class' => ''])
 
 @section('content')
-    @include('layouts.headers.guest')
 
-    <div class="container mt--8 pb-5">
+    <div class="container mt-5 pb-5">
         <!-- Table -->
         <div class="row justify-content-center">
             <div class="col-lg-6 col-md-8">
-                <div class="card bg-secondary shadow border-0">
+                <div class="card shadow">
                     <div class="card-body px-lg-5 py-lg-5">
                         <div class="text-center text-muted mb-4">{{ __('Please sign up') }}</div>
                         <form role="form" method="POST" action="{{ route('register') }}">
@@ -60,15 +59,12 @@
                                     <input class="form-control" placeholder="{{ __('Confirm Password') }}" type="password" name="password_confirmation" required>
                                 </div>
                             </div>
-                            <div class="text-muted font-italic">
-                                <small>{{ __('password strength') }}: <span class="text-success font-weight-700">{{ __('strong') }}strong</span></small>
-                            </div>
                             <div class="row my-4">
                                 <div class="col-12">
                                     <div class="custom-control custom-control-alternative custom-checkbox">
                                         <input class="custom-control-input" id="customCheckRegister" type="checkbox">
                                         <label class="custom-control-label" for="customCheckRegister">
-                                            <span class="text-muted">{{ __('I agree with the') }} <a href="#!">{{ __('Privacy Policy') }}</a></span>
+                                            <span class="text-muted"><a href="#!">{{ __('Privacy Policy') }}</a>{{ __('I agree with the') }}</span>
                                         </label>
                                     </div>
                                 </div>
