@@ -7,11 +7,10 @@
         "watch-poll": "yarn run watch --watch-poll",
         "hot": "node ./node_modules/cross-env/dist/bin/cross-env.js NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
         "prod": "yarn run production",
-        "production-build": "node ./node_modules/cross-env/dist/bin/cross-env.js NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "production": "node ./node_modules/cross-env/dist/bin/cross-env.js NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
         "lint:js": "eslint --fix ./*js resources/js/**/*.js resources/js/**/**/*.vue",
         "postinstall": "echo postinstall finished!!",
-        "heroku-prebuild": "yarn production-build",
-        "heroku-postbuild": "echo heroku-postbuild finished!!"
+        "heroku-postbuild": "yarn production"
     },
     "devDependencies": {
         "babel-eslint": "^10.1.0",
