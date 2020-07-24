@@ -19,7 +19,6 @@
         "eslint-config-prettier": "^6.10.1",
         "eslint-plugin-prettier": "^3.1.2",
         "eslint-plugin-vue": "^6.2.2",
-        "laravel-mix": "^4.0.7",
         "lodash": "^4.17.13",
         "resolve-url-loader": "^2.3.1",
         "sass": "^1.15.2",
@@ -30,6 +29,7 @@
         "pusher-js": "^5.1.1",
         "vue": "^2.6.11",
         "vue-template-compiler": "^2.6.11",
-        "eslint": "^6.8.0"
+        "eslint": "^6.8.0",
+        "laravel-mix": "^4.0.7"
     }
 }
