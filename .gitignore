@@ -1,5 +1,7 @@
 # [ public ]
 .DS_Store
+/public/js/*
+/public/css/*
 
 # [ laravel ]
 /node_modules
@@ -18,8 +20,14 @@ yarn-error.log
 # [ argon dashboard ]
 /public/argon
 
-# [ log ]
+# [ log, temporary ]
 /logs
+/tmp
 
 # [ docker php ]
 /docker/php/psysh/*
+
+.php_cs.cache
+
+# [ schemaspy ] 
+/schema

@@ -6,11 +6,21 @@ class DatabaseSeeder extends Seeder
 {
     /**
      * Seed the application's database.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
-        $this->call([UsersTableSeeder::class]);
+        $this->call([
+            // CompanyCategoriesTableSeeder::class,
+            CompanyLargeCategorySeeder::class,
+            CompanyMiddleCategorySeeder::class,
+            ListingStocksTableSeeder::class,
+            PlansTableSeeder::class,
+            UsersTableSeeder::class,
+            TemplatesTableSeeder::class,
+            // CompaniesTableSeeder::class,
+            CompaniesSeeder::class,
+            SentsTableSeeder::class,
+            SaleListTableSeeder::class,
+        ]);
     }
 }
