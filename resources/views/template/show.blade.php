@@ -53,49 +53,65 @@
         <div class="px-4 pt-5 row">
           <span class="ml-xl-4 col-3">テンプレート名：</span>
           <span class="col-7 template-text">{{ $template->name }}</span>
-          <i class="far fa-copy col-1 template"></i>
+          <div class="">
+            <i class="far fa-copy col-1 template" data-toggle="tooltip" data-placement="top" title="コピー"></i>
+          </div>
         </div>
 
         <div class="px-4 pt-5 row">
           <span class="ml-xl-4 col-3">メールアドレス：</span>
           <span class="col-7 email-text">{{ $template->email }}</span>
-          <i class="far fa-copy col-1 email"></i>
+          <div class="">
+            <i class="far fa-copy col-1 email" data-toggle="tooltip" data-placement="top" title="コピー"></i>
+          </div>
         </div>
 
         <div class="px-4 pt-5 row">
           <span class="ml-xl-4 col-3">会社名：</span>
           <span class="col-7 company-text">{{ $template->company }}</span>
-          <i class="far fa-copy col-1 company"></i>
+          <div class="">
+            <i class="far fa-copy col-1 company" data-toggle="tooltip" data-placement="top" title="コピー"></i>
+          </div>
         </div>
 
         <div class="px-4 pt-5 row">
           <span class="ml-xl-4 col-3">部署：</span>
           <span class="col-7 department-text">{{ $template->department }}</span>
-          <i class="far fa-copy col-1 department"></i>
+          <div class="">
+            <i class="far fa-copy col-1 department" data-toggle="tooltip" data-placement="top" title="コピー"></i>
+          </div>
         </div>
 
         <div class="px-4 pt-5 row">
           <span class="ml-xl-4 col-3">リダイレクト先URL：</span>
           <span class="col-7 redirecturi-text">{{ $template->redirect_uri }}</span>
-          <i class="far fa-copy col-1 redirecturi"></i>
+          <div class="">
+            <i class="far fa-copy col-1 redirecturi" data-toggle="tooltip" data-placement="top" title="コピー"></i>
+          </div>
         </div>
 
         <div class="px-4 pt-5 row">
           <span class="ml-xl-4 col-3">件名：</span>
           <span class="col-7 subject-text">{{ $template->subject }}</span>
-          <i class="far fa-copy col-1 subject"></i>
+          <div class="">
+            <i class="far fa-copy col-1 subject" data-toggle="tooltip" data-placement="top" title="コピー"></i>
+          </div>
         </div>
 
         <div class="px-4 pt-5 row">
           <span class="ml-xl-4 col-3">内容(短文)：</span>
           <div class="col-7 shortcontent-text">{{ $template->short_content }}</div>
-          <i class="far fa-copy col-1 shortcontent"></i>
+          <div class="">
+            <i class="far fa-copy col-1 shortcontent" data-toggle="tooltip" data-placement="top" title="コピー"></i>
+          </div>
         </div>
 
         <div class="px-4 pt-5 row">
           <span class="ml-xl-4 col-3">内容(長文)：</span>
           <span class="col-7 longcontent-text">{{ $template->long_content }}</span>
-          <i class="far fa-copy col-1 longcontent"></i>
+          <div class="">
+            <i class="far fa-copy col-1 longcontent" data-toggle="tooltip" data-placement="top" title="コピー"></i>
+          </div>
         </div>
 
       </div>
@@ -117,17 +133,17 @@
 })
 
 function copy(copyText) {
-//textareaを生成
-var area = document.createElement("textarea");
-//textareaに記述
-area.textContent = copyText;
-//生成したものをdocumentに追加
-document.body.appendChild(area);
-//選択/コピーして・・
-area.select();
-document.execCommand("copy");
-//すぐに消す。
-document.body.removeChild(area);
+  //textareaを生成
+  var area = document.createElement("textarea");
+  //textareaに記述
+  area.textContent = copyText;
+  //生成したものをdocumentに追加
+  document.body.appendChild(area);
+  //選択/コピーして・・
+  area.select();
+  document.execCommand("copy");
+  //すぐに消す。
+  document.body.removeChild(area);
 }
 
 function successCopy() {
