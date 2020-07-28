@@ -45,6 +45,7 @@
   @endguest
 
   <!-- Argon JS -->
+  <script src="https://riversun.github.io/jsframe/jsframe.js"></script>
   <script src="{{ asset('argon') }}/js/argon.js?v=1.0.0"></script>
   <!-- app.js -->
   <script src="{{ mix('js/app.js') }}"></script>

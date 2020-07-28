@@ -10,100 +10,56 @@
             <h3 class="col-4 mb-0">{{ __('企業詳細') }}</h3>
           </div>
         </div>
-        <div class="px-4 pt-4">
-          <span class="ml-xl-4">会社名：</span>
-          <div class="row px-4">
-            <div class="col-4">
-            </div>
-            <div class="col-8">
-              {{ $company->name ?? "登録されていません" }}
-            </div>
-          </div>
+        <div class="px-4 pt-5 row">
+          <span class="ml-xl-4 col-3">会社名：</span>
+          <span class="col-8">{{ $company->name ?? "登録されていません" }}</span>
         </div>
-        <div class="px-4 pt-4">
-          <span class="ml-xl-4">法人番号：</span>
-          <div class="row px-4">
-            <div class="col-4">
-            </div>
-            <div class="col-8">
-              {{ $company->code ?? "登録されていません" }}
-            </div>
-          </div>
+
+        <div class="px-4 pt-5 row">
+          <span class="ml-xl-4 col-3">法人番号：</span>
+          <span class="col-8">{{ $company->code ?? "登録されていません" }}</span>
         </div>
-        <div class="px-4 pt-4">
-          <span class="ml-xl-4">上場：</span>
-          <div class="row px-4">
-            <div class="col-4">
-            </div>
-            <div class="col-8">
-              {{ $company->listingStock->name ?? "登録されていません" }}
-            </div>
-          </div>
+
+        <div class="px-4 pt-5 row">
+          <span class="ml-xl-4 col-3">上場：</span>
+          <span class="col-8">{{ $company->listingStock->name ?? "登録されていません" }}</span>
         </div>
-        <div class="px-4 pt-4">
-          <span class="ml-xl-4">業種大カテゴリ：</span>
-          <div class="row px-4">
-            <div class="col-4">
-            </div>
-            <div class="col-8">
-              {{ $company->companyLargeCategory->name ?? "登録されていません" }}
-            </div>
-          </div>
+
+        <div class="px-4 pt-5 row">
+          <span class="ml-xl-4 col-3">業種大カテゴリ：</span>
+          <span class="col-8">{{ $company->companyLargeCategory->name ?? "登録されていません" }}</span>
         </div>
-        <div class="px-4 pt-4">
-          <span class="ml-xl-4">業界中カテゴリ：</span>
-          <div class="row px-4">
-            <div class="col-4">
-            </div>
-            <div class="col-8">
-              {{ $company->companyMiddleCategory->name ?? "登録されていません" }}
-            </div>
-          </div>
+
+        <div class="px-4 pt-5 row">
+          <span class="ml-xl-4 col-3">業界中カテゴリ：</span>
+          <span class="col-8">{{ $company->companyMiddleCategory->name ?? "登録されていません" }}</span>
         </div>
-        <div class="px-4 pt-4">
-          <span class="ml-xl-4">住所：</span>
-          <div class="row px-4">
-            <div class="col-4">
-            </div>
-            <div class="col-8">
-              {{ $company->address ?? "登録されていません" }}
-            </div>
-          </div>
+
+        <div class="px-4 pt-5 row">
+          <span class="ml-xl-4 col-3">住所：</span>
+          <span class="col-8">{{ $company->address ?? "登録されていません" }}</span>
         </div>
-        <div class="px-4 pt-4">
-          <span class="ml-xl-4">従業員数：</span>
-          <div class="row px-4">
-            <div class="col-4">
-            </div>
-            <div class="col-8">
-              {{ $company->maximum_employees ?? "登録されていません" }}
-            </div>
-          </div>
+
+        <div class="px-4 pt-5 row">
+          <span class="ml-xl-4 col-3">従業員数：</span>
+          <span class="col-8">{{ $company->maximum_employees ?? "登録されていません" }}</span>
         </div>
-        <div class="px-4 pt-4">
-          <span class="ml-xl-4">HP：</span>
-          <div class="row px-4">
-            <div class="col-4">
-            </div>
-            <div class="col-8">
-              {{ $company->top_url ?? "登録されていません" }}
-            </div>
-          </div>
+
+        <div class="px-4 pt-5 row">
+          <span class="ml-xl-4 col-3">HP：</span>
+          <span class="col-8">{{ $company->top_url ?? "登録されていません" }}</span>
         </div>
-        <div class="px-4 pt-4">
-          <span class="ml-xl-4">お問い合わせURL：</span>
-          <div class="row px-4">
-            <div class="col-4">
-            </div>
-            <div class="col-8">
-              {{ $company->form_url ?? "登録されていません" }}
-            </div>
-          </div>
+
+        <div class="px-4 pt-5 row">
+          <span class="ml-xl-4 col-3">お問い合わせURL：</span>
+          <span class="col-8">{{ $company->form_url ?? "登録されていません" }}</span>
         </div>
+
       </div>
     </div>
-    @include('layouts.footers.auth')
   </div>
+  @include('layouts.footers.auth')
+</div>
 </div>
 <script>
 </script>
