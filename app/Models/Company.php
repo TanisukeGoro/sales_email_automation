@@ -21,6 +21,11 @@ class Company extends Model
         return $this->belongsTo('App\Models\CompanyMiddleCategory');
     }
 
+    public function approach()
+    {
+        return $this->hasMany('App\Models\Approach');
+    }
+
     public function scopeGetCompanies($query)
     {
         return $query->with(['listingStock', 'companyLargeCategory', 'companyMiddleCategory'])->paginate(15);

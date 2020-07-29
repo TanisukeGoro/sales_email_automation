@@ -16,8 +16,12 @@
           </div>
         </div>
         <div class="col-10 m-auto">
-          @if(Route::currentRouteName() == "template.create")
-          <form action="{{route('template.confirm')}}" method="GET">
+            @if(
+              Route::currentRouteName() == "template.create"
+              || Route::currentRouteName() == "template.back"
+            )
+          <form action="{{route('template.confirm')}}" method="POST">
+            @csrf
             @elseif(Route::currentRouteName() == "template.edit")
             <form action="{{route('template.update',$template->id)}}" method="POST">
               @method('PUT')
@@ -120,10 +124,13 @@
                 </div>
               </div>
               <div class="px-4 mt-4 text-right">
-                @if(Route::currentRouteName() == "template.create")
+                @if(
+                      Route::currentRouteName() == "template.create"
+                      || Route::currentRouteName() == "template.back"
+                   )
                 <input type="submit" class="btn btn-outline-primary" value="作成">
                 @elseif(Route::currentRouteName() == "template.edit")
-                <input type="submit" class="btn btn-outline-primary" value="編集">
+                <input type="submit" class="btn btn-outline-primary" value="保存">
                 @endif
               </div>
             </form>
