@@ -50,91 +50,112 @@
             </div>
           </div>
         </div>
-        <div class="px-4 pt-4">
-          <span class="ml-xl-4">テンプレート名：</span>
-          <div class="row px-4">
-            <div class="col-4">
-            </div>
-            <div class="col-8">
-              {{ $template->name }}
-            </div>
+        <div class="px-4 pt-5 row">
+          <span class="ml-xl-4 col-3">テンプレート名：</span>
+          <span class="col-7 template-text">{{ $template->name }}</span>
+          <div class="">
+            <i class="far fa-copy col-1 template" data-toggle="tooltip" data-placement="top" title="コピー"></i>
           </div>
         </div>
-        <div class="px-4 pt-4">
-          <span class="ml-xl-4">メールアドレス：</span>
-          <div class="row px-4">
-            <div class="col-4">
-            </div>
-            <div class="col-8">
-              {{ $template->email }}
-            </div>
+
+        <div class="px-4 pt-5 row">
+          <span class="ml-xl-4 col-3">メールアドレス：</span>
+          <span class="col-7 email-text">{{ $template->email }}</span>
+          <div class="">
+            <i class="far fa-copy col-1 email" data-toggle="tooltip" data-placement="top" title="コピー"></i>
           </div>
         </div>
-        <div class="px-4 pt-4">
-          <span class="ml-xl-4">会社名：</span>
-          <div class="row px-4">
-            <div class="col-4">
-            </div>
-            <div class="col-8">
-              {{ $template->company }}
-            </div>
+
+        <div class="px-4 pt-5 row">
+          <span class="ml-xl-4 col-3">会社名：</span>
+          <span class="col-7 company-text">{{ $template->company }}</span>
+          <div class="">
+            <i class="far fa-copy col-1 company" data-toggle="tooltip" data-placement="top" title="コピー"></i>
           </div>
         </div>
-        <div class="px-4 pt-4">
-          <span class="ml-xl-4">部署：</span>
-          <div class="row px-4">
-            <div class="col-4">
-            </div>
-            <div class="col-8">
-              {{ $template->department }}
-            </div>
+
+        <div class="px-4 pt-5 row">
+          <span class="ml-xl-4 col-3">部署：</span>
+          <span class="col-7 department-text">{{ $template->department }}</span>
+          <div class="">
+            <i class="far fa-copy col-1 department" data-toggle="tooltip" data-placement="top" title="コピー"></i>
           </div>
         </div>
-        <div class="px-4 pt-4">
-          <span class="ml-xl-4">リダイレクト先URL：</span>
-          <div class="row px-4">
-            <div class="col-4">
-            </div>
-            <div class="col-8">
-              {{ $template->redirect_uri }}
-            </div>
+
+        <div class="px-4 pt-5 row">
+          <span class="ml-xl-4 col-3">リダイレクト先URL：</span>
+          <span class="col-7 redirecturi-text">{{ $template->redirect_uri }}</span>
+          <div class="">
+            <i class="far fa-copy col-1 redirecturi" data-toggle="tooltip" data-placement="top" title="コピー"></i>
           </div>
         </div>
-        <div class="px-4 pt-4">
-          <span class="ml-xl-4">件名：</span>
-          <div class="row px-4">
-            <div class="col-4">
-            </div>
-            <div class="col-8">
-              {{ $template->subject }}
-            </div>
+
+        <div class="px-4 pt-5 row">
+          <span class="ml-xl-4 col-3">件名：</span>
+          <span class="col-7 subject-text">{{ $template->subject }}</span>
+          <div class="">
+            <i class="far fa-copy col-1 subject" data-toggle="tooltip" data-placement="top" title="コピー"></i>
           </div>
         </div>
-        <div class="px-4 pt-4">
-          <span class="ml-xl-4">内容(短文)：</span>
-          <div class="row px-4">
-            <div class="col-4">
-            </div>
-            <div class="col-8">
-              {{ $template->short_content }}
-            </div>
+
+        <div class="px-4 pt-5 row">
+          <span class="ml-xl-4 col-3">内容(短文)：</span>
+          <div class="col-7 shortcontent-text">{{ $template->short_content }}</div>
+          <div class="">
+            <i class="far fa-copy col-1 shortcontent" data-toggle="tooltip" data-placement="top" title="コピー"></i>
           </div>
         </div>
-        <div class="px-4 pt-4">
-          <span class="ml-xl-4">内容(長文)：</span>
-          <div class="row px-4">
-            <div class="col-4">
-            </div>
-            <div class="col-8">
-              {{ $template->long_content }}
-            </div>
+
+        <div class="px-4 pt-5 row">
+          <span class="ml-xl-4 col-3">内容(長文)：</span>
+          <span class="col-7 longcontent-text">{{ $template->long_content }}</span>
+          <div class="">
+            <i class="far fa-copy col-1 longcontent" data-toggle="tooltip" data-placement="top" title="コピー"></i>
           </div>
         </div>
+
       </div>
     </div>
     @include('layouts.footers.auth')
   </div>
 </div>
 <script>
+  $(this).click(function() {
+    const target = $(event.target).attr("class").split(" ")[1]
+
+    if(target != "fa-copy") {
+      return
+    }
+    const copyIcon = $(event.target).attr("class").split(" ")[3]
+    const copyText = $(`.${copyIcon}-text`).text()
+    copy(copyText)
+    successCopy()
+})
+
+function copy(copyText) {
+  //textareaを生成
+  var area = document.createElement("textarea");
+  //textareaに記述
+  area.textContent = copyText;
+  //生成したものをdocumentに追加
+  document.body.appendChild(area);
+  //選択/コピーして・・
+  area.select();
+  document.execCommand("copy");
+  //すぐに消す。
+  document.body.removeChild(area);
+}
+
+function successCopy() {
+const jsFrame = new JSFrame();
+    jsFrame.showToast({
+    style: {
+    // borderRadius: '2px',
+    backgroundColor: 'rgba(93,114,226,1)',
+    },
+    html: 'コピーしました！', align: 'top', duration: 2000
+    });
+}
+
 </script>
 @endsection
