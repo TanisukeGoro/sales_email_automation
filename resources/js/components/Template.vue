@@ -3,10 +3,9 @@
     <div class="col">
       <div class="card shadow">
         <div class="card-header border-0">
-          <div class="row align-items-center">
-            <div class="col-8">
-              <p class="mb-0">テンプレート一覧</p>
-            </div>
+          <div class="d-flex justify-content-between align-items-center">
+            <p class="mb-0">テンプレート一覧</p>
+            <a href="template/create" class="btn btn-primary">新規作成</a>
           </div>
         </div>
 
@@ -24,7 +23,7 @@
                 <td>
                   <a :href="`template/${template.id}`">{{ template.name }}</a>
                 </td>
-                <td>{{ displayDate(template.created_at) }}</td>
+                <td>{{ template.created_at | displayDate }}</td>
                 <td class="text-right">
                   <button
                     type="button"
@@ -76,6 +75,7 @@
 
 <script>
 import axios from 'axios'
+import '../utils/generalFillters'
 
 export default {
   name: 'Template',
@@ -105,15 +105,6 @@ export default {
     })
   },
   methods: {
-    displayDate(createdAt) {
-      if (createdAt == null) {
-        return
-      }
-
-      const date = createdAt.split(' ')[0].split('-')
-
-      return `${date[0]}年${date[1]}月${date[2]}日`
-    },
     async sortTemplate() {
       var params = this.params
       const data = {

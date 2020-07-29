@@ -3,10 +3,9 @@
     <div class="col">
       <div class="card shadow">
         <div class="card-header border-0">
-          <div class="row align-items-center">
-            <div class="col-8">
-              <p class="mb-0">営業先リスト一覧</p>
-            </div>
+          <div class="d-flex justify-content-between align-items-center">
+            <p class="mb-0">アプローチ中リスト</p>
+            <a href="approach-folders/create" class="btn btn-primary">リスト作成</a>
           </div>
         </div>
 
@@ -14,30 +13,30 @@
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
-                <th scope="col">営業先リスト名</th>
-                <th scope="col">作成日</th>
+                <th scope="col">リスト名</th>
+                <th scope="col">更新日</th>
                 <th scope="col" />
               </tr>
             </thead>
             <tbody>
-              <tr v-for="sale in salelist" :key="sale.id">
+              <tr v-for="folder in approachFolders" :key="folder.id">
                 <td>
-                  <a :href="`salelist/${sale.id}`">{{ sale.name }}</a>
+                  <a :href="`approach-folders/${folder.id}/approaches`">{{ folder.title }}</a>
                 </td>
-                <td>{{ sale.created_at | displayDate }}</td>
+                <td>{{ folder.updated_at | displayDate }}</td>
                 <td class="text-right">
                   <button
                     type="button"
                     class="delete-btn btn btn-outline-primary"
                     data-toggle="modal"
                     data-target="#exampleModal"
-                    @click="deleteForm.sale = sale"
+                    @click="deleteForm = folder"
                   >
                     削除
                   </button>
                 </td>
               </tr>
-              <tr v-if="salelist.length == 0">
+              <tr v-if="approachFolders.length == 0">
                 <td>
                   <span>営業先リストがありません</span>
                 </td>
@@ -56,11 +55,11 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
               <div class="modal-content">
                 <div class="modal-body">
-                  <span class="delete-span">{{ `${deleteForm.sale.name}のテンプレートを削除しますか？` }}</span>
+                  <span class="delete-span">{{ `${deleteForm.title}のアプローチ中リストを削除しますか？` }}</span>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-outline-default" data-dismiss="modal">キャンセル</button>
-                  <button class="btn btn-outline-primary" data-dismiss="modal" @click="deleteSaleList()">削除</button>
+                  <button class="btn btn-outline-primary" data-dismiss="modal" @click="deleteFolder()">削除</button>
                 </div>
               </div>
             </div>
@@ -76,60 +75,41 @@
 
 <script>
 import axios from 'axios'
-import '../utils/generalFillters'
+import '../../utils/generalFillters'
 
 export default {
-  name: 'SaleList',
+  name: 'ApproachFoldersIndex',
+  props: {
+    propsFolders: {
+      type: [Object, Array],
+      default: () => {}
+    }
+  },
   data() {
     return {
       params: {},
-      salelist: [],
-      display: false,
+      display: true,
+      approachFolders: [],
       deleteForm: {
-        sale: {}
+        folder: {}
       }
     }
   },
   watch: {
-    $route: {
-      async handler() {
-        await this.sortSaleList()
-      },
-      immediate: true
+    propsFolders() {
+      Object.assign(this.approachFolders, this.propsFolders)
     }
   },
   created() {
-    //イベント名で受け取る
-    global.eventHub.$on('sort_salelist', val => {
-      this.params = val.form
-      this.sortSaleList()
-    })
+    Object.assign(this.approachFolders, this.propsFolders)
   },
   methods: {
-    async sortSaleList() {
-      var params = this.params
-      const data = {
-        params
-      }
-      const response = await axios.get(`/api/saleslist/sort`, data)
-
+    async deleteFolder() {
+      const response = await axios.delete(`approach-folders/${this.deleteForm.id}`)
       if (response.status == 200) {
-        let data = response.data
-        this.salelist = data
-        this.display = true
-      }
-    },
-    async deleteSaleList() {
-      var params = this.params
-      const data = {
-        params
-      }
-      const response = await axios.delete(`salelist/${this.deleteForm.sale.id}`, data)
-
-      if (response.status == 200) {
-        const salelist = this.salelist.filter(salelist => salelist.id != this.deleteForm.sale.id)
-        this.salelist = salelist
-        this.deleteForm.sale = {}
+        const approachFolders = this.approachFolders.filter(approachFolders => approachFolders.id != this.deleteForm.id)
+        this.approachFolders = approachFolders
+        this.deleteForm = {}
       } else {
         window.alert('エラーが発生しました。')
       }

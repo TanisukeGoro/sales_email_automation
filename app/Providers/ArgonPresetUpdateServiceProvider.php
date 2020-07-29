@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use App\Service\ArgonPresetService;
-use Illuminate\Foundation\Console\PresetCommand;
+use Laravel\Ui\UiCommand;
 use LaravelFrontendPresets\ArgonPreset\ArgonPresetServiceProvider;
 
 class ArgonPresetUpdateServiceProvider extends ArgonPresetServiceProvider
@@ -24,7 +24,7 @@ class ArgonPresetUpdateServiceProvider extends ArgonPresetServiceProvider
      */
     public function boot(): void
     {
-        PresetCommand::macro('argon:update', function ($command): void {
+        UiCommand::macro('argon:update', function ($command): void {
             ArgonPresetService::update();
             $command->info('Argon scaffolding updated successfully.');
         });

@@ -17,10 +17,12 @@ class DatabaseSeeder extends Seeder
             PlansTableSeeder::class,
             UsersTableSeeder::class,
             TemplatesTableSeeder::class,
-            // CompaniesTableSeeder::class,
+            CompaniesTableSeeder::class,
             CompaniesSeeder::class,
             SentsTableSeeder::class,
             SaleListTableSeeder::class,
+            ApproachFolderSeeder::class,
+            ApproachSeeder::class,
         ]);
     }
 }

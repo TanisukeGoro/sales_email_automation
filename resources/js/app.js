@@ -5,6 +5,9 @@ import CompanyList from './components/CompanyList.vue'
 import SaleList from './components/SaleList.vue'
 import RedirectUri from './components/RedirectUri.vue'
 import SaleListCompany from './components/SaleListCompany.vue'
+import ApproachFoldersIndex from './components/ApproachFolders/index.vue'
+import ApproachesIndex from './components/Approaches/index.vue'
+
 //予約後のtemplateと被らないようにsを付けている
 import Templates from './components/Template.vue'
 
@@ -31,7 +34,9 @@ document.addEventListener('DOMContentLoaded', () => {
       SaleList,
       RedirectUri,
       SaleListCompany,
-      Templates
+      Templates,
+      ApproachFoldersIndex,
+      ApproachesIndex
     }
   })
 
