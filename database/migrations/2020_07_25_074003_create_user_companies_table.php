@@ -14,6 +14,7 @@ class CreateUserCompaniesTable extends Migration
         Schema::create('user_companies', function (Blueprint $table): void {
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('company_id')->unsigned()->nullable();
             $table->string('company_name')->comment('企業名')->nullable();
             $table->string('company_profile')->comment('会社概要')->nullable();
             $table->string('company_business_description')->comment('事業内容')->nullable();
@@ -28,6 +29,7 @@ class CreateUserCompaniesTable extends Migration
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('company_id')->references('id')->on('companies');
             $table->foreign('company_large_category_id')->references('id')->on('company_large_categories');
             $table->foreign('company_middle_category_id')->references('id')->on('company_middle_categories');
         });
