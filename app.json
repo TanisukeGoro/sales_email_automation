@@ -1,0 +1,17 @@
+{
+  "addons": [
+    "heroku-postgresql"
+  ],
+  "buildpacks": [
+    "heroku/php",
+    "heroku/nodejs"
+  ],
+  "description": "Anaris Review App",
+  "formation": {
+  },
+  "name": "Anaris",
+  "scripts": {
+    "postdeploy": "php artisan migrate --seed --force"
+  },
+  "stack": "heroku-18"
+}
