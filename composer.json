@@ -71,7 +71,7 @@
             "@php artisan key:generate --ansi"
         ],
         "post-install-cmd": [
-            "@php artisan preset argon:update"
+            "@php artisan ui argon:update"
         ]
     }
 }
