@@ -17,8 +17,6 @@ class UserCompanyTableSeeder extends Seeder
             'representative_name' => '岡村',
             'representative_phone_number' => '09033333333',
             'company_address' => '京都市南区上鳥羽鉾立町11-1',
-            'company_large_category_id' => 1,
-            'company_middle_category_id' => 32,
             'maximum_employees' => 2378,
             'hp_url' => 'https://www.nintendo.co.jp/index.html',
             'contact_email' => 'hello@gmail.com',

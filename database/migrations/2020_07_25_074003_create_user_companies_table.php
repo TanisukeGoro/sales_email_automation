@@ -20,8 +20,6 @@ class CreateUserCompaniesTable extends Migration
             $table->string('company_business_description')->comment('事業内容')->nullable();
             $table->string('representative_name')->comment('代表者名')->nullable();
             $table->string('representative_phone_number')->comment('代表者電話番号')->nullable();
-            $table->bigInteger('company_large_category_id')->unsigned()->nullable()->comment('日本標準産業分類の大分類');
-            $table->bigInteger('company_middle_category_id')->unsigned()->nullable()->comment('日本標準産業分類の中分類');
             $table->string('company_address')->comment('企業住所')->nullable();
             $table->integer('maximum_employees')->comment('従業員人数')->nullable();
             $table->string('hp_url')->comment('ホームページurl')->nullable();
@@ -30,8 +28,6 @@ class CreateUserCompaniesTable extends Migration
 
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('company_id')->references('id')->on('companies');
-            $table->foreign('company_large_category_id')->references('id')->on('company_large_categories');
-            $table->foreign('company_middle_category_id')->references('id')->on('company_middle_categories');
         });
     }
 
