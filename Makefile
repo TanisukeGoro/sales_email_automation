@@ -24,9 +24,9 @@ docker-argon-update:
 
 .PHONY: argon-update
 argon-update:
-	composer require laravel-frontend-presets/argon
-	php artisan preset argon:update
-	composer dump-autoload
+	compose exec app composer require laravel-frontend-presets/argon
+	compose exec app php artisan preset argon:update
+	compose exec app composer dump-autoload
 
 .PHONY: clear-cache
 clear-cache:
