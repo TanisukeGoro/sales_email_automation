@@ -17,13 +17,18 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->bigInteger('plan_id')->unsigned()->nullable();
-            $table->string('official_position')->comment('役職')->nullable();
-            $table->string('facebook')->comment('フェイスブック')->nullable();
-            $table->string('linkedin')->comment('Linkedin')->nullable();
-            $table->integer('corporation_type')->unsigned()->nullable()->comment('個人事業主or法人');
+            $table->string('company_name')->comment('企業名')->nullable();
+            $table->bigInteger('company_large_category_id')->unsigned()->nullable()->comment('日本標準産業分類の大分類');
+            $table->bigInteger('company_middle_category_id')->unsigned()->nullable()->comment('日本標準産業分類の中分類');
+            $table->string('company_address')->comment('企業住所')->nullable();
+            $table->integer('maximum_employees')->comment('従業員人数')->nullable();
+            $table->string('hp_adress')->comment('ホームページアドレス')->nullable();
             $table->rememberToken();
             $table->timestamp('email_verified_at')->nullable();
             $table->timestamps();
+
+            $table->foreign('company_large_category_id')->references('id')->on('company_large_categories');
+            $table->foreign('company_middle_category_id')->references('id')->on('company_middle_categories');
         });
     }
 
