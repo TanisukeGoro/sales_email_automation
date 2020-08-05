@@ -1261,16 +1261,16 @@
         },
         {
             "name": "magentron/laravel-blade-lint",
-            "version": "1.0.4",
+            "version": "1.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Magentron/laravel-blade-lint.git",
-                "reference": "4bf07d05f951c4737dbf661a01ae53ff3c7b464a"
+                "reference": "c4700ebeda0b0935c1b060fcdf26e2f29361d811"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Magentron/laravel-blade-lint/zipball/4bf07d05f951c4737dbf661a01ae53ff3c7b464a",
-                "reference": "4bf07d05f951c4737dbf661a01ae53ff3c7b464a",
+                "url": "https://api.github.com/repos/Magentron/laravel-blade-lint/zipball/c4700ebeda0b0935c1b060fcdf26e2f29361d811",
+                "reference": "c4700ebeda0b0935c1b060fcdf26e2f29361d811",
                 "shasum": ""
             },
             "require": {
