@@ -12,19 +12,21 @@
         "fideloper/proxy": "^4.0",
         "guzzlehttp/guzzle": "^7.0",
         "jenssegers/agent": "^2.6",
-        "laravel-frontend-presets/argon": "^1.0",
-        "laravel/framework": "^6.0",
+        "laravel-frontend-presets/argon": "^1.1.0",
+        "laravel/framework": "^7.0",
         "laravel/tinker": "^2.2",
+        "laravel/ui": "^2.0",
         "magentron/laravel-blade-lint": "^1.0",
         "pusher/pusher-php-server": "^4.1"
     },
     "require-dev": {
-        "facade/ignition": "^1.4",
+        "barryvdh/laravel-debugbar": "^3.3",
+        "facade/ignition": "^2.0",
         "flynsarmy/csv-seeder": "^2.0",
         "friendsofphp/php-cs-fixer": "^2.16",
         "fzaninotto/faker": "^1.4",
         "mockery/mockery": "^1.0",
-        "nunomaduro/collision": "^3.0",
+        "nunomaduro/collision": "^4.1",
         "nunomaduro/larastan": "^0.6.1",
         "phpunit/phpunit": "^9.2",
         "suin/php-cs-fixer-rules": "^2.2"
@@ -69,7 +71,7 @@
             "@php artisan key:generate --ansi"
         ],
         "post-install-cmd": [
-            "@php artisan preset argon:update"
+            "@php artisan ui argon:update"
         ]
     }
 }

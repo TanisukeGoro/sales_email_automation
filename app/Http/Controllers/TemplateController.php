@@ -45,9 +45,16 @@ class TemplateController extends Controller
         ]);
     }
 
+    public function back(Request $request)
+    {
+        return view('template.create', [
+            'template' => $request,
+        ]);
+    }
+
     public function confirm(TemplateRequest $request)
     {
-        return view('template.show', [
+        return view('template.confirm', [
             'template' => $request,
         ]);
     }

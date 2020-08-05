@@ -8,6 +8,7 @@
       <div class="button-box ml-3 d-none d-md-inline-block">
         <a href="{{ route('salelist.index')}}" class="btn btn-outline-primary btn-sm">営業先リスト</a>
         <a href="{{ route('companies.index')}}" class="btn btn-outline-primary btn-sm">企業一覧</a>
+        <a href="{{ route('approach-folders.index')}}" class="btn btn-outline-primary btn-sm">アプローチ中リスト</a>
         <a href="{{ route('template.index')}}" class="btn btn-outline-primary btn-sm">テンプレート</a>
         <button type="button" class="btn btn-outline-primary btn-sm">月間レポート</button>
         <button type="button" class="btn btn-outline-primary btn-sm">設定</button>

@@ -84,4 +84,14 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Models\Plan');
     }
+
+    public function approach()
+    {
+        return $this->hasMany('App\Models\Approach');
+    }
+
+    public function approachFolders()
+    {
+        return $this->hasMany('App\Models\ApproachFolder');
+    }
 }
