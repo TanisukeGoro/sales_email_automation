@@ -55,7 +55,22 @@ Route::group(['middleware' => 'auth'], function (): void {
 
 //template
 Route::group(['middleware' => 'auth'], function (): void {
+    Route::post('/template/confirm', 'TemplateController@confirm')->name('template.confirm');
+    Route::post('/template/back', 'TemplateController@back')->name('template.back');
     Route::resource('template', 'TemplateController');
-    Route::get('/confirm', 'TemplateController@confirm')->name('template.confirm');
     Route::get('/api/template/sort', 'TemplateController@sortTemplate')->name('template.sortTemplate');
+});
+
+//approach folder
+Route::group(['middleware' => 'auth'], function (): void {
+    Route::resource('approach-folders', 'ApproachFolderController');
+
+    Route::get('approach-folders/{folder}/approaches/create', 'ApproachController@create')->name('approaches.create');
+    Route::get('/api/approach-folders/', 'ApproachFolderController@list');
+    Route::post('/api/approach-folders/{folder}', 'ApproachController@store');
+
+    Route::group(['middleware' => 'can:view,folder'], function (): void {
+        Route::resource('approach-folders/{folder}/approaches', 'ApproachController', ['except' => ['create']]);
+        Route::get('approach-folders/{folder}/approaches/{approach}/confirm', 'ApproachController@confirm')->name('approaches.confirm');
+    });
 });

@@ -1,4 +1,4 @@
-<?php
+e<?php
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -29,6 +29,7 @@ class CreateCompaniesTable extends Migration
 
             $table->foreign('company_large_category_id')->references('id')->on('company_large_categories');
             $table->foreign('company_middle_category_id')->references('id')->on('company_middle_categories');
+            $table->foreign('listing_stock_id')->references('id')->on('listing_stocks');
         });
         // DB::statement("ALTER TABLE companies COMMENT '企業マスタ'");
     }

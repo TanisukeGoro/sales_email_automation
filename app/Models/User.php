@@ -85,4 +85,14 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Models\UserCompany');
     }
+  
+    public function approach()
+    {
+        return $this->hasMany('App\Models\Approach');
+    }
+
+    public function approachFolders()
+    {
+        return $this->hasMany('App\Models\ApproachFolder');
+    }
 }

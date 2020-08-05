@@ -29,6 +29,7 @@ class CreateUsersTable extends Migration
 
             $table->foreign('company_large_category_id')->references('id')->on('company_large_categories');
             $table->foreign('company_middle_category_id')->references('id')->on('company_middle_categories');
+            $table->foreign('plan_id')->references('id')->on('plans');
         });
     }
 

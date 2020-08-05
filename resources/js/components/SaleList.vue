@@ -24,7 +24,7 @@
                 <td>
                   <a :href="`salelist/${sale.id}`">{{ sale.name }}</a>
                 </td>
-                <td>{{ displayDate(sale.created_at) }}</td>
+                <td>{{ sale.created_at | displayDate }}</td>
                 <td class="text-right">
                   <button
                     type="button"
@@ -76,6 +76,7 @@
 
 <script>
 import axios from 'axios'
+import '../utils/globalFillters'
 
 export default {
   name: 'SaleList',
@@ -105,13 +106,6 @@ export default {
     })
   },
   methods: {
-    displayDate(createdAt) {
-      if (createdAt == null) {
-        return
-      }
-      const date = createdAt.split(' ')[0].split('-')
-      return `${date[0]}年${date[1]}月${date[2]}日`
-    },
     async sortSaleList() {
       var params = this.params
       const data = {

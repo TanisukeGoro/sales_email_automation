@@ -3,35 +3,43 @@
     <div class="col">
       <div class="card shadow">
         <div class="card-header border-0">
-          <div class="row align-items-center">
-            <div class="col-8">
-              <p class="mb-0">該当件数{{ search_count }}件</p>
-            </div>
-            <div class="dropdown col-4 text-right">
-              <button
-                id="dropdownMenuButton"
-                class="btn btn-outline-primary btn-sm dropdown-toggle"
-                type="button"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                ーーー
-              </button>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">上場区分</a>
-                <a class="dropdown-item" href="#">従業員数</a>
-                <a class="dropdown-item" href="#">業種大カテゴリ</a>
-                <a class="dropdown-item" href="#">業種中カテゴリ</a>
+          <div class="d-flex justify-content-between align-items-center">
+            <p class="mb-0">該当件数{{ search_count }}件</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <the-add-approaches
+                :checked-list="checkList"
+                :is-checkbox="isCheckbox"
+                @clear-checklist="checkList = []"
+                @checkbox="isCheckbox = $event"
+              />
+              <div class="dropdown text-right">
+                <button
+                  id="dropdownMenuButton"
+                  class="btn btn-outline-primary btn-sm dropdown-toggle"
+                  type="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  ーーー
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="#">上場区分</a>
+                  <a class="dropdown-item" href="#">従業員数</a>
+                  <a class="dropdown-item" href="#">業種大カテゴリ</a>
+                  <a class="dropdown-item" href="#">業種中カテゴリ</a>
+                </div>
               </div>
             </div>
           </div>
         </div>
-
         <div class="table-responsive">
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
+                <th v-if="isCheckbox">
+                  <input type="checkbox" aria-label="Checkbox for following text input" @input="checkAll($event)" />
+                </th>
                 <th scope="col">ホームページ</th>
                 <th scope="col">お問い合わせページ</th>
                 <th scope="col">企業名</th>
@@ -44,6 +52,15 @@
             </thead>
             <tbody>
               <tr v-for="company in companies" :key="company.id">
+                <td v-if="isCheckbox">
+                  <input
+                    v-model="checkList"
+                    :value="company.id"
+                    type="checkbox"
+                    aria-label="Checkbox for following text input"
+                  />
+                </td>
+
                 <td class="text-center">
                   <a v-if="company.top_url" :href="company.top_url" target="_blank">
                     <i class="fas fa-external-link-alt" />
@@ -119,13 +136,15 @@
 
 <script>
 import axios from 'axios'
+import TheAddApproaches from './TheAddApproach.vue'
 
 export default {
   name: 'CompanyList',
+  components: {
+    TheAddApproaches
+  },
   filters: {
     employees(maximum, minimum) {
-      console.log('maximum :>>', maximum)
-      console.log('minimum :>>', minimum)
       if (minimum && maximum) return `${minimum} ~ ${maximum}`
       if (maximum) return maximum
       return ''
@@ -138,7 +157,9 @@ export default {
       search_count: null,
       current_page: null,
       last_page: null,
-      display: false
+      display: false,
+      isCheckbox: false,
+      checkList: []
     }
   },
   computed: {
@@ -179,6 +200,12 @@ export default {
     })
   },
   methods: {
+    checkAll($event) {
+      if (!$event.target.checked) return (this.checkList = [])
+      this.checkList.length === this.companies.length
+        ? (this.checkList = [])
+        : (this.checkList = this.companies.map(company => company.id))
+    },
     async configure() {
       const response = await axios.get(`company/search`)
 
@@ -190,8 +217,6 @@ export default {
         this.last_page = data.last_page
         this.display = true
       }
-
-      console.log(response.data)
     },
     async searchCompany() {
       this.params.page = this.current_page
