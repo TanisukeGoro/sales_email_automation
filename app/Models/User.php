@@ -18,13 +18,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'company_name',
-        'company_large_category_id',
-        'company_middle_category_id',
-        'company_address',
-        'minimum_employees',
-        'maximum_employees',
-        'hp_adress',
+        'facebook',
+        'linkedin',
+        'official_position',
     ];
 
     /**
@@ -85,6 +81,11 @@ class User extends Authenticatable
         return $this->belongsTo('App\Models\Plan');
     }
 
+    public function userCompany()
+    {
+        return $this->hasOne('App\Models\UserCompany');
+    }
+  
     public function approach()
     {
         return $this->hasMany('App\Models\Approach');

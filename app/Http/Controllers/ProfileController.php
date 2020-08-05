@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PasswordRequest;
 use App\Http\Requests\ProfileRequest;
+use App\Http\Requests\UserCompanyRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
@@ -18,6 +20,13 @@ class ProfileController extends Controller
         return view('profile.edit');
     }
 
+    public function info()
+    {
+        $user = Auth::user();
+
+        return $user->load('userCompany');
+    }
+
     /**
      * Update the profile
      *
@@ -25,11 +34,15 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(ProfileRequest $request)
+    public function updateUser(ProfileRequest $request)
     {
         auth()->user()->update($request->all());
+    }
 
-        return back()->withStatus(__('Profile successfully updated.'));
+    public function updateUserCompany(UserCompanyRequest $request): void
+    {
+        $userCompany = Auth::user()->userCompany;
+        $userCompany->update($request->all());
     }
 
     /**
@@ -42,7 +55,5 @@ class ProfileController extends Controller
     public function password(PasswordRequest $request)
     {
         auth()->user()->update(['password' => Hash::make($request->get('password'))]);
-
-        return back()->withPasswordStatus(__('Password successfully updated.'));
     }
 }

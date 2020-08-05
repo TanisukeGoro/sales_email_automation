@@ -39,7 +39,9 @@ class PasswordRequest extends FormRequest
     public function attributes()
     {
         return [
-            'old_password' => __('current password'),
+            'old_password' => '現在のパスワード',
+            'password' => 'パスワード',
+            'password_confirmation' => 'パスワード',
         ];
     }
 }

@@ -33,7 +33,9 @@ Route::group(['middleware' => 'auth'], function (): void {
 Route::group(['middleware' => 'auth'], function (): void {
     Route::resource('user', 'UserController', ['except' => ['show']]);
     Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
-    Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
+    Route::put('profile/user', ['as' => 'profile.update', 'uses' => 'ProfileController@updateUser']);
+    Route::put('profile/user-company', 'ProfileController@updateUserCompany');
+    Route::get('profile/info', 'ProfileController@info');
     Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
 });
 

@@ -5,6 +5,9 @@ import CompanyList from './components/CompanyList.vue'
 import SaleList from './components/SaleList.vue'
 import RedirectUri from './components/RedirectUri.vue'
 import SaleListCompany from './components/SaleListCompany.vue'
+import Profile from "./components/Profile.vue"
+import UserProfile from "./components/UserProfile.vue"
+import UserCompany from "./components/UserCompany.vue"
 import ApproachFoldersIndex from './components/ApproachFolders/index.vue'
 import ApproachesIndex from './components/Approaches/index.vue'
 
@@ -15,7 +18,7 @@ import SideBar from './components/sideBar/SideBar.vue'
 import TemplateSideBar from './components/sideBar/TemplateSideBar.vue'
 import SaleListSideBar from './components/sideBar/SaleListSideBar.vue'
 import SaleListDetailSideBar from './components/sideBar/SaleListDetailSideBar.vue'
-window.Echo.channel('channel-message').listen('MessageEvent', function(data) {
+window.Echo.channel('channel-message').listen('MessageEvent', function (data) {
   alert(data['message'])
   window.location = '/login'
 })
@@ -35,6 +38,9 @@ document.addEventListener('DOMContentLoaded', () => {
       RedirectUri,
       SaleListCompany,
       Templates,
+      Profile,
+      UserProfile,
+      UserCompany,
       ApproachFoldersIndex,
       ApproachesIndex
     }

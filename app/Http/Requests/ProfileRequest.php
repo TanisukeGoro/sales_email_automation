@@ -28,12 +28,9 @@ class ProfileRequest extends FormRequest
         return [
             'name' => ['required', 'min:3'],
             'email' => ['required', 'email', Rule::unique((new User())->getTable())->ignore(auth()->id())],
-            'company_name' => ['nullable', 'string'],
-            'company_large_category_id' => ['integer'],
-            'company_middle_category_id' => ['integer'],
-            'company_address' => ['nullable', 'string'],
-            'maximum_employees' => ['nullable', 'integer'],
-            'hp_adress' => ['nullable', 'string'],
+            'facebook' => ['nullable', 'string'],
+            'linkedin' => ['nullable', 'string'],
+            'official_position' => ['nullable', 'string'],
         ];
     }
 
@@ -42,12 +39,9 @@ class ProfileRequest extends FormRequest
         return [
             'name' => '名前',
             'email' => 'メールアドレス',
-            'company_name' => '会社名',
-            'company_large_category_id' => '業種大カテゴリ',
-            'company_middle_category_id' => '業種中カテゴリ',
-            'company_address' => '会社所在地',
-            'maximum_employees' => '従業員数',
-            'hp_adress' => '会社HP',
+            'facebook' => 'Facebook',
+            'linkedin' => 'LinkedIn',
+            'official_position' => '役職名',
         ];
     }
 }
