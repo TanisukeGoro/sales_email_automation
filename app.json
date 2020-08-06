@@ -13,7 +13,7 @@
   "env": {
     "DB_CONNECTION": {
       "description": "Database connection config",
-      "generator": "pgsql"
+      "value": "pgsql"
     },
     "APP_NAME": {
       "description": "This application name",
