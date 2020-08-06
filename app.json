@@ -1,15 +1,33 @@
 {
   "addons": [
-    "heroku-postgresql"
+    "heroku-postgresql:hobby-dev"
   ],
   "buildpacks": [
-    "heroku/php",
-    "heroku/nodejs"
+    {
+      "url": "heroku/php"
+    },
+    {
+      "url": "heroku/nodejs"
+    }
   ],
+  "env": {
+    "DB_CONNECTION": {
+      "description": "Database connection config",
+      "value": "pgsql"
+    },
+    "APP_NAME": {
+      "description": "This application name",
+      "value": "Anaris Review"
+    },
+    "TZ": {
+      "description": "Time Zone",
+      "value": "Asia/Tokyo"
+    }
+  },
   "description": "Anaris Review App",
   "formation": {
   },
-  "name": "Anaris",
+  "name": "Anaris-review-app",
   "scripts": {
     "postdeploy": "php artisan migrate --seed --force"
   },
