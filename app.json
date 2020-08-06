@@ -10,6 +10,20 @@
       "url": "heroku/nodejs"
     }
   ],
+  "env": {
+    "DB_CONNECTION": {
+      "description": "Database connection config",
+      "generator": "pgsql"
+    },
+    "APP_NAME": {
+      "description": "This application name",
+      "value": "Anaris Review"
+    },
+    "TZ": {
+      "description": "Time Zone",
+      "value": "Asia/Tokyo"
+    }
+  },
   "description": "Anaris Review App",
   "formation": {
   },
