@@ -1,15 +1,19 @@
 {
   "addons": [
-    "heroku-postgresql"
+    "heroku-postgresql:hobby-dev"
   ],
   "buildpacks": [
-    "heroku/php",
-    "heroku/nodejs"
+    {
+      "url": "heroku/php"
+    },
+    {
+      "url": "heroku/nodejs"
+    }
   ],
   "description": "Anaris Review App",
   "formation": {
   },
-  "name": "Anaris",
+  "name": "Anaris-review-app",
   "scripts": {
     "postdeploy": "php artisan migrate --seed --force"
   },
