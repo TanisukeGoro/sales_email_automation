@@ -5,55 +5,7 @@
     <div class="pl-lg-4">
       <div class="form-group">
         <label class="form-control-label" for="input-company_name">会社名</label>
-
-        <input
-          id="input-company_name"
-          v-model="form.company_name"
-          type="text"
-          name="company_name"
-          class="form-control form-control-alternative"
-          :class="{ 'is-invalid': errors.company_name }"
-          placeholder="株式会社example"
-          autofocus
-        />
-
-        <span class="invalid-feedback" role="alert">
-          <strong v-if="errors.company_name">{{ errors.company_name[0] }}</strong>
-        </span>
-      </div>
-
-      <div class="form-group">
-        <label class="form-control-label" for="input-address">会社所在地</label>
-        <input
-          id="input-address"
-          v-model="form.company_address"
-          type="text"
-          name="address"
-          class="form-control form-control-alternative"
-          :class="{ 'is-invalid': errors.company_address }"
-          placeholder="会社所在地"
-        />
-
-        <span class="invalid-feedback" role="alert">
-          <strong v-if="errors.company_address">{{ errors.company_address[0] }}</strong>
-        </span>
-      </div>
-
-      <div class="form-group">
-        <label class="form-control-label" for="input-employees-number">従業員数</label>
-        <input
-          id="input-employees-number"
-          v-model="form.maximum_employees"
-          type="number"
-          name="employees-number"
-          class="form-control form-control-alternative"
-          :class="{ 'is-invalid': errors.maximum_employees }"
-          placeholder="755"
-        />
-
-        <span class="invalid-feedback" role="alert">
-          <strong v-if="errors.employees">{{ errors.maximum_employees[0] }}</strong>
-        </span>
+        <span class="d-block">{{ list.company_name ? list.company_name : '設定されていません' }}</span>
       </div>
 
       <div class="form-group">
@@ -93,73 +45,37 @@
       </div>
 
       <div class="form-group">
-        <label class="form-control-label" for="input-representative">代表者名</label>
-        <input
-          id="input-representative"
-          v-model="form.representative_name"
-          type="text"
-          name="representative"
-          class="form-control form-control-alternative"
-          :class="{ 'is-invalid': errors.representative_name }"
-          placeholder="代表者名"
-        />
+        <label class="form-control-label" for="input-address">会社所在地</label>
+        <span class="d-block">{{ list.company_address ? list.company_address : '設定されていません' }}</span>
+      </div>
 
-        <span class="invalid-feedback" role="alert">
-          <strong v-if="errors.representative_name">{{ errors.representative_name[0] }}</strong>
-        </span>
+      <div class="form-group">
+        <label class="form-control-label" for="input-employees-number">従業員数</label>
+        <span class="d-block">{{ list.maximum_employees ? list.maximum_employees + '人' : '設定されていません' }}</span>
+      </div>
+
+      <div class="form-group">
+        <label class="form-control-label" for="input-representative">代表者名</label>
+        <span class="d-block">{{ list.representative_name ? list.representative_name : '設定されていません' }}</span>
       </div>
 
       <div class="form-group">
         <label class="form-control-label" for="input-representative-phone-number">代表者電話番号</label>
-        <input
-          id="input-representative-phone-number"
-          v-model="form.representative_phone_number"
-          type="text"
-          name="representative-phone-number"
-          class="form-control form-control-alternative"
-          :class="{ 'is-invalid': errors.representative_phone_number }"
-          placeholder="ハイフン(-)は不要"
-        />
-
-        <span class="invalid-feedback" role="alert">
-          <strong v-if="errors.representative_phone_number">{{ errors.representative_phone_number[0] }}</strong>
+        <span class="d-block">
+          {{ list.representative_phone_number ? list.representative_phone_number : '設定されていません' }}
         </span>
       </div>
 
       <div class="form-group">
         <label class="form-control-label" for="input-business-description">事業内容</label>
-
-        <textarea
-          id="input-business-description"
-          v-model="form.company_business_description"
-          name="business-description"
-          class="form-control form-control-alternative"
-          :class="{ 'is-invalid': errors.company_business_description }"
-          rows="12"
-          placeholder="事業内容"
-        />
-
-        <span class="invalid-feedback" role="alert">
-          <strong v-if="errors.company_business_description">{{ errors.company_business_description[0] }}</strong>
+        <span class="d-block">
+          {{ list.company_business_description ? list.company_business_description : '設定されていません' }}
         </span>
       </div>
 
       <div class="form-group">
         <label class="form-control-label" for="input-company-profile">会社概要</label>
-
-        <textarea
-          id="input-company-profile"
-          v-model="form.company_profile"
-          name="company-profile"
-          class="form-control form-control-alternative"
-          :class="{ 'is-invalid': errors.company_profile }"
-          rows="12"
-          placeholder="会社概要"
-        />
-
-        <span class="invalid-feedback" role="alert">
-          <strong v-if="errors.company_profile">{{ errors.company_profile[0] }}</strong>
-        </span>
+        <span class="d-block">{{ list.company_profile ? list.company_profile : '設定されていません' }}</span>
       </div>
 
       <div class="text-center">
@@ -177,13 +93,15 @@ export default {
   data() {
     return {
       form: {
+        contact_email: '',
+        hp_url: ''
+      },
+      list: {
         company_name: '',
         company_address: '',
         maximum_employees: '',
         company_business_description: '',
         company_profile: '',
-        contact_email: '',
-        hp_url: '',
         representative_name: '',
         representative_phone_number: ''
       },
@@ -204,15 +122,15 @@ export default {
 
       if (response.status == 200) {
         const data = response.data.user_company
-        this.form.company_name = data.company_name
-        this.form.company_address = data.company_address
-        this.form.maximum_employees = data.maximum_employees
-        this.form.company_business_description = data.company_business_description
-        this.form.company_profile = data.company_profile
+        this.list.company_name = data.company_name
+        this.list.company_address = data.company_address
+        this.list.maximum_employees = data.maximum_employees
+        this.list.company_business_description = data.company_business_description
+        this.list.company_profile = data.company_profile
+        this.list.representative_name = data.representative_name
+        this.list.representative_phone_number = data.representative_phone_number
         this.form.contact_email = data.contact_email
         this.form.hp_url = data.hp_url
-        this.form.representative_name = data.representative_name
-        this.form.representative_phone_number = data.representative_phone_number
       }
     },
     async changeUserCompany() {
