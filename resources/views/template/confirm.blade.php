@@ -47,7 +47,6 @@
         @include('template.card-body')
       </div>
     </div>
-    @include('layouts.footers.auth')
   </div>
 </div>
 <script>

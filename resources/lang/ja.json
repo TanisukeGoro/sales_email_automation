@@ -14,5 +14,9 @@
   "Remember me": "ログイン状態を保持する",
   "Reset password": "パスワードのリセット",
   "Sign in": "サインイン",
-  "Send Password Reset Link": "パスワードリセットリンクを送信する"
+  "Send Password Reset Link": "パスワードリセットリンクを送信する",
+  "404 Page not found": "404 エラー",
+  "The requested URL was not found on this server.": "お探しのページは見つかりませんでした",
+  "500 Server error": "500 サーバーエラー",
+  "Ooops...Something went wrong.": "エラーが発生しました。ホームに戻るかしばらくしてから再度アクセスしてください"
 }

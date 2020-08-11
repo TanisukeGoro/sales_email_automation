@@ -74,3 +74,7 @@ Route::group(['middleware' => 'auth'], function (): void {
         Route::get('approach-folders/{folder}/approaches/{approach}/confirm', 'ApproachController@confirm')->name('approaches.confirm');
     });
 });
+
+Route::get('/500', function () {
+    return response()->view('errors.500', [], 500);
+});

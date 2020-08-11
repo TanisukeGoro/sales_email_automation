@@ -24,8 +24,24 @@
 </head>
 
 <body class="{{ $class ?? '' }}">
-  <div class="container-fluid">
-    <div class="row">displayDate
+  <div class="container" style="height: calc(100vh - 90px);">
+      <div class="h-100 d-flex align-items-center ">
+          <div class="card card-block text-center w-100 py-4">
+              <h1 class="card-title">{{__("404 Page not found")}}</h1>
+              <div class="card-text error-details mb-4">
+                  {{__("The requested URL was not found on this server.")}}
+              </div>
+              <div class="error-actions">
+                  <a href="{{ route('home') }}" class="btn btn-primary btn-lg">
+                      <span class="glyphicon glyphicon-home"></span>
+                      ホーム画面に戻る
+                  </a>
+                  <a href="#" class="btn btn-default btn-lg">
+                      <span class="glyphicon glyphicon-envelope"></span>
+                      お問い合わせ
+                  </a>
+              </div>
+          </div>
     </div>
   </div>
   @include('layouts.footers.guest')

@@ -5,6 +5,5 @@
   <div class="container-fluid mt-3 ">
     <approach-folders-index :props-folders='@json($approachFolders)' />
   </div>
-  @include('layouts.footers.auth')
 </div>
 @endsection

@@ -137,7 +137,6 @@
         </div>
       </div>
     </div>
-    @include('layouts.footers.auth')
   </div>
 </div>
 <script>
