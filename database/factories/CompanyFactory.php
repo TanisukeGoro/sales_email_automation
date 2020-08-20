@@ -26,6 +26,6 @@ $factory->define(Company::class, function (Faker $faker) {
         'minimum_employees' => $minimum,
         'maximum_employees' => \mt_rand($minimum + 1, 30000),
         'top_url' => $faker->unique()->url,
-        'form_url' => 'http://',
+        'form_url' => $faker->unique()->url,
     ];
 });
