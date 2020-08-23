@@ -1,5 +1,3 @@
-<footer class="py-5">
-    <div class="container">
-        @include('layouts.footers.nav')
-    </div>
+<footer class="footer fixed-bottom bg-default">
+    @include('layouts.footers.nav')
 </footer>

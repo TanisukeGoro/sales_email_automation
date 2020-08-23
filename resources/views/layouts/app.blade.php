@@ -21,9 +21,18 @@
   <!-- jQuery -->
   <script src="{{ asset('argon') }}/vendor/jquery/dist/jquery.min.js"></script>
   <script src="{{ asset('argon') }}/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+    .main-content {
+      height: calc(100vh - 90px);
+      overflow: hidden scroll;
+    }
+    #body::-webkit-scrollbar {  /* Chrome, Safari 対応 */
+        display:none;
+    }
+  </style>
 </head>
 
-<body class="{{ $class ?? '' }}">
+<body id="body" class="{{ $class ?? '' }}">
 
   @include('layouts.navbars.navbar', ['title' => $title ?? ''])
 
@@ -43,6 +52,10 @@
   @yield('content')
   @include('layouts.footers.guest')
   @endguest
+
+  @auth()
+    @include('layouts.footers.auth')
+  @endauth
 
   <!-- Argon JS -->
   <script src="https://riversun.github.io/jsframe/jsframe.js"></script>

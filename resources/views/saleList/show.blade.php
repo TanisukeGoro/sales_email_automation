@@ -5,7 +5,6 @@
   <div class="container-fluid mt-3 ">
     <sale-list-company>
   </div>
-  @include('layouts.footers.auth')
 </div>
 <script>
 </script>

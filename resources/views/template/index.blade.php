@@ -5,7 +5,6 @@
   <div class="container-fluid mt-3 ">
     <templates>
   </div>
-  @include('layouts.footers.auth')
 </div>
 <script>
   //後でVueに書き換える
