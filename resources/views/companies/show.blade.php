@@ -47,12 +47,24 @@
 
         <div class="px-4 pt-5 row">
           <span class="ml-xl-4 col-3">HP：</span>
-          <span class="col-8">{{ $company->top_url ?? "登録されていません" }}</span>
+          @if($company->top_url)
+            <a href="{{$company->top_url}}" target="_blank">
+              <i class="fas fa-external-link-alt" ></i>
+            </a>
+          @else
+            <span class="col-8">登録されていません</span>
+          @endif
         </div>
 
         <div class="px-4 pt-5 row">
           <span class="ml-xl-4 col-3">お問い合わせURL：</span>
-          <span class="col-8">{{ $company->form_url ?? "登録されていません" }}</span>
+          @if($company->form_url)
+            <a href="{{$company->form_url}}" target="_blank">
+              <i class="fas fa-external-link-alt" ></i>
+            </a>
+          @else
+            <span class="col-8">登録されていません</span>
+          @endif
         </div>
 
       </div>
