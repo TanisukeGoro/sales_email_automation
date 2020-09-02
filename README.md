@@ -74,7 +74,7 @@ docker-compose up
 - [ ] node: あとでかく
 
 ### MySQL (必須)
-DB以降により不要  
+DB移行により不要  
 ~~[Mac へ MySQL を Homebrew でインストールする手順](https://qiita.com/hkusu/items/cda3e8461e7a46ecf25d)~~
 
 ### php (必須)

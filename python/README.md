@@ -39,9 +39,9 @@ pipenv run python -m ipykernel install --user --name python-playground
 
 https://qiita.com/pillyshi/items/6febfde0ec3c3f5d64b2
 
-TODO: flake8, autopep8の設定
-TODO: CircleCIで回せるようにする
-TODO: Dockerfileを修正
+TODO : flake8, autopep8の設定  
+TODO : CircleCIで回せるようにする  
+TODO : Dockerfileを修正  
 
 ## IPアドレスの匿名化
 
@@ -49,6 +49,7 @@ TODO: Dockerfileを修正
 特にその様なサイトにおいてはリクエスト制限など設けることで対策を講じていることが多い。  
 そこでリクエスト制限から逃れスクレイピングを行う手法としてIPアドレスの匿名化があり、`Tor`を用いることで容易に実現することができる。
 
+> 技術者倫理的な問題があるので、利用規約を遵守しつつデータを収集したい
 
 ### Tor のインストール [WIP]
 
