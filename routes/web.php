@@ -40,11 +40,11 @@ Route::group(['middleware' => 'auth'], function (): void {
 });
 
 //saleList
-Route::group(['middleware' => 'auth'], function (): void {
-    Route::resource('salelist', 'SaleListController');
-    Route::get('/api/saleslist/sort', 'SaleListController@sortSaleList')->name('salelist.sortSaleList');
-    Route::get('/api/salelist/{salelist}', 'SaleListController@getSaleList')->name('salelist.getSaleList');
-});
+// Route::group(['middleware' => 'auth'], function (): void {
+//     Route::resource('salelist', 'SaleListController');
+//     Route::get('/api/saleslist/sort', 'SaleListController@sortSaleList')->name('salelist.sortSaleList');
+//     Route::get('/api/salelist/{salelist}', 'SaleListController@getSaleList')->name('salelist.getSaleList');
+// });
 
 //redirect-url
 Route::group(['middleware' => 'auth'], function (): void {

@@ -27,8 +27,9 @@
           v-for="company_large_category in company_large_categories"
           :key="company_large_category.id"
           :value="company_large_category.id"
-          >{{ company_large_category.name }}</option
         >
+          {{ company_large_category.name }}
+        </option>
       </select>
     </div>
     <div class="form-group">
@@ -44,8 +45,9 @@
           v-for="company_middle_category in company_middle_categories"
           :key="company_middle_category.id"
           :value="company_middle_category.id"
-          >{{ company_middle_category.name }}</option
         >
+          {{ company_middle_category.name }}
+        </option>
       </select>
     </div>
     <div class="form-group">
@@ -71,23 +73,23 @@
       </div>
     </div>
 
-    <div class="col-md-12 p-0">
+    <!-- <div class="col-md-12 p-0">
       <div class="form-group">
         <span class="d-block">条件名</span>
         <div class="input-group mb-4">
           <input v-model="saleListForm.name" name="address" class="form-control" placeholder="条件名" type="text" />
         </div>
       </div>
-    </div>
+    </div> -->
 
-    <button type="submit" class="btn btn-primary btn-block" @click="createSaleList">
+    <!-- <button type="submit" class="btn btn-primary btn-block" @click="createSaleList">
       <span class="btn-inner--text">条件を保存</span>
-    </button>
+    </button> -->
   </div>
 </template>
 
 <script>
-import axios from 'axios'
+import axios from 'axios';
 
 export default {
   name: 'SideBar',
@@ -99,57 +101,57 @@ export default {
         company_middle_category_id: '',
         listing_stock_id: '',
         address: '',
-        page: 1
+        page: 1,
       },
       saleListForm: {
-        name: ''
+        name: '',
       },
       company_large_categories: [],
       company_middle_categories: [],
-      listing_stocks: []
-    }
+      listing_stocks: [],
+    };
   },
   watch: {
     $route: {
       async handler() {
-        await this.configure()
+        await this.configure();
       },
-      immediate: true
-    }
+      immediate: true,
+    },
   },
   methods: {
     async configure() {
-      const response = await axios.get(`/configure`)
+      const response = await axios.get(`/configure`);
 
       if (response.status == 200) {
-        this.company_large_categories = response.data.company_large_categories
-        this.company_middle_categories = response.data.company_middle_categories
-        this.listing_stocks = response.data.listing_stocks
+        this.company_large_categories = response.data.company_large_categories;
+        this.company_middle_categories = response.data.company_middle_categories;
+        this.listing_stocks = response.data.listing_stocks;
       }
     },
     search() {
       global.eventHub.$emit('search_company', {
-        searchForm: this.form
-      })
+        searchForm: this.form,
+      });
     },
     async createSaleList() {
-      var params = this.form
-      params.name = this.saleListForm.name
+      var params = this.form;
+      params.name = this.saleListForm.name;
 
-      const response = await axios.post(`/salelist`, params)
+      const response = await axios.post(`/salelist`, params);
 
       if (response.status == 500) {
-        window.alert('予期せぬエラーが起こりました')
+        window.alert('予期せぬエラーが起こりました');
       }
 
       if (response.status == 422) {
-        window.alert('フォームに無効な値が入っています')
+        window.alert('フォームに無効な値が入っています');
       }
 
       if (response.status == 200) {
-        window.alert('条件を保存しました')
+        window.alert('条件を保存しました');
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>
