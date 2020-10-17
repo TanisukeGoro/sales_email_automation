@@ -50,14 +50,40 @@ class CompanyController extends Controller
      * Display the specified resource.
      *
      * @param App\Models\Company $company
+     * @param Request $request
      *
      * @return \Illuminate\Http\Response
      */
-    public function show(Company $company)
+    public function show(Company $company, Request $request)
     {
+        $address = $request->old('address');
+        $company_large_category_id = $request->old('company_large_category_id');
+        $company_middle_category_id = $request->old('company_middle_category_id');
+        $listing_stock_id = $request->old('listing_stock_id');
+        $freeword = $request->old('freeword');
+
+        // return $company_middle_category_id;
+
+        $companies = Company::getDetailCompanies($company_large_category_id, $company_middle_category_id, $freeword, $address, $listing_stock_id)->get();
+
         return view('companies.show', [
-            'company' => $company->load(['listingStock', 'companyLargeCategory', 'companyMiddleCategory']),
+            'company_count' => $companies->count(),
+            'companies' => $companies,
         ]);
+    }
+
+    public function redirectToShow(Request $request)
+    {
+        //変数の定義
+        $params = [
+            'address' => $request->address,
+            'company_large_category_id' => $request->company_large_category_id,
+            'company_middle_category_id' => $request->company_middle_category_id,
+            'freeword' => $request->freeword,
+            'listing_stock_id' => $request->listing_stock_id,
+        ];
+
+        return redirect()->route('companies.show', $request->id)->withInput($params);
     }
 
     /**

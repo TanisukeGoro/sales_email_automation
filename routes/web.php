@@ -27,6 +27,7 @@ Route::group(['middleware' => 'auth'], function (): void {
 Route::group(['middleware' => 'auth'], function (): void {
     Route::resource('companies', 'CompanyController');
     Route::get('/company/search', 'CompanyController@searchCompany')->name('companies.searchCompany');
+    Route::get('/company/show', 'CompanyController@redirectToShow')->name('companies.redirectToShow');
 });
 
 //user profile
