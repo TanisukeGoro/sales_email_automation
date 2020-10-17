@@ -89,7 +89,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from 'axios'
 
 export default {
   name: 'SideBar',
@@ -101,57 +101,57 @@ export default {
         company_middle_category_id: '',
         listing_stock_id: '',
         address: '',
-        page: 1,
+        page: 1
       },
       saleListForm: {
-        name: '',
+        name: ''
       },
       company_large_categories: [],
       company_middle_categories: [],
-      listing_stocks: [],
-    };
+      listing_stocks: []
+    }
   },
   watch: {
     $route: {
       async handler() {
-        await this.configure();
+        await this.configure()
       },
-      immediate: true,
-    },
+      immediate: true
+    }
   },
   methods: {
     async configure() {
-      const response = await axios.get(`/configure`);
+      const response = await axios.get(`/configure`)
 
       if (response.status == 200) {
-        this.company_large_categories = response.data.company_large_categories;
-        this.company_middle_categories = response.data.company_middle_categories;
-        this.listing_stocks = response.data.listing_stocks;
+        this.company_large_categories = response.data.company_large_categories
+        this.company_middle_categories = response.data.company_middle_categories
+        this.listing_stocks = response.data.listing_stocks
       }
     },
     search() {
       global.eventHub.$emit('search_company', {
-        searchForm: this.form,
-      });
+        searchForm: this.form
+      })
     },
     async createSaleList() {
-      var params = this.form;
-      params.name = this.saleListForm.name;
+      var params = this.form
+      params.name = this.saleListForm.name
 
-      const response = await axios.post(`/salelist`, params);
+      const response = await axios.post(`/salelist`, params)
 
       if (response.status == 500) {
-        window.alert('予期せぬエラーが起こりました');
+        window.alert('予期せぬエラーが起こりました')
       }
 
       if (response.status == 422) {
-        window.alert('フォームに無効な値が入っています');
+        window.alert('フォームに無効な値が入っています')
       }
 
       if (response.status == 200) {
-        window.alert('条件を保存しました');
+        window.alert('条件を保存しました')
       }
-    },
-  },
-};
+    }
+  }
+}
 </script>

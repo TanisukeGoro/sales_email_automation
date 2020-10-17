@@ -36,7 +36,7 @@
                   </div>
                   @endif
                   <input type="staff" class="form-control" id="exampleFormControlInput1" name="staff"
-                    value="{{old('staff', $approach->staff) }}" placeholder="example@example.com">
+                    value="{{old('staff', $approach->staff) }}" placeholder="山田 太郎">
                 </div>
               </div>
 
