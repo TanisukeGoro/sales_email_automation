@@ -1,15 +1,27 @@
 <template>
   <div class="row">
     <div class="col-1 p-0">
-      <span v-if="isShowBeforeButton" @click="beforeComapany()" class="btn btn-outline-primary mx-2 mt-3 d-block">
-        <i class="fas fa-angle-left"></i>
+      <span v-if="isShowBeforeButton" class="btn btn-outline-primary mx-2 mt-3 d-block" @click="beforeComapany()">
+        <i class="fas fa-angle-left" />
       </span>
     </div>
     <div class="col-10 p-0">
       <div class="card bg-secondary shadow pb-4">
         <div class="card-header bg-white border-0">
-          <div class="row align-items-center">
-            <h3 class="col-4 mb-0">企業詳細</h3>
+          <div class="d-flex justify-content-between align-items-center">
+            <h3 class="mb-0">企業詳細</h3>
+            <div class="d-flex justify-content-between align-items-center">
+              <button class="btn btn-primary" data-toggle="modal" data-target="#add-approaches-modal">
+                アプローチ中リストに追加
+              </button>
+              <add-approaches-modal
+                :checked-list="checkedList"
+                @clear-checklist="
+                  $emit('clear-checklist')
+                  $emit('checkbox', false)
+                "
+              />
+            </div>
           </div>
         </div>
         <div class="px-4 pt-5 row">
@@ -56,8 +68,8 @@
         <div class="px-4 pt-5 row">
           <span class="ml-xl-4 col-3">HP：</span>
 
-          <a class="col-8" v-if="!!company.top_url" :href="company.top_url" target="_blank">
-            <i class="fas fa-external-link-alt"></i>
+          <a v-if="!!company.top_url" class="col-8" :href="company.top_url" target="_blank">
+            <i class="fas fa-external-link-alt" />
           </a>
 
           <span v-if="!company.top_url" class="col-8">登録されていません</span>
@@ -66,8 +78,8 @@
         <div class="px-4 pt-5 row">
           <span class="ml-xl-4 col-3">お問い合わせURL：</span>
 
-          <a class="col-8" v-if="!!company.form_url" :href="company.form_url" target="_blank">
-            <i class="fas fa-external-link-alt"></i>
+          <a v-if="!!company.form_url" class="col-8" :href="company.form_url" target="_blank">
+            <i class="fas fa-external-link-alt" />
           </a>
 
           <span v-else class="col-8">登録されていません</span>
@@ -76,16 +88,26 @@
     </div>
     <div v-if="isShowAfterButton" class="col-1 p-0" @click="afterComapany()">
       <span class="btn btn-outline-primary mx-2 mt-3 d-block">
-        <i class="fas fa-angle-right"></i>
+        <i class="fas fa-angle-right" />
       </span>
     </div>
   </div>
 </template>
 
 <script>
-import axios from 'axios';
+import AddApproachesModal from './AddApproachesModal.vue'
 
 export default {
+  components: {
+    AddApproachesModal
+  },
+  props: {
+    companies: {
+      type: Array,
+      required: true,
+      default: () => ({ count: 0 })
+    }
+  },
   data() {
     return {
       company: '',
@@ -93,70 +115,67 @@ export default {
       companyCount: 0,
       isShowBeforeButton: true,
       isShowAfterButton: true,
-    };
-  },
-  props: {
-    companies: {
-      type: Array,
-      required: true,
-      default: () => ({ count: 0 }),
-    },
+      checkedList: []
+    }
   },
   watch: {
     $route: {
       async handler() {
-        await this.getCompany();
+        await this.getCompany()
       },
-      immediate: true,
-    },
+      immediate: true
+    }
   },
   methods: {
-    async getCompany(companies) {
-      const that = this;
-      var path = location.pathname.split('/')[2];
+    async getCompany() {
+      const that = this
+      const path = location.pathname.split('/')[2]
+      console.log('path :>>', path)
+      this.companyCount = this.companies.length
 
-      this.companyCount = this.companies.length;
-
-      this.company = this.companies.filter(function (company, index) {
+      this.company = this.companies.filter(function(company, index) {
         if (company.id == path) {
-          that.companyIndex = index;
+          that.companyIndex = index
         }
-        return company.id == path;
-      })[0];
-
-      this.isShowBeforeButton = !(this.companyIndex < 1);
-      this.isShowAfterButton = !(this.companyIndex >= this.companyCount - 1);
+        return company.id == path
+      })[0]
+      this.isShowBeforeButton = !(this.companyIndex < 1)
+      this.isShowAfterButton = !(this.companyIndex >= this.companyCount - 1)
     },
     beforeComapany() {
       if (this.companyIndex > 0) {
-        this.isShowBeforeButton = true;
-        this.isShowAfterButton = true;
-        this.companyIndex -= 1;
+        this.isShowBeforeButton = true
+        this.isShowAfterButton = true
+        this.companyIndex -= 1
 
-        this.company = this.companies[this.companyIndex];
+        this.company = this.companies[this.companyIndex]
 
-        history.replaceState('', '', `/companies/${this.company.id}`);
+        history.replaceState('', '', `/companies/${this.company.id}`)
+        this.checkedList = [this.company.id]
+        console.log('this.checkedList :>>', this.checkedList)
 
         if (this.companyIndex < 1) {
-          this.isShowBeforeButton = false;
+          this.isShowBeforeButton = false
         }
       }
     },
     afterComapany() {
       if (this.companyIndex < this.companyCount - 1) {
-        this.isShowBeforeButton = true;
-        this.isShowAfterButton = true;
-        this.companyIndex += 1;
+        this.isShowBeforeButton = true
+        this.isShowAfterButton = true
+        this.companyIndex += 1
 
-        this.company = this.companies[this.companyIndex];
+        this.company = this.companies[this.companyIndex]
 
-        history.replaceState('', '', `/companies/${this.company.id}`);
+        history.replaceState('', '', `/companies/${this.company.id}`)
+        this.checkedList = [this.company.id]
+        console.log('this.checkedList :>>', this.checkedList)
 
         if (this.companyIndex >= this.companyCount - 1) {
-          this.isShowAfterButton = false;
+          this.isShowAfterButton = false
         }
       }
-    },
-  },
-};
+    }
+  }
+}
 </script>
