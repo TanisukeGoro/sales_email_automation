@@ -74,7 +74,7 @@
                   <i v-else class="fas fa-external-link-alt" />
                 </td>
                 <td>
-                  <a :href="'/companies/' + company.id">{{ company.name }}</a>
+                  <a :href="companyDetailUrl(company.id)">{{ company.name }}</a>
                 </td>
                 <td>{{ company.company_large_category_id != null ? company.company_large_category.name : '' }}</td>
                 <td>{{ company.company_middle_category_id != null ? company.company_middle_category.name : '' }}</td>
@@ -94,8 +94,8 @@
                 href="#"
                 aria-label="Previous"
                 @click="
-                  current_page -= 1
-                  searchCompany()
+                  current_page -= 1;
+                  searchCompany();
                 "
               >
                 <span aria-hidden="true">&laquo;</span>
@@ -107,8 +107,8 @@
                 class="page-link"
                 href="#"
                 @click="
-                  current_page = page
-                  searchCompany()
+                  current_page = page;
+                  searchCompany();
                 "
                 >{{ page }}</a
               >
@@ -119,8 +119,8 @@
                 href="#"
                 aria-label="Next"
                 @click="
-                  current_page += 1
-                  searchCompany()
+                  current_page += 1;
+                  searchCompany();
                 "
               >
                 <span aria-hidden="true">&raquo;</span>
@@ -135,106 +135,116 @@
 </template>
 
 <script>
-import axios from 'axios'
-import TheAddApproaches from './TheAddApproach.vue'
+import axios from 'axios';
+import TheAddApproaches from './TheAddApproach.vue';
 
 export default {
   name: 'CompanyList',
   components: {
-    TheAddApproaches
+    TheAddApproaches,
   },
   filters: {
     employees(maximum, minimum) {
-      if (minimum && maximum) return `${minimum} ~ ${maximum}`
-      if (maximum) return maximum
-      return ''
-    }
+      if (minimum && maximum) return `${minimum} ~ ${maximum}`;
+      if (maximum) return maximum;
+      return '';
+    },
   },
   data() {
     return {
-      params: {},
+      params: {
+        address: '',
+        company_large_category_id: '',
+        company_middle_category_id: '',
+        freeword: '',
+        listing_stock_id: '',
+      },
       companies: [],
       search_count: null,
       current_page: null,
       last_page: null,
       display: false,
       isCheckbox: false,
-      checkList: []
-    }
+      checkList: [],
+    };
   },
   computed: {
     isFirstPage() {
-      return this.current_page === 1
+      return this.current_page === 1;
     },
     isLastPage() {
-      return this.currentPage === this.last_page
+      return this.currentPage === this.last_page;
     },
     displayList() {
-      let first = this.current_page - 4
-      if (first < 1) first = 1
+      let first = this.current_page - 4;
+      if (first < 1) first = 1;
 
-      let last = this.current_page + 4
-      if (last > this.last_page) last = this.last_page
+      let last = this.current_page + 4;
+      if (last > this.last_page) last = this.last_page;
 
-      const list = []
+      const list = [];
       for (let i = first; i <= last; i++) {
-        list.push(i)
+        list.push(i);
       }
-      return list
-    }
+      return list;
+    },
   },
   watch: {
     $route: {
       async handler() {
-        await this.configure()
+        await this.configure();
       },
-      immediate: true
-    }
+      immediate: true,
+    },
   },
   created() {
     //イベント名で受け取る
-    global.eventHub.$on('search_company', val => {
-      this.params = val.searchForm
-      this.current_page = 1
-      this.searchCompany()
-    })
+    global.eventHub.$on('search_company', (val) => {
+      this.params = val.searchForm;
+      this.current_page = 1;
+      this.searchCompany();
+    });
   },
   methods: {
+    companyDetailUrl(id) {
+      return `/company/show?id=${id}&address=${this.params.address}&company_large_category_id=${this.params.company_large_category_id}&company_middle_category_id=${this.params.company_middle_category_id}&freeword=${this.params.freeword}&listing_stock_id=${this.params.listing_stock_id}`;
+    },
     checkAll($event) {
-      if (!$event.target.checked) return (this.checkList = [])
+      if (!$event.target.checked) return (this.checkList = []);
       this.checkList.length === this.companies.length
         ? (this.checkList = [])
-        : (this.checkList = this.companies.map(company => company.id))
+        : (this.checkList = this.companies.map((company) => company.id));
     },
     async configure() {
-      const response = await axios.get(`company/search`)
+      const response = await axios.get(`company/search`);
 
       if (response.status == 200) {
-        let data = response.data
-        this.companies = data.data
-        this.search_count = data.total
-        this.current_page = data.current_page
-        this.last_page = data.last_page
-        this.display = true
+        let data = response.data;
+        this.companies = data.data;
+        this.search_count = data.total;
+        this.current_page = data.current_page;
+        this.last_page = data.last_page;
+        this.display = true;
       }
     },
     async searchCompany() {
-      this.params.page = this.current_page
-      var params = this.params
+      this.params.page = this.current_page;
+      var params = this.params;
+      console.log(this.params);
       const data = {
-        params
-      }
-      const response = await axios.get(`company/search`, data)
+        params,
+      };
+      const response = await axios.get(`company/search`, data);
 
       if (response.status == 200) {
-        let data = response.data
-        this.companies = data.data
-        this.search_count = data.total
-        this.current_page = data.current_page
-        this.last_page = data.last_page
-        this.display = true
+        let data = response.data;
+        this.companies = data.data;
+        this.search_count = data.total;
+        this.current_page = data.current_page;
+        this.last_page = data.last_page;
+        this.display = true;
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>

@@ -2,6 +2,7 @@ import './bootstrap'
 import Vue from 'vue'
 import SuggestInput from './components/SuggestInput.vue'
 import CompanyList from './components/CompanyList.vue'
+import CompanyDetail from './components/CompanyDetail.vue'
 import SaleList from './components/SaleList.vue'
 import RedirectUri from './components/RedirectUri.vue'
 import SaleListCompany from './components/SaleListCompany.vue'
@@ -34,6 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
     el: '#vue-app',
     components: {
       CompanyList,
+      CompanyDetail,
       SaleList,
       RedirectUri,
       SaleListCompany,
