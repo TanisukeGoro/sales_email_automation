@@ -24,8 +24,8 @@ class UserCompanyRequest extends FormRequest
     public function rules()
     {
         return [
-            'company_contact_email' => ['nullable', 'email'],
-            'hp_adress' => ['nullable', 'string'],
+            'company_contact_email' => ['required', 'email'],
+            'hp_adress' => ['required', 'string'],
         ];
     }
 
