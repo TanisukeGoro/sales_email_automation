@@ -52,8 +52,8 @@ class ProfileController extends Controller
 
     public function updateUserCompany(UserCompanyRequest $request): void
     {
-        $userCompany = Auth::user()->userCompany;
-        $userCompany->update($request->all());
+        $user = Auth::user();
+        $user->update($request->all());
     }
 
     /**
