@@ -16,6 +16,8 @@ Route::get('/', function () {
 });
 
 Auth::routes(['verify' => true]);
+Route::get('register/profile', 'ProfileController@create')->middleware('verified')->name('profile.create');
+Route::post('register/profile', 'ProfileController@store')->middleware('verified')->name('profile.store');
 
 //home
 Route::group(['middleware' => 'verified'], function (): void {

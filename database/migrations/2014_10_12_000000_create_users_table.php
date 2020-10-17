@@ -16,6 +16,9 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('official_position')->comment('役職')->nullable();
+            $table->string('facebook')->comment('facebook')->nullable();
+            $table->string('linkedin')->comment('linkedin')->nullable();
             $table->bigInteger('plan_id')->unsigned()->nullable();
             $table->string('company_name')->comment('企業名')->nullable();
             $table->bigInteger('company_large_category_id')->unsigned()->nullable()->comment('日本標準産業分類の大分類');
@@ -23,6 +26,11 @@ class CreateUsersTable extends Migration
             $table->string('company_address')->comment('企業住所')->nullable();
             $table->integer('maximum_employees')->comment('従業員人数')->nullable();
             $table->string('hp_adress')->comment('ホームページアドレス')->nullable();
+            $table->string('business_description')->comment('事業内容')->nullable();
+            $table->string('company_representative_name')->comment('代表者名')->nullable();
+            $table->string('company_representative_phone_number')->comment('代表者電話番号')->nullable();
+            $table->string('company_profile')->comment('会社概要')->nullable();
+            $table->string('company_contact_email')->comment('問い合わせメール')->nullable();
             $table->rememberToken();
             $table->timestamp('email_verified_at')->nullable();
             $table->timestamps();
