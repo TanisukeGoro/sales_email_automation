@@ -1,5 +1,5 @@
 <template>
-  <div v-if="isDisplay" class="row justify-content-center">
+  <div class="row justify-content-center">
     <div class="col-lg-6 col-md-8">
       <div class="card shadow">
         <div class="card-body px-lg-5 py-lg-5">
@@ -363,8 +363,6 @@ export default {
         business_description: '',
         company_profile: '',
       },
-      isError: false,
-      isDisplay: false,
       page: 1,
       company_large_categories: [],
       company_middle_categories: [],
@@ -387,7 +385,6 @@ export default {
         this.company_large_categories = response.data.company_large_categories;
         this.company_middle_categories = response.data.company_middle_categories;
         this.listing_stocks = response.data.listing_stocks;
-        this.isDisplay = true;
       }
     },
     clickPage1Button() {
@@ -456,7 +453,7 @@ export default {
       }
 
       if (response.status == 200) {
-        window.alert('条件を保存しました');
+        window.location.href = '/';
       }
     },
     validateEmail(email) {

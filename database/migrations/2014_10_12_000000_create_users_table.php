@@ -31,6 +31,7 @@ class CreateUsersTable extends Migration
             $table->string('company_representative_phone_number')->comment('代表者電話番号')->nullable();
             $table->string('company_profile')->comment('会社概要')->nullable();
             $table->string('company_contact_email')->comment('問い合わせメール')->nullable();
+            $table->boolean('has_profile')->default(false);
             $table->rememberToken();
             $table->timestamp('email_verified_at')->nullable();
             $table->timestamps();

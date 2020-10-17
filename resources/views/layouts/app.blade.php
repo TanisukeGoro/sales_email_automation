@@ -44,7 +44,7 @@
   </form>
   <div class="container-fluid">
     <div class="row">
-      @if(request()->path() != "register/profile")
+      @if(request()->path() != "register/profile" && request()->path() != "email/verify")
       @include('layouts.navbars.sidebar')
       @endif
       @yield('content')

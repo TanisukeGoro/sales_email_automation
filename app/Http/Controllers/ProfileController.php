@@ -24,6 +24,7 @@ class ProfileController extends Controller
     public function store(RegisterProfileRequest $request): void
     {
         $user = Auth::user();
+        $user->has_profile = true;
         $user->fill($request->all())->save();
     }
 
