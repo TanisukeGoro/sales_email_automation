@@ -15,23 +15,23 @@ Route::get('/', function () {
     return redirect()->route('home');
 });
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 //home
-Route::group(['middleware' => 'auth'], function (): void {
+Route::group(['middleware' => 'verified'], function (): void {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/configure', 'HomeController@configure')->name('home.configure');
 });
 
 //company
-Route::group(['middleware' => 'auth'], function (): void {
+Route::group(['middleware' => 'verified'], function (): void {
     Route::resource('companies', 'CompanyController');
     Route::get('/company/search', 'CompanyController@searchCompany')->name('companies.searchCompany');
     Route::get('/company/show', 'CompanyController@redirectToShow')->name('companies.redirectToShow');
 });
 
 //user profile
-Route::group(['middleware' => 'auth'], function (): void {
+Route::group(['middleware' => 'verified'], function (): void {
     Route::resource('user', 'UserController', ['except' => ['show']]);
     Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
     Route::put('profile/user', ['as' => 'profile.update', 'uses' => 'ProfileController@updateUser']);
@@ -41,21 +41,21 @@ Route::group(['middleware' => 'auth'], function (): void {
 });
 
 //saleList
-// Route::group(['middleware' => 'auth'], function (): void {
+// Route::group(['middleware' => 'verified'], function (): void {
 //     Route::resource('salelist', 'SaleListController');
 //     Route::get('/api/saleslist/sort', 'SaleListController@sortSaleList')->name('salelist.sortSaleList');
 //     Route::get('/api/salelist/{salelist}', 'SaleListController@getSaleList')->name('salelist.getSaleList');
 // });
 
 //redirect-url
-Route::group(['middleware' => 'auth'], function (): void {
+Route::group(['middleware' => 'verified'], function (): void {
     Route::resource('redirect-link', 'RedirectController', ['except' => ['store', 'show']]);
     Route::post('/redirect-link', 'RedirectController@publish')->name('redirect-link.publish');
     Route::get('/redirect-link/{uuid}', 'RedirectController@count')->name('redirect-link.count');
 });
 
 //template
-Route::group(['middleware' => 'auth'], function (): void {
+Route::group(['middleware' => 'verified'], function (): void {
     Route::post('/template/confirm', 'TemplateController@confirm')->name('template.confirm');
     Route::post('/template/back', 'TemplateController@back')->name('template.back');
     Route::resource('template', 'TemplateController');
@@ -63,7 +63,7 @@ Route::group(['middleware' => 'auth'], function (): void {
 });
 
 //approach folder
-Route::group(['middleware' => 'auth'], function (): void {
+Route::group(['middleware' => 'verified'], function (): void {
     Route::resource('approach-folders', 'ApproachFolderController');
 
     Route::get('approach-folders/{folder}/approaches/create', 'ApproachController@create')->name('approaches.create');
