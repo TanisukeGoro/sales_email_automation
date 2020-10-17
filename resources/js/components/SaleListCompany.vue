@@ -75,8 +75,8 @@
                 href="#"
                 aria-label="Previous"
                 @click="
-                  current_page -= 1;
-                  searchCompany();
+                  current_page -= 1
+                  searchCompany()
                 "
               >
                 <span aria-hidden="true">&laquo;</span>
@@ -88,8 +88,8 @@
                 class="page-link"
                 href="#"
                 @click="
-                  current_page = page;
-                  searchCompany();
+                  current_page = page
+                  searchCompany()
                 "
                 >{{ page }}</a
               >
@@ -100,8 +100,8 @@
                 href="#"
                 aria-label="Next"
                 @click="
-                  current_page += 1;
-                  searchCompany();
+                  current_page += 1
+                  searchCompany()
                 "
               >
                 <span aria-hidden="true">&raquo;</span>
@@ -116,16 +116,16 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from 'axios'
 
 export default {
   name: 'SaleListCompany',
   filters: {
     employees(maximum, minimum) {
-      if (minimum && maximum) return `${minimum} ~ ${maximum}`;
-      if (maximum) return maximum;
-      return '';
-    },
+      if (minimum && maximum) return `${minimum} ~ ${maximum}`
+      if (maximum) return maximum
+      return ''
+    }
   },
   data() {
     return {
@@ -134,57 +134,56 @@ export default {
       search_count: null,
       current_page: null,
       last_page: null,
-      display: false,
-    };
+      display: false
+    }
   },
   computed: {
     isFirstPage() {
-      return this.current_page === 1;
+      return this.current_page === 1
     },
     isLastPage() {
-      return this.currentPage === this.last_page;
+      return this.currentPage === this.last_page
     },
     displayList() {
-      let first = this.current_page - 4;
-      if (first < 1) first = 1;
+      let first = this.current_page - 4
+      if (first < 1) first = 1
 
-      let last = this.current_page + 4;
-      if (last > this.last_page) last = this.last_page;
+      let last = this.current_page + 4
+      if (last > this.last_page) last = this.last_page
 
-      const list = [];
+      const list = []
       for (let i = first; i <= last; i++) {
-        list.push(i);
+        list.push(i)
       }
-      return list;
-    },
+      return list
+    }
   },
   created() {
     //イベント名で受け取る
-    global.eventHub.$on('search_salelist_company', (val) => {
-      this.params = val.searchForm;
-      this.current_page = 1;
-      this.searchCompany();
-    });
+    global.eventHub.$on('search_salelist_company', val => {
+      this.params = val.searchForm
+      this.current_page = 1
+      this.searchCompany()
+    })
   },
   methods: {
     async searchCompany() {
-      this.params.page = this.current_page;
-      var params = this.params;
+      this.params.page = this.current_page
+      var params = this.params
       const data = {
-        params,
-      };
-      const response = await axios.get(`/company/search`, data);
-      console.log(response);
-      if (response.status == 200) {
-        let data = response.data;
-        this.companies = data.data;
-        this.search_count = data.total;
-        this.current_page = data.current_page;
-        this.last_page = data.last_page;
-        this.display = true;
+        params
       }
-    },
-  },
-};
+      const response = await axios.get(`/company/search`, data)
+      console.log(response)
+      if (response.status == 200) {
+        let data = response.data
+        this.companies = data.data
+        this.search_count = data.total
+        this.current_page = data.current_page
+        this.last_page = data.last_page
+        this.display = true
+      }
+    }
+  }
+}
 </script>
-

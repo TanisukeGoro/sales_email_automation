@@ -6,6 +6,7 @@
     role="dialog"
     aria-labelledby="add-approaches-modal"
     aria-hidden="true"
+    data-backdrop="static"
   >
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
