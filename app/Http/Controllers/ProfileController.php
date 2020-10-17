@@ -35,9 +35,7 @@ class ProfileController extends Controller
 
     public function info()
     {
-        $user = Auth::user();
-
-        return $user->load('userCompany');
+        return Auth::user();
     }
 
     /**
