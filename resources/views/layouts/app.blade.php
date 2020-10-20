@@ -26,8 +26,10 @@
       height: calc(100vh - 90px);
       overflow: hidden scroll;
     }
-    #body::-webkit-scrollbar {  /* Chrome, Safari 対応 */
-        display:none;
+
+    #body::-webkit-scrollbar {
+      /* Chrome, Safari 対応 */
+      display: none;
     }
   </style>
 </head>
@@ -42,7 +44,9 @@
   </form>
   <div class="container-fluid">
     <div class="row">
+      @if(request()->path() != "register/profile" && request()->path() != "email/verify")
       @include('layouts.navbars.sidebar')
+      @endif
       @yield('content')
     </div>
   </div>
@@ -54,7 +58,7 @@
   @endguest
 
   @auth()
-    @include('layouts.footers.auth')
+  @include('layouts.footers.auth')
   @endauth
 
   <!-- Argon JS -->

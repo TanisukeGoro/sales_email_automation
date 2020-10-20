@@ -11,6 +11,7 @@ import UserProfile from "./components/UserProfile.vue"
 import UserCompany from "./components/UserCompany.vue"
 import ApproachFoldersIndex from './components/ApproachFolders/index.vue'
 import ApproachesIndex from './components/Approaches/index.vue'
+import RegisterProfile from './components/RegisterProfile.vue'
 
 //予約後のtemplateと被らないようにsを付けている
 import Templates from './components/Template.vue'
@@ -44,7 +45,8 @@ document.addEventListener('DOMContentLoaded', () => {
       UserProfile,
       UserCompany,
       ApproachFoldersIndex,
-      ApproachesIndex
+      ApproachesIndex,
+      RegisterProfile
     }
   })
 
