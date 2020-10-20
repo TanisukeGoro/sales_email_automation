@@ -19,7 +19,7 @@
       キャンセル
     </button>
     <button v-if="!isCheckbox" class="btn btn-primary" @click="$emit('checkbox', !isCheckbox)">
-      選択してアプローチ中リストに追加
+      リストに追加
     </button>
     <add-approaches-modal
       :checked-list="checkedList"

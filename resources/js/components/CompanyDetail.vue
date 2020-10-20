@@ -12,7 +12,7 @@
             <h3 class="mb-0">企業詳細</h3>
             <div class="d-flex justify-content-between align-items-center">
               <button class="btn btn-primary" data-toggle="modal" data-target="#add-approaches-modal">
-                アプローチ中リストに追加
+                リストに追加
               </button>
               <add-approaches-modal
                 :checked-list="checkedList"
