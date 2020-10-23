@@ -63,9 +63,9 @@
 
                 <td class="text-center">
                   <a v-if="company.top_url" :href="company.top_url" target="_blank">
-                    <i class="fas fa-external-link-alt" />
+                    <i class="fas fa-home" />
                   </a>
-                  <i v-else class="fas fa-external-link-alt" />
+                  <i v-else class="fas fa-home" />
                 </td>
                 <td class="text-center">
                   <a v-if="company.form_url" :href="company.form_url" target="_blank">
