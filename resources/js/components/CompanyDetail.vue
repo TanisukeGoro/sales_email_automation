@@ -139,6 +139,10 @@ export default {
         }
         return company.id == path
       })[0]
+
+      this.checkedList = [this.company.id]
+      console.log('this.checkedList :>>', this.checkedList)
+
       this.isShowBeforeButton = !(this.companyIndex < 1)
       this.isShowAfterButton = !(this.companyIndex >= this.companyCount - 1)
     },

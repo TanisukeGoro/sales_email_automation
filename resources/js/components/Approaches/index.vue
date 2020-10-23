@@ -6,7 +6,7 @@
           <div class="d-flex justify-content-between align-items-center">
             <p class="mb-0">該当件数{{ propsApproaches.length }}件</p>
             <div>
-              <a href="approach-folders/create" class="btn btn-primary">追加</a>
+              <a href="/companies" class="btn btn-primary">追加</a>
               <div class="dropdown col-4 text-right">
                 <button
                   id="dropdownMenuButton"

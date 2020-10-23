@@ -68,14 +68,10 @@ Route::group(['middleware' => ['verified', 'checkHasProfile']], function (): voi
 Route::group(['middleware' => ['verified', 'checkHasProfile']], function (): void {
     Route::resource('approach-folders', 'ApproachFolderController');
 
-    Route::get('approach-folders/{folder}/approaches/create', 'ApproachController@create')->name('approaches.create');
     Route::get('/api/approach-folders/', 'ApproachFolderController@list');
     Route::post('/api/approach-folders/{folder}', 'ApproachController@store');
 
-    Route::group(['middleware' => 'can:view,folder'], function (): void {
-        Route::resource('approach-folders/{folder}/approaches', 'ApproachController', ['except' => ['create']]);
-        Route::get('approach-folders/{folder}/approaches/{approach}/confirm', 'ApproachController@confirm')->name('approaches.confirm');
-    });
+    Route::resource('approach-folders/{folder}/approaches', 'ApproachController', ['except' => ['create', 'store']]);
 });
 
 Route::get('/500', function () {

@@ -17,7 +17,7 @@
         </div>
         <div class="col-10 m-auto">
           @if(Route::currentRouteName() == "approaches.create")
-            <form action="{{route('approaches.confirm')}}" method="GET">
+            {{-- <form action="{{route('approaches.confirm')}}" method="GET"> --}}
           @elseif(Route::currentRouteName() == "approaches.edit")
             <form action="{{route('approaches.update',[$approach->approach_folder_id, $approach->id])}}" method="POST">
               @method('PUT')
