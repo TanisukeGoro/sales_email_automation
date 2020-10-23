@@ -69,9 +69,9 @@
                 </td>
                 <td class="text-center">
                   <a v-if="company.form_url" :href="company.form_url" target="_blank">
-                    <i class="fas fa-external-link-alt" />
+                    <i class="far fa-paper-plane" />
                   </a>
-                  <i v-else class="fas fa-external-link-alt" />
+                  <i v-else class="far fa-paper-plane" />
                 </td>
                 <td>
                   <a :href="companyDetailUrl(company.id)">{{ company.name }}</a>

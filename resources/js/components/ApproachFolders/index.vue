@@ -38,7 +38,7 @@
               </tr>
               <tr v-if="approachFolders.length == 0">
                 <td>
-                  <span>営業先リストがありません</span>
+                  <span>アプローチリストを作成してみましょう</span>
                 </td>
               </tr>
             </tbody>
