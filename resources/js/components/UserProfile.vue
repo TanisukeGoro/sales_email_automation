@@ -153,7 +153,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from 'axios';
 
 export default {
   name: 'UserProfile',
@@ -164,77 +164,77 @@ export default {
         email: '',
         facebook: '',
         linkedin: '',
-        official_position: ''
+        official_position: '',
       },
       passwordForm: {
         old_password: '',
         password: '',
-        password_confirmation: ''
+        password_confirmation: '',
       },
-      errors: ''
-    }
+      errors: '',
+    };
   },
   watch: {
     $route: {
       async handler() {
-        await this.configure()
+        await this.configure();
       },
-      immediate: true
-    }
+      immediate: true,
+    },
   },
   methods: {
     async configure() {
-      const response = await axios.get(`/profile/info`)
+      const response = await axios.get(`/profile/info`);
 
       if (response.status == 200) {
-        const data = response.data
-        this.form.name = data.name
-        this.form.email = data.email
-        this.form.facebook = data.facebook
-        this.form.linkedin = data.linkedin
-        this.form.official_position = data.official_position
+        const data = response.data;
+        this.form.name = data.name;
+        this.form.email = data.email;
+        this.form.facebook = data.facebook;
+        this.form.linkedin = data.linkedin;
+        this.form.official_position = data.official_position;
       }
     },
     async changeUserProfile() {
-      var params = this.form
+      var params = this.form;
 
-      const response = await axios.put(`/profile/user`, params)
+      const response = await axios.put(`/profile/user`, params);
 
       if (response.status == 500) {
-        window.alert('予期せぬエラーが起こりました')
+        window.alert('予期せぬエラーが起こりました');
       }
 
       if (response.status == 422) {
-        this.errors = response.data.errors
+        this.errors = response.data.errors;
       }
 
       if (response.status == 200) {
-        this.errors = ''
-        window.alert('条件を保存しました')
+        this.errors = '';
+        window.alert('プロフィールを変更しました！');
       }
     },
 
     async changePassword() {
-      var params = this.passwordForm
+      var params = this.passwordForm;
 
-      const response = await axios.put(`/profile/password`, params)
+      const response = await axios.put(`/profile/password`, params);
 
       if (response.status == 500) {
-        window.alert('予期せぬエラーが起こりました')
+        window.alert('予期せぬエラーが起こりました');
       }
 
       if (response.status == 422) {
-        this.errors = response.data.errors
+        this.errors = response.data.errors;
       }
 
       if (response.status == 200) {
-        this.passwordForm.old_password = ''
-        this.passwordForm.password = ''
-        this.passwordForm.password_confirmation = ''
-        this.errors = ''
-        window.alert('条件を保存しました')
+        this.passwordForm.old_password = '';
+        this.passwordForm.password = '';
+        this.passwordForm.password_confirmation = '';
+        this.errors = '';
+        window.alert('パスワードを変更しました！');
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>

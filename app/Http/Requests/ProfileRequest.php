@@ -30,7 +30,7 @@ class ProfileRequest extends FormRequest
             'email' => ['required', 'email', Rule::unique((new User())->getTable())->ignore(auth()->id())],
             'facebook' => ['nullable', 'string'],
             'linkedin' => ['nullable', 'string'],
-            'official_position' => ['nullable', 'string'],
+            'official_position' => ['required', 'string'],
         ];
     }
 
