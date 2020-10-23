@@ -3,21 +3,21 @@
   <div class="container-fluid">
     <div class="header-left text-center">
       <!-- Brand -->
-      <a class="h4 mb-0 text-inline" href="{{ route('home') }}">{{ config("app.name") }}</a>
+      <a class="h3 mb-0 text-inline" href="{{ route('home') }}">{{ config("app.name") }}</a>
       <!-- button -->
       <div class="button-box ml-3 d-none d-md-inline-block">
         {{-- <a href="{{ route('salelist.index')}}" class="btn btn-outline-primary btn-sm">営業先リスト</a> --}}
         <a href="{{ route('companies.index')}}" class="btn btn-outline-primary btn-sm">企業一覧</a>
         <a href="{{ route('approach-folders.index')}}" class="btn btn-outline-primary btn-sm">アプローチ中リスト</a>
-        <a href="{{ route('template.index')}}" class="btn btn-outline-primary btn-sm">テンプレート</a>
-        <button type="button" class="btn btn-outline-primary btn-sm">月間レポート</button>
-        <button type="button" class="btn btn-outline-primary btn-sm">設定</button>
+        <a href="{{ route('template.index')}}" class="btn btn-outline-primary btn-sm">フォーム投稿文面一覧</a>
+        {{-- <button type="button" class="btn btn-outline-primary btn-sm">月間レポート</button> --}}
+        {{-- <button type="button" class="btn btn-outline-primary btn-sm">設定</button> --}}
       </div>
     </div>
 
     <div class="header-right d-flex align-items-center">
-      <p class="remainder-text m-0 d-none d-md-inline-block">送信済み {{$sent_count}}件</p>
-      <p class="remainder-text m-0 ml-3 d-none d-md-inline-block">送信可能件数 {{$remaining_send_count}}件</p>
+      {{-- <p class="remainder-text m-0 d-none d-md-inline-block">送信済み {{$sent_count}}件</p> --}}
+      {{-- <p class="remainder-text m-0 ml-3 d-none d-md-inline-block">送信可能件数 {{$remaining_send_count}}件</p> --}}
       <!-- User -->
       <ul class="navbar-nav align-items-center d-md-flex">
         <li class="nav-item dropdown">
@@ -44,20 +44,24 @@
             <span>{{ __('営業先リスト') }}</span>
             </a> --}}
             <a href="{{ route('companies.index')}}" class="dropdown-item">
-              <i class="ni ni-collection"></i>
+              <i class="far fa-building"></i>
               <span>{{ __('企業一覧') }}</span>
             </a>
+            <a href="{{ route('approach-folders.index')}}" class="dropdown-item">
+              <i class="fas fa-list"></i>
+              <span>{{ __('アプローチ中リスト') }}</span>
+            </a>
             <a href="{{ route('template.index')}}" class="dropdown-item">
-              <i class="ni ni-collection"></i>
-              <span>{{ __('テンプレート') }}</span>
+              <i class="fas fa-envelope-open-text"></i>
+              <span>{{ __('フォーム投稿文面一覧') }}</span>
             </a>
-            <a href="#" class="dropdown-item">
+            {{-- <a href="#" class="dropdown-item">
               <i class="ni ni-calendar-grid-58"></i>
-              <span>{{ __('月間レポート') }}</span>
+              <span>{{ __('月間レポート') }}</span> --}}
             </a>
-            <a href="#" class="dropdown-item">
+            {{-- <a href="#" class="dropdown-item">
               <i class="ni ni-settings-gear-65"></i>
-              <span>{{ __('設定') }}</span>
+              <span>{{ __('設定') }}</span> --}}
             </a>
             <div class="dropdown-divider"></div>
             <a href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault();

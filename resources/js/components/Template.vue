@@ -4,7 +4,7 @@
       <div class="card shadow">
         <div class="card-header border-0">
           <div class="d-flex justify-content-between align-items-center">
-            <p class="mb-0">テンプレート一覧</p>
+            <p class="mb-0">フォーム投稿文面一覧</p>
             <a href="template/create" class="btn btn-primary">新規作成</a>
           </div>
         </div>
@@ -13,7 +13,7 @@
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
-                <th scope="col">テンプレート名</th>
+                <th scope="col">タイトル</th>
                 <th scope="col">作成日</th>
                 <th scope="col" />
               </tr>
@@ -38,7 +38,7 @@
               </tr>
               <tr v-if="templates.length == 0">
                 <td>
-                  <span>営業先リストがありません</span>
+                  <span>フォーム投稿を作成してみましょう</span>
                 </td>
               </tr>
             </tbody>
