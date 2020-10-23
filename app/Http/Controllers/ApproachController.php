@@ -18,6 +18,7 @@ class ApproachController extends Controller
      */
     public function index(ApproachFolder $folder)
     {
+        $this->authorize('view', $folder);
         $approaches = $folder->approaches()->get();
         return view('approaches.index', [
             'approaches' => $approaches->load('company'),
@@ -34,6 +35,7 @@ class ApproachController extends Controller
      */
     public function create(Request $request, ApproachFolder $folder)
     {
+        $this->authorize('view', $folder);
         return view('approaches.create', [
             'approaches' => $request,
         ]);
@@ -49,8 +51,20 @@ class ApproachController extends Controller
      */
     public function store(Request $request, ApproachFolder $folder)
     {
-        if (isset($request->companies)) {
-            $folder->approaches()->createMany($request->companies);
+        $this->authorize('view', $folder);
+
+        $stored_companies = $folder->approaches()->pluck('company_id')->toArray();
+
+        $store_companies = [];
+
+        foreach ($request->companies as $key => $company) {
+            if (!\in_array($company['company_id'], $stored_companies, true)) {
+                $store_companies[] = $company;
+            }
+        }
+
+        if (\count($store_companies) > 0) {
+            $folder->approaches()->createMany($store_companies);
             return response()->json([
                 'status' => 201,
             ]);
@@ -108,13 +122,20 @@ class ApproachController extends Controller
      * @param \Illuminate\Http\Request $request
      * @param int $id
      * @param Approach $approach
+     * @param ApproachFolder $folder
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(ApproachEditRequest $request, Approach $approach)
+    public function update(ApproachEditRequest $request, ApproachFolder $folder, Approach $approach)
     {
+        $this->checkRelation($folder, $approach);
         $approach->fill($request->all())->save();
-        return redirect()->route('template.show');
+        return redirect()->route(
+            'approaches.show',
+            ['folder' => $request->folder,
+                'approach' => $request->approach,
+            ]
+        );
     }
 
     /**
@@ -123,14 +144,21 @@ class ApproachController extends Controller
      * @param int $id
      * @param ApproachEditRequest $request
      * @param Approach $approach
+     * @param ApproachFolder $folder
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ApproachEditRequest $request, Approach $approach)
+    public function destroy(ApproachEditRequest $request, ApproachFolder $folder, Approach $approach)
     {
-        $this->authorize('delete', $approach);
+        $this->checkRelation($folder, $approach);
         $approach->delete();
-        return view('approaches.index');
+        $approaches = $folder->approaches()->get();
+        return redirect()->route(
+            'approaches.index',
+            ['folder' => $folder->id,
+                'approaches' => $approaches->load('company'),
+            ]
+        );
     }
 
     private function checkRelation(ApproachFolder $folder, Approach $approach): void
