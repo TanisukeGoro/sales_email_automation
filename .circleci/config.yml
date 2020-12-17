@@ -20,12 +20,12 @@ jobs:
           command: wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && sudo tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
           environment:
             DOCKERIZE_VERSION: v0.6.1
-            
-      - run: 
+
+      - run:
           name: apt-get update
           command: sudo apt-get update && sudo apt-get -y install libpq-dev
-      
-      - run: 
+
+      - run:
           name: Install PHP Extensions
           command: sudo docker-php-ext-install pdo_pgsql
 
@@ -38,11 +38,6 @@ jobs:
           name: composer install
           working_directory: .
           command: composer config -g repos.packagist composer https://packagist.jp
-
-      - run:
-          name: composer install prestissimo
-          working_directory: .
-          command: composer global require hirak/prestissimo
 
       - run:
           name: composer install
